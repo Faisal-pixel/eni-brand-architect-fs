@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Check, Megaphone } from 'lucide-react';
+import { Megaphone } from 'lucide-react';
 import { CheckmarkIcon, PublicRelationsAndCommunication } from '@/assets/icons';
 import Image from 'next/image';
 
@@ -34,7 +34,7 @@ const PRAndCommunication = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Media Showcase */}
           <div 
-            className={`relative transform transition-all duration-1000 ${
+            className={`relative transform transition-all duration-1000 order-2 ${
               isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
             }`}
             style={{ transitionDelay: '300ms' }}
@@ -43,7 +43,7 @@ const PRAndCommunication = () => {
           </div>
 
           {/* Right Content */}
-          <div className="space-y-8">
+          <div className="space-y-8 order-1">
             {/* Icon and Title */}
             <div 
               className={`transform transition-all duration-1000 ${

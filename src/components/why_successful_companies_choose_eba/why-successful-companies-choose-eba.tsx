@@ -37,7 +37,7 @@ const WhySuccessfulCompaniesChooseEBASection = () => {
   ];
 
   return (
-    <div className=" bg-[rgba(234,243,240,1)] px-[103px] py-[96px]">
+    <div className="mb-12 md:mb-16 bg-[rgba(234,243,240,1)] px-10 lg:px-[103px] py-[96px]">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div 
@@ -51,7 +51,7 @@ const WhySuccessfulCompaniesChooseEBASection = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-3 lg:gap-3">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -66,7 +66,7 @@ const WhySuccessfulCompaniesChooseEBASection = () => {
                   transitionDelay: `${300 + index * 150}ms`
                 }}
               >
-                <div className="">
+                <div className="p-2.5">
                   {/* Icon */}
                   <Image src={Icon} alt={feature.title} />
 

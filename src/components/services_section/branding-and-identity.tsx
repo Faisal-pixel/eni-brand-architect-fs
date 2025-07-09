@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Check, Tag } from 'lucide-react';
+import { Tag } from 'lucide-react';
 import { BrandingAndIdentity, CheckmarkIcon } from '@/assets/icons';
 import Image from 'next/image';
 
@@ -29,7 +29,7 @@ const BrandingIdentity = () => {
   ];
 
   return (
-    <div className="py-20 px-4">
+    <div className=" px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -49,7 +49,7 @@ const BrandingIdentity = () => {
                 Branding & Identity
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                From audit to identity, we lay the groundwork for your brand's success. Whether you're launching a new venture or redefining an existing one, we create distinctive brands that connect with your target audience and stand out in competitive markets.
+                From audit to identity, we lay the groundwork for your brand&#39;s success. Whether you&#39;re launching a new venture or redefining an existing one, we create distinctive brands that connect with your target audience and stand out in competitive markets.
               </p>
             </div>
 

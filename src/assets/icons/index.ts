@@ -22,6 +22,7 @@ export {default as PalleteContentAndCreativityIcon} from "@/assets/icons/ui/pall
 export {default as TeeSideImage} from "@/assets/icons/ui/tee-side-image.svg";
 export {default as NewsLetterLogo} from "@/assets/icons/ui/news-letter-logos.svg";
 export {default as NewsLetterLeftLogos} from "@/assets/icons/ui/news-letter-left-logos.svg";
+export {default as XCloseDropdownMenuIcon} from "@/assets/icons/ui/x-close-dropdown-icon.svg";
 
 
 // LOGO
@@ -37,3 +38,4 @@ export {default as FourthLogo} from "@/assets/icons/logo/trusted-brands-logos/fo
 export {default as FifthLogo} from "@/assets/icons/logo/trusted-brands-logos/fifth-logo.svg";
 export {default as SixthLogo} from "@/assets/icons/logo/trusted-brands-logos/sixth-logo.svg";
 export {default as SeventhLogo} from "@/assets/icons/logo/trusted-brands-logos/seventh-logo.svg";
+export {default as EightLogo} from "@/assets/icons/logo/trusted-brands-logos/eigth-logo.svg";

@@ -141,4 +141,19 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
+  @keyframes scrollSlider {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Attach the animation */
+  .slider-track {
+    animation: scrollSlider 20s linear infinite;
+    width: max-content;
+  }
 }

@@ -12,7 +12,7 @@ const HeroVideoSection = () => {
   }, []);
 
   return (
-    <div className="relative w-full max-h-[787.5px] overflow-hidden rounded-xl pt-[204px] py-[285.5px]">
+    <div className="relative w-full md:max-h-[456px] lg:max-h-[787.5px] overflow-hidden rounded-xl pt-[48px] md:pt-[83px] lg:pt-[204px] pl-[13px] sm:pl-[34px] lg:pl-[285.5px] pb-[102px] mb-6">
       {/* Background Video */}
       <video
         ref={videoRef}
@@ -31,27 +31,27 @@ const HeroVideoSection = () => {
       {/* <div className="absolute inset-0 bg-black bg-opacity-70" /> */}
 
       {/* Content Overlay */}
-      <div className="relative z-10 flex flex-col justify-center max-w-[603px] ml-[89px]">
+      <div className="relative z-10 flex flex-col justify-center max-w-[287px] md:w-[370px] lg:max-w-[603px]">
         {/* Main Heading */}
-        <h1 className="text-white text-5xl font-bold leading-tight mb-5">
+        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
           Building Brands That{' '}
-          <span className="block">Resonate</span>
+          <span className="block md:inline">Resonate</span>
         </h1>
 
         {/* Description */}
-        <p className="text-[rgba(255,255,255,1)] text-lg leading-relaxed mb-12 max-w-lg">
+        <p className="text-[rgba(255,255,255,1)] text-[13px] md:text-[15px] lg:text-lg leading-relaxed mb-8 max-w-lg">
           We help brands and individuals craft identities that connect deeply and communicate clearly—combining cultural insight with world-class strategy.
         </p>
 
         {/* Buttons Container */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-2 lg:gap-3">
           {/* Primary Button */}
-          <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 shadow-lg">
+          <button className="bg-emerald-600  text-white px-3 py-[13px] md:px-4 md:py-[17px] lg:px-5 lg:py-3.5 rounded-lg font-semibold text-xs md:text-base lg:text-lg transition-colors duration-200 shadow-lg">
             Book a Free Consultation
           </button>
 
           {/* Secondary Button */}
-          <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200">
+          <button className="bg-white border-2 border-[rgba(1,117,68,1)] text-[rgba(1,117,68,1)] px-3 py-[13px] md:px-4 md:py-[17px] lg:px-5 lg:py-3.5 rounded-lg font-semibold text-xs transition-all duration-200">
             Download the Brochure
           </button>
         </div>
