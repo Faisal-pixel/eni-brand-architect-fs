@@ -1,11 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import EbaLogo from "@/assets/eba-logo.svg";
-import ComingSoonLogo from "@/assets/coming-soon-icon.svg";
-import FBComingSoonIcon from "@/assets/social-media-icons/facebook-coming-soon-icon.svg";
-import IGComingSoonIcon from "@/assets/social-media-icons/instagram-coming-soon.svg";
-import LIComingSoonIcon from "@/assets/social-media-icons/linkedin-coming-soon.svg";
-import XComingSoonIcon from "@/assets/social-media-icons/x-coming-soon.svg";
+import {EbaLogo, ComingSoonLogo, FBComingSoonIcon, IGComingSoonIcon, LIComingSoonIcon, XComingSoonIcon} from "@/assets/icons"
 import Link from "next/link";
 
 // interface IProps {};

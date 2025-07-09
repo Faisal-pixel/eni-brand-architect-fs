@@ -1,0 +1,70 @@
+"use client"
+import React, { useRef, useEffect } from 'react';
+// import { Play } from 'lucide-react';
+
+const HeroVideoSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, []);
+
+  return (
+    <div className="relative w-full max-h-[787.5px] overflow-hidden rounded-xl pt-[204px] py-[285.5px]">
+      {/* Background Video */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/videos/eni-brand-sample-video.mp4" type="video/mp4" />
+        {/* Fallback for browsers that don't support video */}
+        {/* <div className="absolute inset-0 bg-gray-800" /> */}
+      </video>
+
+      {/* Dark Overlay for better text readability */}
+      {/* <div className="absolute inset-0 bg-black bg-opacity-70" /> */}
+
+      {/* Content Overlay */}
+      <div className="relative z-10 flex flex-col justify-center max-w-[603px] ml-[89px]">
+        {/* Main Heading */}
+        <h1 className="text-white text-5xl font-bold leading-tight mb-5">
+          Building Brands That{' '}
+          <span className="block">Resonate</span>
+        </h1>
+
+        {/* Description */}
+        <p className="text-[rgba(255,255,255,1)] text-lg leading-relaxed mb-12 max-w-lg">
+          We help brands and individuals craft identities that connect deeply and communicate clearly—combining cultural insight with world-class strategy.
+        </p>
+
+        {/* Buttons Container */}
+        <div className="flex flex-col sm:flex-row gap-4">
+          {/* Primary Button */}
+          <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 shadow-lg">
+            Book a Free Consultation
+          </button>
+
+          {/* Secondary Button */}
+          <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200">
+            Download the Brochure
+          </button>
+        </div>
+      </div>
+
+      {/* Play Button Overlay (positioned like in the image) */}
+      {/* <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+        <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full p-6 cursor-pointer pointer-events-auto hover:bg-opacity-30 transition-all duration-200">
+          <Play className="w-8 h-8 text-white fill-white" />
+        </div>
+      </div> */}
+    </div>
+  );
+};
+
+export default HeroVideoSection;
