@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { z } from 'zod';
 
@@ -271,120 +272,129 @@ const ContactSection = () => {
               : 'translate-y-8 opacity-0'
           }`}>
             <div className="space-y-6">
-              {/* Name Fields */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                    First name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    value={formData.firstName}
-                    onChange={(e) => handleInputChange('firstName', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors ${
-                      errors.firstName ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                    placeholder="First name"
-                  />
-                  {errors.firstName && (
-                    <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
-                  )}
-                </div>
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                    Last name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    value={formData.lastName}
-                    onChange={(e) => handleInputChange('lastName', e.target.value)}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors ${
-                      errors.lastName ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                    placeholder="Last name"
-                  />
-                  {errors.lastName && (
-                    <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Email Field */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                  placeholder="you@company.com"
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
-                )}
-              </div>
-
-              {/* Message Field */}
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  value={formData.message}
-                  onChange={(e) => handleInputChange('message', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors resize-none ${
-                    errors.message ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                  placeholder="Leave us a message..."
-                />
-                {errors.message && (
-                  <p className="mt-1 text-sm text-red-500">{errors.message}</p>
-                )}
-              </div>
-
-              {/* Privacy Policy Checkbox */}
-              <div className="flex items-start space-x-3">
-                <input
-                  type="checkbox"
-                  id="privacy"
-                  checked={formData.agreedToPolicy}
-                  onChange={(e) => handleInputChange('agreedToPolicy', e.target.checked)}
-                  className="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                />
-                <label htmlFor="privacy" className="text-sm text-gray-600">
-                  You agree to our friendly{' '}
-                  <a href="#" className="text-gray-900 underline hover:text-green-600 transition-colors">
-                    privacy policy
-                  </a>
-                  .
-                </label>
-              </div>
-              {errors.agreedToPolicy && (
-                <p className="text-sm text-red-500">{errors.agreedToPolicy}</p>
-              )}
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={!isFormValid() || isSubmitting}
-                className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
-                  isFormValid() && !isSubmitting
-                    ? 'bg-green-600 hover:bg-green-700 text-white shadow-md hover:shadow-lg'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                }`}
+              <form
+                className="space-y-6"
+                onSubmit={e => {
+                  e.preventDefault();
+                  handleSubmit();
+                }}
+                noValidate
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </button>
-            </form>
+                {/* Name Fields */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                      First name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      value={formData.firstName}
+                      onChange={(e) => handleInputChange('firstName', e.target.value)}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors ${
+                        errors.firstName ? 'border-red-500' : 'border-gray-300'
+                      }`}
+                      placeholder="First name"
+                    />
+                    {errors.firstName && (
+                      <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                      Last name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      value={formData.lastName}
+                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors ${
+                        errors.lastName ? 'border-red-500' : 'border-gray-300'
+                      }`}
+                      placeholder="Last name"
+                    />
+                    {errors.lastName && (
+                      <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Email Field */}
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors ${
+                      errors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    placeholder="you@company.com"
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                  )}
+                </div>
+
+                {/* Message Field */}
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    Message <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors resize-none ${
+                      errors.message ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    placeholder="Leave us a message..."
+                  />
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-red-500">{errors.message}</p>
+                  )}
+                </div>
+
+                {/* Privacy Policy Checkbox */}
+                <div className="flex items-start space-x-3">
+                  <input
+                    type="checkbox"
+                    id="privacy"
+                    checked={formData.agreedToPolicy}
+                    onChange={(e) => handleInputChange('agreedToPolicy', e.target.checked)}
+                    className="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="privacy" className="text-sm text-gray-600">
+                    You agree to our friendly{' '}
+                    <a href="#" className="text-gray-900 underline hover:text-green-600 transition-colors">
+                      privacy policy
+                    </a>
+                    .
+                  </label>
+                </div>
+                {errors.agreedToPolicy && (
+                  <p className="text-sm text-red-500">{errors.agreedToPolicy}</p>
+                )}
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={!isFormValid() || isSubmitting}
+                  className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+                    isFormValid() && !isSubmitting
+                      ? 'bg-green-600 hover:bg-green-700 text-white shadow-md hover:shadow-lg'
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

@@ -20,6 +20,8 @@ export {default as CheckmarkIcon} from "@/assets/icons/ui/checkmark-services-ico
 export {default as BuildingB2BIcon} from "@/assets/icons/ui/building-b2b-solution-icon.svg";
 export {default as PalleteContentAndCreativityIcon} from "@/assets/icons/ui/pallete-content-and-creativity-icon.svg";
 export {default as TeeSideImage} from "@/assets/icons/ui/tee-side-image.svg";
+export {default as NewsLetterLogo} from "@/assets/icons/ui/news-letter-logos.svg";
+export {default as NewsLetterLeftLogos} from "@/assets/icons/ui/news-letter-left-logos.svg";
 
 
 // LOGO

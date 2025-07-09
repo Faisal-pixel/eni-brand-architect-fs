@@ -13,6 +13,9 @@ import ProjectShowcaseSection from "../project_showcase_section/project-showcase
 import TestimonialsSection from "../testimonial_section/testimonial-section";
 import FastGrowingTeamSection from "../fast_growing_teams_section/fast-growing-teams-section";
 import FAQSection from "../faq_section/faq-section";
+import ContactSection from "../contact_us_section/contact-us-section";
+import NewsletterSection from "../news_letter_section/news-letter-section";
+import CTASection from "../footer_section/footer-section";
 
 // type Props = {}
 
@@ -137,6 +140,22 @@ function HomePage() {
           <Container2>
             <FAQSection />
           </Container2>
+        </section>
+
+        <section id="contact-us">
+          <Container2>
+            <ContactSection />
+          </Container2>
+        </section>
+
+        <section id="newsletter">
+          <Container2>
+            <NewsletterSection />
+          </Container2>
+        </section>
+
+        <section id="cta-section">
+          <CTASection />
         </section>
     </div>
   );
