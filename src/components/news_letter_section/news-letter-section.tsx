@@ -159,7 +159,7 @@ const NewsletterSection: React.FC = () => {
         </div>
 
         {/* Main content */}
-        <div className={`text-center w-[592px] transition-all duration-1000 delay-300 ${
+        <div className={`text-center md:w-[592px] transition-all duration-1000 delay-300 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-4xl leading-11 md:text-5xl font-extrabold text-gray-900 mb-4">
@@ -193,7 +193,7 @@ const NewsletterSection: React.FC = () => {
                 type="submit"
                 disabled={isSubmitting}
                 onClick={handleSubmit}
-                className={`px-8 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-300 transform hover:scale-105 ${
+                className={`px-8 py-3 cursor-pointer bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-300 transform hover:scale-105 ${
                   isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >

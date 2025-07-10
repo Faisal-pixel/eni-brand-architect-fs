@@ -3,6 +3,7 @@ import { EbaFooterLogo } from '@/assets/icons';
 import Image from 'next/image';
 import React, { useState, useEffect, useRef } from 'react';
 import GreenButton from '../ui_personal/green-button';
+import GreenOutlineButton from '../ui_personal/green-outline-button';
 
 // Configuration object - easily editable
 const ctaConfig = {
@@ -77,7 +78,7 @@ const CTASection: React.FC = () => {
   };
 
   return (
-    <div ref={sectionRef} className="w-full bg-white py-16 min-h-screen flex flex-col">
+    <div ref={sectionRef} className="w-full bg-white py-16 flex flex-col">
       {/* Main content container */}
       <div className="flex-1 flex flex-col justify-center items-center text-center max-w-4xl mx-auto">
         {/* Logo */}
@@ -106,25 +107,15 @@ const CTASection: React.FC = () => {
         </div>
 
         {/* Action buttons */}
-        <div className={`w-full flex flex-col sm:flex-row gap-4 mb-16 transition-all duration-1000 delay-500 ${
+        <div className={`w-full flex flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-x-2 mb-16 transition-all duration-1000 delay-500 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {/* Primary button */}
-          <button
-            onClick={() => handleButtonClick(ctaConfig.buttons.primary.href)}
-            className="px-8 py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            {ctaConfig.buttons.primary.text}
-          </button>
-          <GreenButton title={ctaConfig.buttons.primary.text} />
+          
+          <GreenButton onClickFunction={() => handleButtonClick(ctaConfig.buttons.primary.href)} title={ctaConfig.buttons.primary.text} className='py-3.5 md:px-5 leading-4 cursor-pointer' />
 
           {/* Secondary button */}
-          <button
-            onClick={() => handleButtonClick(ctaConfig.buttons.secondary.href)}
-            className="px-8 py-4 bg-transparent text-green-600 font-semibold rounded-lg border-2 border-green-600 hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-300 transform hover:scale-105"
-          >
-            {ctaConfig.buttons.secondary.text}
-          </button>
+          <GreenOutlineButton title={ctaConfig.buttons.secondary.text} onClickFunction={() => handleButtonClick(ctaConfig.buttons.secondary.href)} className='py-3.5 md:px-5 leading-4 cursor-pointer' />
         </div>
       </div>
 
