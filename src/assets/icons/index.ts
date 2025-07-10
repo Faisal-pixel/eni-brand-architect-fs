@@ -32,6 +32,7 @@ export {default as EmailContactUsIcon} from "@/assets/icons/ui/email-contact-us-
 export {default as MessageChatCircleContactUsIcon} from "@/assets/icons/ui/message-chat-circle-contact-us-icon.svg";
 export {default as MarkerPinContactUsIcon} from "@/assets/icons/ui/marker-pin-contact-us-icon.svg";
 export {default as PhoneContactUsIcon} from "@/assets/icons/ui/phone-contact-us-icon.svg";
+export {default as XCloseBuyYourTicketIcon} from "@/assets/icons/ui/x-close-buy-your-ticket-icon.svg";
 
 
 // LOGO
