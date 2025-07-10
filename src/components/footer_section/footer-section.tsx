@@ -1,5 +1,8 @@
 "use client";
+import { EbaFooterLogo } from '@/assets/icons';
+import Image from 'next/image';
 import React, { useState, useEffect, useRef } from 'react';
+import GreenButton from '../ui_personal/green-button';
 
 // Configuration object - easily editable
 const ctaConfig = {
@@ -74,28 +77,21 @@ const CTASection: React.FC = () => {
   };
 
   return (
-    <div ref={sectionRef} className="w-full bg-white py-16 px-4 min-h-screen flex flex-col">
+    <div ref={sectionRef} className="w-full bg-white py-16 min-h-screen flex flex-col">
       {/* Main content container */}
       <div className="flex-1 flex flex-col justify-center items-center text-center max-w-4xl mx-auto">
         {/* Logo */}
         <div className={`mb-12 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <div className="flex flex-col items-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-1">
-              {ctaConfig.logo.text}
-            </h1>
-            <p className="text-sm text-gray-600 tracking-wide">
-              {ctaConfig.logo.tagline}
-            </p>
-          </div>
+          <Image src={EbaFooterLogo} alt='Eba footer logo' />
         </div>
 
         {/* Main heading */}
-        <div className={`mb-6 transition-all duration-1000 delay-200 ${
+        <div className={`mb-4 transition-all duration-1000 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+          <h2 className="text-xl md:text-3xl text-gray-900 leading-[30px]">
             {ctaConfig.title}
           </h2>
         </div>
@@ -110,7 +106,7 @@ const CTASection: React.FC = () => {
         </div>
 
         {/* Action buttons */}
-        <div className={`flex flex-col sm:flex-row gap-4 mb-16 transition-all duration-1000 delay-500 ${
+        <div className={`w-full flex flex-col sm:flex-row gap-4 mb-16 transition-all duration-1000 delay-500 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {/* Primary button */}
@@ -120,6 +116,7 @@ const CTASection: React.FC = () => {
           >
             {ctaConfig.buttons.primary.text}
           </button>
+          <GreenButton title={ctaConfig.buttons.primary.text} />
 
           {/* Secondary button */}
           <button

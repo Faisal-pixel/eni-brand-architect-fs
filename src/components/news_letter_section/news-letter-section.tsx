@@ -9,7 +9,7 @@ const emailSchema = z.object({
   email: z.string().email('Please enter a valid email address').min(1, 'Email is required'),
 });
 
-type EmailFormData = z.infer<typeof emailSchema>;
+// type EmailFormData = z.infer<typeof emailSchema>;
 
 // Newsletter configuration object - easily editable
 const newsletterConfig = {
@@ -148,21 +148,21 @@ const NewsletterSection: React.FC = () => {
   };
 
   return (
-    <div ref={sectionRef} className="w-full py-16">
-      <div className="flex">
+    <div ref={sectionRef} className="w-full">
+      <div className="flex flex-col md:flex-row md:justify-between">
 
         {/* Partner logos */}
-        <div className={`transition-all duration-1000 h-[190px] ${
+        <div className={` transition-all duration-1000 mb-2.5 flex items-center justify-center ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <Image src={NewsLetterLeftLogos} alt="Newsletter Left Logo" className='h-full w-[414px]'/>
+          <Image src={NewsLetterLeftLogos} alt="Newsletter Left Logo" className=''/>
         </div>
 
         {/* Main content */}
-        <div className={`text-center transition-all duration-1000 delay-300 ${
+        <div className={`text-center w-[592px] transition-all duration-1000 delay-300 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl leading-11 md:text-5xl font-extrabold text-gray-900 mb-4">
             {newsletterConfig.title}
           </h2>
           <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
@@ -170,7 +170,7 @@ const NewsletterSection: React.FC = () => {
           </p>
 
           {/* Newsletter form */}
-          <div className="max-w-md mx-auto mb-6">
+          <div className="w-full mb-6">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
                 <input
@@ -216,7 +216,7 @@ const NewsletterSection: React.FC = () => {
           )}
 
           {/* Privacy notice */}
-          <p className="text-gray-500 text-sm max-w-md mx-auto">
+          <p className="text-gray-500 text-sm w-full">
             {newsletterConfig.privacyText}{' '}
             <a 
               href={newsletterConfig.privacyLinkUrl} 
@@ -229,10 +229,10 @@ const NewsletterSection: React.FC = () => {
         </div>
 
         {/* Partner logos */}
-        <div className={`transition-all duration-1000 h-[190px] ${
+        <div className={`transition-all duration-1000 mb-2.5 flex items-center justify-center ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <Image src={NewsLetterLogo} alt="Newsletter Logo" className='h-full w-[414px]'/>
+          <Image src={NewsLetterLogo} alt="Newsletter Logo" className=''/>
         </div>
       </div>
     </div>

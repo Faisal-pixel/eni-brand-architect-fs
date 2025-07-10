@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import GreenButton from '../ui_personal/green-button';
 
 const FAQSection = () => {
   const [visibleItems, setVisibleItems] = useState(new Set());
@@ -68,10 +69,10 @@ const FAQSection = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  });
 
   return (
-    <div className="bg-white py-16 px-4" ref={sectionRef}>
+    <div className="bg-white" ref={sectionRef}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className={`mb-16 transform transition-all duration-800 ease-out ${
@@ -79,12 +80,12 @@ const FAQSection = () => {
             ? 'translate-y-0 opacity-100'
             : 'translate-y-8 opacity-0'
         }`}>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl lg:text-4xl font-semibold text-[rgba(24,29,39,1)] mb-5">
             FAQs
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl leading-relaxed">
-            Everything you need to know about the product and billing. Can't find the answer 
-            you're looking for? Please{' '}
+            Everything you need to know about the product and billing. Can&#39;t find the answer 
+            you&#39;re looking for? Please{' '}
             <span className="underline decoration-2 underline-offset-2">
               chat to our friendly team
             </span>
@@ -93,8 +94,8 @@ const FAQSection = () => {
         </div>
 
         {/* FAQ Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 mb-16">
-          {faqs.map((faq, index) => (
+        <div className="grid grid-cols-1 gap-16 mb-16 md:grid-cols-2 md:gap-x-8 lg:grid-cols-3 lg:gap-x-8">
+          {faqs.map((faq) => (
             <div
               key={faq.id}
               className={`transform transition-all duration-800 ease-out ${
@@ -104,7 +105,7 @@ const FAQSection = () => {
               }`}
             >
               <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 leading-tight">
+                <h3 className="text-base font-semibold text-gray-900 mb-1 leading-tight">
                   {faq.question}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -116,23 +117,22 @@ const FAQSection = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className={`bg-gray-50 rounded-2xl p-8 lg:p-12 transform transition-all duration-800 ease-out ${
+        <div className={`bg-[rgba(234,248,242,1)] rounded-2xl p-8 transform transition-all duration-800 ease-out ${
           visibleItems.has('bottom')
             ? 'translate-y-0 opacity-100'
             : 'translate-y-8 opacity-0'
         }`}>
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-            <div className="mb-6 lg:mb-0">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div className="mb-6 max-w-[480px] md:mb-0">
               <h3 className="text-2xl font-bold text-gray-900 mb-3">
                 Still have questions?
               </h3>
-              <p className="text-gray-600 text-lg">
-                Can't find the answer you're looking for? Please chat to our friendly team.
+              <p className="text-gray-600 md:text-lg leading-6 md:leading-7">
+                Can&#39;t find the answer you&#39;re looking for? Please chat to our friendly team.
               </p>
             </div>
-            <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200 self-start lg:self-center">
-              Get in touch
-            </button>
+            
+            <GreenButton title='Get in touch' className='self-start px-5 py-4 cursor-pointer hover:bg-green-700 transition-colors duration-200'/>
           </div>
         </div>
       </div>

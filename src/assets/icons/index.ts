@@ -4,6 +4,9 @@ export {default as FBComingSoonIcon} from "@/assets/icons/social/facebook-coming
 export {default as IGComingSoonIcon} from "@/assets/icons/social/instagram-coming-soon.svg";
 export {default as LIComingSoonIcon} from "@/assets/icons/social/linkedin-coming-soon.svg";
 export {default as XComingSoonIcon} from "@/assets/icons/social/x-coming-soon.svg";
+export {default as XTeamIcon} from "@/assets/icons/social/x-team-icon.svg"
+export {default as LinkedinTeamIcon} from "@/assets/icons/social/linkedin-team-icon.svg";
+export {default as PortfolioTeamIcon} from "@/assets/icons/social/portfolio-team-icon.svg";
 
 // UI
 
@@ -23,12 +26,19 @@ export {default as TeeSideImage} from "@/assets/icons/ui/tee-side-image.svg";
 export {default as NewsLetterLogo} from "@/assets/icons/ui/news-letter-logos.svg";
 export {default as NewsLetterLeftLogos} from "@/assets/icons/ui/news-letter-left-logos.svg";
 export {default as XCloseDropdownMenuIcon} from "@/assets/icons/ui/x-close-dropdown-icon.svg";
+export {default as GraphIcon} from "@/assets/icons/ui/graph-icon.svg"
+export {default as MediaProductionIcon} from "@/assets/icons/ui/media-production-icon.svg";
+export {default as EmailContactUsIcon} from "@/assets/icons/ui/email-contact-us-icon.svg";
+export {default as MessageChatCircleContactUsIcon} from "@/assets/icons/ui/message-chat-circle-contact-us-icon.svg";
+export {default as MarkerPinContactUsIcon} from "@/assets/icons/ui/marker-pin-contact-us-icon.svg";
+export {default as PhoneContactUsIcon} from "@/assets/icons/ui/phone-contact-us-icon.svg";
 
 
 // LOGO
 
 export {default as EbaLogo} from "@/assets/icons/logo/eba-logo.svg";
 export {default as EbaNavbarLogo} from "@/assets/icons/logo/eba-navbar-logo.svg";
+export {default as EbaFooterLogo} from "@/assets/icons/logo/eba-footer-logo.svg";
 
 // Trusted Brands
 export {default as FirstLogo} from "@/assets/icons/logo/trusted-brands-logos/first-logo.svg";

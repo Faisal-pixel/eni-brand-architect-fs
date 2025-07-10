@@ -29,7 +29,7 @@ const PRAndCommunication = () => {
   ];
 
   return (
-    <div className="py-20 px-4">
+    <div className="py-20">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Media Showcase */}
@@ -59,7 +59,7 @@ const PRAndCommunication = () => {
                 Public Relations & Communication
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Building credibility and trust with precision. We manage your brand's reputation across media landscapes, ensuring your message resonates with your audience and is communicated effectively.
+                Building credibility and trust with precision. We manage your brand&#39;s reputation across media landscapes, ensuring your message resonates with your audience and is communicated effectively.
               </p>
             </div>
 

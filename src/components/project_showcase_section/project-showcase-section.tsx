@@ -113,7 +113,7 @@ const ProjectShowcaseSection = () => {
 
               {/* Separator line */}
               {index < projects.length - 1 && (
-                <div className="mt-16 w-full h-px bg-gray-300"></div>
+                <div className="w-full h-px bg-gray-300"></div>
               )}
             </div>
           ))}

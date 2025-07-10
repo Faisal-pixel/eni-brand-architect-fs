@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { BarChart3, Target, Check } from "lucide-react";
 import {
   BuildingB2BIcon,
   CheckmarkIcon,
@@ -64,7 +63,7 @@ const B2BSolutions = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white py-16 px-8">
+    <div className="py-20">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* B2B Solutions Column */}

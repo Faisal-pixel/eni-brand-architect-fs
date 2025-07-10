@@ -1,4 +1,7 @@
 "use client";
+import { EmailContactUsIcon, MarkerPinContactUsIcon, MessageChatCircleContactUsIcon, PhoneContactUsIcon } from '@/assets/icons';
+import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { z } from 'zod';
 
@@ -163,11 +166,7 @@ const ContactSection = () => {
   const contactMethods = [
     {
       id: 'email',
-      icon: (
-        <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
+      icon: EmailContactUsIcon,
       title: 'Email',
       description: 'Our friendly team is here to help.',
       contact: 'info@enibrand.com',
@@ -175,11 +174,7 @@ const ContactSection = () => {
     },
     {
       id: 'chat',
-      icon: (
-        <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
-      ),
+      icon: MessageChatCircleContactUsIcon,
       title: 'Live chat',
       description: 'Our friendly team is here to help.',
       contact: 'Start new chat',
@@ -187,12 +182,7 @@ const ContactSection = () => {
     },
     {
       id: 'office',
-      icon: (
-        <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      ),
+      icon: MarkerPinContactUsIcon,
       title: 'Office',
       description: 'Come say hello at our office HQ.',
       contact: '1 Tom Ogboi Avenue, Lekki Phase 1',
@@ -200,11 +190,7 @@ const ContactSection = () => {
     },
     {
       id: 'phone',
-      icon: (
-        <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-        </svg>
-      ),
+      icon: PhoneContactUsIcon,
       title: 'Phone',
       description: 'Mon-Fri from 8am to 5pm.',
       contact: '+234 (903) 380-1241',
@@ -213,7 +199,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <div className="bg-white py-16 px-4" ref={sectionRef}>
+    <div className="bg-white" ref={sectionRef}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className={`mb-16 transform transition-all duration-800 ease-out ${
@@ -221,12 +207,12 @@ const ContactSection = () => {
             ? 'translate-y-0 opacity-100'
             : 'translate-y-8 opacity-0'
         }`}>
-          <div className="text-green-600 font-medium mb-4">Contact us</div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-[rgba(1,117,68,1)] text-sm leading-6 font-semibold mb-3">Contact us</div>
+          <h2 className="text-3xl leading-[38px] md:leading-11 md:text-4xl font-semibold text-gray-900 mb-5">
             Chat to our friendly team
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl">
-            We'd love to hear from you. Please fill out this form or shoot us an email.
+            We&#39;d love to hear from you. Please fill out this form or shoot us an email.
           </p>
         </div>
 
@@ -237,23 +223,23 @@ const ContactSection = () => {
               ? 'translate-y-0 opacity-100'
               : 'translate-y-8 opacity-0'
           }`}>
-            <div className="space-y-8">
+            <div className="grid gap-y-10 md:grid-cols-2 md:gap-x-8">
               {contactMethods.map((method) => (
-                <div key={method.id} className="flex items-start space-x-4">
+                <div key={method.id} className="flex flex-col gap-y-4">
                   <div className="flex-shrink-0 mt-1">
-                    {method.icon}
+                    <Image src={method.icon} alt={`${method.title} icon`} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    <h3 className="text-lg leading-7 md:text-xl font-semibold text-gray-900 mb-1">
                       {method.title}
                     </h3>
-                    <p className="text-gray-600 mb-3">
+                    <p className="text-gray-600 mb-4">
                       {method.description}
                     </p>
                     {method.isLink ? (
-                      <a href={method.id === 'email' ? `mailto:${method.contact}` : method.id === 'phone' ? `tel:${method.contact}` : '#'} className="text-green-600 font-medium hover:text-green-700 transition-colors">
+                      <Link href={method.id === 'email' ? `mailto:${method.contact}` : method.id === 'phone' ? `tel:${method.contact}` : '#'} className="text-green-600 font-medium hover:text-green-700 transition-colors">
                         {method.contact}
-                      </a>
+                      </Link>
                     ) : (
                       <div className="text-green-600 font-medium">
                         {method.contact}
@@ -271,7 +257,7 @@ const ContactSection = () => {
               ? 'translate-y-0 opacity-100'
               : 'translate-y-8 opacity-0'
           }`}>
-            <div className="space-y-6">
+            <div className="bg-[rgba(250,250,250,1)] rounded-2xl pt-10 pb-3.5 md:pt-10 md:pb-[42px] md:px-8 space-y-6">
               <form
                 className="space-y-6"
                 onSubmit={e => {
@@ -283,8 +269,8 @@ const ContactSection = () => {
                 {/* Name Fields */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                      First name <span className="text-red-500">*</span>
+                    <label htmlFor="firstName" className="block text-sm leading-5 font-medium text-gray-700 mb-1.5">
+                      First name <span className="text-[rgba(127,86,217,1)]">*</span>
                     </label>
                     <input
                       type="text"
@@ -301,8 +287,8 @@ const ContactSection = () => {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                      Last name <span className="text-red-500">*</span>
+                    <label htmlFor="lastName" className="block text-sm leading-5 font-medium text-gray-700 mb-1.5">
+                      Last name <span className="text-[rgba(127,86,217,1)]">*</span>
                     </label>
                     <input
                       type="text"
@@ -322,8 +308,8 @@ const ContactSection = () => {
 
                 {/* Email Field */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email <span className="text-red-500">*</span>
+                  <label htmlFor="email" className="block text-sm leading-5 font-medium text-gray-700 mb-1.5">
+                    Email <span className="text-[rgba(127,86,217,1)]">*</span>
                   </label>
                   <input
                     type="email"
@@ -342,8 +328,8 @@ const ContactSection = () => {
 
                 {/* Message Field */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message <span className="text-red-500">*</span>
+                  <label htmlFor="message" className="block text-sm leading-5 font-medium text-gray-700 mb-1.5">
+                    Message <span className="text-[rgba(127,86,217,1)]">*</span>
                   </label>
                   <textarea
                     id="message"

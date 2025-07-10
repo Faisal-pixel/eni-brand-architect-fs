@@ -214,44 +214,46 @@ function HomePage() {
         </Container2>
       </section>
 
-      <section id="project-showcase">
+      <section id="project-showcase" className="bg-[rgba(247,247,247,1)] mb-12 md:mb-16">
         <Container2>
           <ProjectShowcaseSection />
         </Container2>
       </section>
 
-      <section id="testimonials">
+      <section id="testimonials" className="mb-12 md:mb-16">
         <Container2>
           <TestimonialsSection />
         </Container2>
       </section>
 
-      <section id="fast-growing-teams">
+      <section id="fast-growing-teams" className="bg-[rgba(247,247,247,1)] mb-12 md:mb-16">
         <Container2>
           <FastGrowingTeamSection />
         </Container2>
       </section>
 
-      <section id="faq">
+      <section id="faq" className="mb-12 md:mb-16">
         <Container2>
           <FAQSection />
         </Container2>
       </section>
 
-      <section id="contact-us">
+      <section id="contact-us" className="mb-12 md:mb-16">
         <Container2>
           <ContactSection />
         </Container2>
       </section>
 
-      <section id="newsletter">
+      <section id="newsletter" className="mb-12 md:mb-16">
         <Container2>
           <NewsletterSection />
         </Container2>
       </section>
 
       <section id="cta-section">
-        <CTASection />
+        <Container2>
+          <CTASection />
+        </Container2>
       </section>
     </div>
   );

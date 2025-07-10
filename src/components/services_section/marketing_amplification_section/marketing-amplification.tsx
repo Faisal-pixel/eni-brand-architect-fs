@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  TrendingUp,
   Play,
   Pause,
   Volume2,
@@ -8,7 +7,7 @@ import {
   MoreHorizontal,
 } from "lucide-react";
 import Image from "next/image";
-import { CheckmarkIcon } from "@/assets/icons";
+import { CheckmarkIcon, GraphIcon } from "@/assets/icons";
 
 const MarketingAmplificationSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -24,8 +23,6 @@ const MarketingAmplificationSection = () => {
     }, 300);
     return () => clearTimeout(timer);
   }, []);
-
-  console.log(videoRef);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -51,9 +48,13 @@ const MarketingAmplificationSection = () => {
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTime = parseFloat(e.target.value);
+    if (isNaN(newTime) || newTime < 0 || newTime > duration) return;
     if (videoRef.current) {
       videoRef.current.currentTime = parseFloat(e.target.value);
     }
+
+    setCurrentTime(newTime);
   };
 
   const handleFullscreen = () => {
@@ -81,9 +82,9 @@ const MarketingAmplificationSection = () => {
   ];
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div
             className={`space-y-8 transition-all duration-1000 ease-out ${
@@ -93,9 +94,9 @@ const MarketingAmplificationSection = () => {
             }`}
           >
             {/* Header with Icon */}
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col space-y-6">
               <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-emerald-600" />
+                <Image src={GraphIcon} alt="Graph Icon for Marketing & Amplification" />
               </div>
               <h1 className="text-4xl font-bold text-gray-900">
                 Marketing & Amplification
@@ -104,8 +105,8 @@ const MarketingAmplificationSection = () => {
 
             {/* Description */}
             <p className="text-lg text-gray-600 leading-relaxed">
-              Expanding your reach and amplifying your brand's message. We drive
-              engagement, conversions, and ROI through targeted marketing
+              Expanding your reach and amplifying your brand&#39;s message. We
+              drive engagement, conversions, and ROI through targeted marketing
               campaigns and strategic partnerships.
             </p>
 
@@ -166,7 +167,7 @@ const MarketingAmplificationSection = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <button
                     onClick={togglePlay}
-                    className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all duration-300 transform hover:scale-110"
+                    className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition-all duration-300 transform hover:scale-110"
                   >
                     {isPlaying ? (
                       <Pause className="w-6 h-6 text-gray-800 ml-1" />
@@ -180,8 +181,12 @@ const MarketingAmplificationSection = () => {
               {/* Video Controls */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                 <div className="flex items-center space-x-3">
-                  <button className="text-white hover:text-gray-200 transition-colors">
-                    <Play className="w-5 h-5" />
+                  <button className="text-white cursor-pointer hover:text-gray-200 transition-colors">
+                    {isPlaying ? (
+                      <Pause className="w-5 h-5" />
+                    ) : (
+                      <Play className="w-5 h-5" />
+                    )}
                   </button>
                   <button className="text-white hover:text-gray-200 transition-colors">
                     <Volume2 className="w-5 h-5" />
@@ -198,6 +203,7 @@ const MarketingAmplificationSection = () => {
                         step="0.1"
                         value={currentTime}
                         onChange={handleSeek}
+                        onInput={handleSeek}
                         className="w-full h-1 accent-white relative -top-[0.9rem] left-0 cursor-pointer"
                       />
                     </div>

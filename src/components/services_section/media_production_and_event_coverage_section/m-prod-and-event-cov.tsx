@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  TrendingUp,
   Play,
   Pause,
   Volume2,
   Maximize2,
   MoreHorizontal,
 } from "lucide-react";
-import { CheckmarkIcon } from "@/assets/icons";
+import { CheckmarkIcon, MediaProductionIcon } from "@/assets/icons";
 import Image from "next/image";
 
 const MediaProdAndEventCoverage = () => {
@@ -24,8 +23,6 @@ const MediaProdAndEventCoverage = () => {
     }, 300);
     return () => clearTimeout(timer);
   }, []);
-
-  console.log(videoRef);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -51,9 +48,13 @@ const MediaProdAndEventCoverage = () => {
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTime = parseFloat(e.target.value);
+    if (isNaN(newTime) || newTime < 0 || newTime > duration) return;
     if (videoRef.current) {
       videoRef.current.currentTime = parseFloat(e.target.value);
     }
+
+    setCurrentTime(newTime);
   };
 
   const handleFullscreen = () => {
@@ -86,13 +87,12 @@ const MediaProdAndEventCoverage = () => {
   ];
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="py-20">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-            {/* Left Media Showcase */}
-            <div
-            className={`transition-all duration-1000 ease-out ${
+          {/* Left Media Showcase */}
+          <div
+            className={`transition-all duration-1000 ease-out order-2 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -116,7 +116,10 @@ const MediaProdAndEventCoverage = () => {
 
                 {/* Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <button onClick={togglePlay} className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all duration-300 transform hover:scale-110">
+                  <button
+                    onClick={togglePlay}
+                    className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition-all duration-300 transform hover:scale-110"
+                  >
                     {isPlaying ? (
                       <Pause className="w-6 h-6 text-gray-800 ml-1" />
                     ) : (
@@ -129,8 +132,12 @@ const MediaProdAndEventCoverage = () => {
               {/* Video Controls */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                 <div className="flex items-center space-x-3">
-                  <button className="text-white hover:text-gray-200 transition-colors">
-                    <Play className="w-5 h-5" />
+                  <button className="text-white cursor-pointer hover:text-gray-200 transition-colors">
+                    {isPlaying ? (
+                      <Pause className="w-5 h-5" />
+                    ) : (
+                      <Play className="w-5 h-5" />
+                    )}
                   </button>
                   <button className="text-white hover:text-gray-200 transition-colors">
                     <Volume2 className="w-5 h-5" />
@@ -147,6 +154,7 @@ const MediaProdAndEventCoverage = () => {
                         step="0.1"
                         value={currentTime}
                         onChange={handleSeek}
+                        onInput={handleSeek}
                         className="w-full h-1 accent-white relative -top-[0.9rem] left-0 cursor-pointer"
                       />
                     </div>
@@ -154,7 +162,7 @@ const MediaProdAndEventCoverage = () => {
                       {formatTime(currentTime)}
                     </span>
                     <span className="text-white/70 text-sm">
-                        -{formatTime(duration - currentTime)}
+                      -{formatTime(duration - currentTime)}
                     </span>
                   </div>
 
@@ -163,7 +171,10 @@ const MediaProdAndEventCoverage = () => {
                     <button className="text-white hover:text-gray-200 transition-colors">
                       <MoreHorizontal className="w-5 h-5" />
                     </button>
-                    <button onClick={handleFullscreen} className="text-white hover:text-gray-200 transition-colors">
+                    <button
+                      onClick={handleFullscreen}
+                      className="text-white hover:text-gray-200 transition-colors"
+                    >
                       <Maximize2 className="w-5 h-5" />
                     </button>
                   </div>
@@ -172,19 +183,18 @@ const MediaProdAndEventCoverage = () => {
             </div>
           </div>
 
-
           {/* Right Content */}
           <div
-            className={`space-y-8 transition-all duration-1000 ease-out ${
+            className={`space-y-8 transition-all duration-1000 ease-out order-1 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
             }`}
           >
             {/* Header with Icon */}
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col space-y-6">
               <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-emerald-600" />
+                <Image src={MediaProductionIcon} alt="Media Production & Event Coverage" />
               </div>
               <h1 className="text-4xl font-bold text-gray-900">
                 Media Production & Event Coverage
@@ -193,7 +203,9 @@ const MediaProdAndEventCoverage = () => {
 
             {/* Description */}
             <p className="text-lg text-gray-600 leading-relaxed">
-              Bringing your brand’s story to life. We create dynamic content and capture key moments, ensuring your brand is represented authentically and memorably.
+              Bringing your brand’s story to life. We create dynamic content and
+              capture key moments, ensuring your brand is represented
+              authentically and memorably.
             </p>
 
             {/* Services List */}
@@ -208,7 +220,11 @@ const MediaProdAndEventCoverage = () => {
                   }`}
                   style={{ transitionDelay: `${(index + 1) * 200}ms` }}
                 >
-                  <Image src={CheckmarkIcon} alt="Checkmark" className="flex-shrink-0 w-6 h-6" />
+                  <Image
+                    src={CheckmarkIcon}
+                    alt="Checkmark"
+                    className="flex-shrink-0 w-6 h-6"
+                  />
                   <div className="flex-1">
                     <p className="text-gray-700 leading-relaxed">
                       <span className="font-semibold">{service.title}</span>{" "}
@@ -219,7 +235,6 @@ const MediaProdAndEventCoverage = () => {
               ))}
             </div>
           </div>
-          
         </div>
       </div>
     </div>
@@ -229,8 +244,9 @@ const MediaProdAndEventCoverage = () => {
 function formatTime(seconds: number) {
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
-  return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  return `${mins.toString().padStart(2, "0")}:${secs
+    .toString()
+    .padStart(2, "0")}`;
 }
-
 
 export default MediaProdAndEventCoverage;

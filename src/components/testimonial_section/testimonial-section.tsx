@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import GreenButton from '../ui_personal/green-button';
 
 const TestimonialsSection = () => {
   const [visibleItems, setVisibleItems] = useState(new Set());
@@ -66,21 +67,23 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <div className="py-16 px-4" ref={sectionRef}>
-      <div className="max-w-6xl mx-auto">
+    <div ref={sectionRef}>
+      <div className="py-24">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-center mb-12">
           <div className="mb-8 lg:mb-0">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Don't just take our word for it
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-5">
+              Don&#39;t just take our word for it
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-xl text-[rgba(83,88,98,1)]">
               Hear from some of our amazing customers who are building faster.
             </p>
           </div>
-          <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200 self-start lg:self-center">
+          {/* <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200 self-start md:ml-auto">
             Book a Consultation
-          </button>
+          </button> */}
+
+          <GreenButton title='Book a Consultation' className='bg-[rgba(1,117,68,1)] w-full md:w-auto self-start md:ml-auto py-3.5 md:px-5 cursor-pointer' />
         </div>
 
         {/* Testimonials Grid */}
@@ -99,31 +102,30 @@ const TestimonialsSection = () => {
                 transitionDelay: `${index * 200}ms`
               }}
             >
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <div className="flex items-start gap-6">
+              <div className="bg-white border-b border-[rgba(229,231,235,1)] pb-8">
+                <div className="flex flex-col-reverse md:flex-row items-start md:gap-8">
                   {/* Profile Image */}
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center overflow-hidden">
+                  <div className="w-full flex gap-x-4 md:flex-1 ">
+                    <div className="w-16 h-16 flex-shrink-0 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center overflow-hidden">
                       <div className="w-full h-full bg-gray-200 rounded-full"></div>
+                    </div>
+                    {/* Name and Title */}
+                    <div className='flex-1'>
+                      <h3 className="text-base md:text-xl font-semibold text-gray-900 mb-1">
+                        {testimonial.name}
+                      </h3>
+                      <p className="text-[rgba(107,114,128,1)] text-sm">
+                        {testimonial.title}
+                      </p>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1">
-                    {/* Name and Title */}
-                    <div className="mb-6">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-1">
-                        {testimonial.name}
-                      </h3>
-                      <p className="text-gray-600 text-sm">
-                        {testimonial.title}
-                      </p>
-                    </div>
-
+                  <div className="flex-[2]">
                     {/* Quote */}
                     <div className="mb-6">
                       <p className="text-xl font-medium text-gray-900 leading-relaxed">
-                        "{testimonial.quote}"
+                        &quot;{testimonial.quote}&quot;
                       </p>
                     </div>
 
