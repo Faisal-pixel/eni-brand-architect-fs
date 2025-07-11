@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "motion/react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { ArrowUpRightGoToArticleIcon } from "@/assets/icons";
 import Link from "next/link";
 
