@@ -66,13 +66,13 @@ const NavBar = () => {
               <nav className="hidden md:flex lg:hidden items-center">
                 <span className="flex gap-x-8">
                   <Link
-                    href="#"
+                    href="/blog"
                     className="text-[rgba(31,41,55,1)] font-medium"
                   >
                     Blog
                   </Link>
                   <Link
-                    href="#"
+                    href="/careers"
                     className="text-[rgba(31,41,55,1)] font-medium"
                   >
                     Career
