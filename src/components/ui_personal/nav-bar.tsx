@@ -39,7 +39,7 @@ const NavBar = () => {
                     Blog
                   </Link>
                   <Link
-                    href="/career"
+                    href="/careers"
                     className="text-[rgba(31,41,55,1)] font-medium"
                   >
                     Career

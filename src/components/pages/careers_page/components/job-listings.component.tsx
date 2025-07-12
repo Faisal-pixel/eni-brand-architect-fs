@@ -48,7 +48,7 @@ const JobListings = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Mobile Tab Navigation */}
         <div className="md:hidden mb-6">
@@ -59,15 +59,15 @@ const JobListings = () => {
                 : '-translate-y-4 opacity-0'
             }`}
           >
-            <div className="flex overflow-x-auto scrollbar-hide space-x-1 bg-white rounded-lg p-1 shadow-sm">
+            <div className="flex overflow-x-auto scrollbar-hide space-x-1 bg-white">
               {categories.map((category, index) => (
                 <button
                   key={category.name}
                   onClick={() => setSelectedCategory(category.name)}
-                  className={`flex-shrink-0 px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                  className={`flex-shrink-0 cursor-pointer px-[13.5px] py-[5px] rounded-full text-sm transition-all duration-200 whitespace-nowrap ${
                     selectedCategory === category.name
                       ? 'bg-gray-900 text-white shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      : 'bg-[rgba(249,249,250,1)] text-[rgba(83,88,98,1)]'
                   }`}
                   style={{ 
                     transform: isVisible ? 'translateX(0)' : 'translateX(-20px)',
@@ -87,7 +87,7 @@ const JobListings = () => {
 
         <div className="flex gap-8">
           {/* Desktop Sidebar */}
-          <div className="hidden md:block w-64 flex-shrink-0">
+          <div className="hidden md:block flex-shrink-0">
             <div 
               className={`transform transition-all duration-800 ease-out ${
                 isVisible 
@@ -95,7 +95,7 @@ const JobListings = () => {
                   : '-translate-x-8 opacity-0'
               }`}
             >
-              <nav className="space-y-2">
+              <nav className="flex flex-col items-center space-y-2">
                 {categories.map((category, index) => (
                   <div
                     key={category.name}
@@ -108,10 +108,10 @@ const JobListings = () => {
                   >
                     <button
                       onClick={() => setSelectedCategory(category.name)}
-                      className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${
+                      className={`w-full text-sm font-normal text-left text-[rgba(83,88,98,1)] px-4 py-2 rounded-lg transition-colors duration-200 cursor-pointer ${
                         selectedCategory === category.name
-                          ? 'bg-white text-black shadow-sm'
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-white hover:shadow-sm'
+                          ? 'bg-[rgba(249,249,250,1)] shadow-sm'
+                          : 'hover:text-gray-900 hover:bg-white hover:shadow-sm'
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -129,7 +129,7 @@ const JobListings = () => {
 
           {/* Job listings */}
           <div className="flex-1">
-            <div className="space-y-4 md:space-y-6">
+            <div className="space-y-6">
               {jobs.map((job, index) => (
                 <div
                   key={job.id}
@@ -140,7 +140,7 @@ const JobListings = () => {
                   }`}
                   style={{ transitionDelay: `${200 + index * 150}ms` }}
                 >
-                  <div className="bg-white rounded-lg p-4 md:p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                  <div className="bg-[rgba(249,249,250,1)] rounded-lg p-5">
                     {/* Job header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
