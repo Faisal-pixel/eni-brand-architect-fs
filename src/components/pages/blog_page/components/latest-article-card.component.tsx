@@ -128,13 +128,13 @@ const LatestArticleCard = ({
 
       {/* MOBILE SCREEN VIEW */}
 
-      <ArticleCardComponent 
-      shouldHide={true}
-      index={0}
-      id={0}
-      title={title}
-      description={description}
-      author={author}
+      <ArticleCardComponent
+        shouldHideonMediumToLargeScreens={true}
+        index={0}
+        id={0}
+        title={title}
+        description={description}
+        author={author}
       authorAvatar={authorAvatar && "/images/article-author-profile.png"} // I am using the and operator for now as a fall back
       date={date}
       image={imageUrl && "/images/latest-article-card.jpg"}

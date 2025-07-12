@@ -14,11 +14,11 @@ type Props = {
   image: string;
   bgColor?: string;
   authorAvatar?: string;
-  shouldHide?: boolean;
+  shouldHideonMediumToLargeScreens?: boolean;
 };
 
 const ArticleCardComponent = ({
-  shouldHide,
+  shouldHideonMediumToLargeScreens,
   index,
   id,
   title,
@@ -35,7 +35,7 @@ const ArticleCardComponent = ({
     <div
       key={id}
       className={`bg-white hover:shadow-t-sm transition-all duration-300 transform overflow-hidden group ${
-        shouldHide ? "hidden" : "block"
+        shouldHideonMediumToLargeScreens ? "md:hidden" : "block"
       }`}
       style={{
         animationDelay: `${index * 100}ms`,
