@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/ui_personal/nav-bar";
+import PathnameChecker from "@/components/pathname-checker";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased bg-[rgba(255,255,255,1)]`}
       >
+        <PathnameChecker />
         <NavBar />
         {children}
       </body>

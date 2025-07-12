@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Container from '../container';
 import Image from 'next/image';
 import { EbaNavbarLogo, NavLinkDivider, XCloseDropdownMenuIcon } from '@/assets/icons';
@@ -23,21 +23,23 @@ const NavBar = () => {
         <Container>
           <div className="py-4 px-10 md:pr-0 md:pl-20 lg:px-20">
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
+              <Link href="/">
+                <div className="flex items-center">
                 <Image src={EbaNavbarLogo} alt="eba-logo" className="" />
               </div>
+              </Link>
 
               {/* Desktop Navigation - hidden on medium tablet and smaller */}
               <nav className="hidden lg:flex items-center">
                 <span className="flex gap-x-8">
                   <Link
-                    href="#"
+                    href="/blog"
                     className="text-[rgba(31,41,55,1)] font-medium"
                   >
                     Blog
                   </Link>
                   <Link
-                    href="#"
+                    href="/career"
                     className="text-[rgba(31,41,55,1)] font-medium"
                   >
                     Career

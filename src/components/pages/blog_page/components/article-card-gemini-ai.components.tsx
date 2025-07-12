@@ -14,7 +14,7 @@ interface ArticleCardProps {
   tags: string[]; // Additional tags like "Research", "Presentation"
 }
 
-const ArticleCard: React.FC<ArticleCardProps> = ({
+const ArticleCardGeminiAI: React.FC<ArticleCardProps> = ({
   imageUrl,
   category,
   title,
@@ -138,4 +138,4 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   );
 };
 
-export default ArticleCard;
+export default ArticleCardGeminiAI;

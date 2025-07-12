@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import {
-  ArrowUpRightGoToArticleGrayIcon,
   PaginationLeft,
   PaginationRight
 } from "@/assets/icons";
-import Link from "next/link";
+import ArticleCardComponent from "./article-card.components";
 
 const TabNavigation = () => {
   const [activeTab, setActiveTab] = useState("View all");
@@ -251,109 +250,19 @@ const TabNavigation = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Sample content cards */}
           {getFilteredContent().map((item, index) => (
-            <div
+            <ArticleCardComponent 
               key={item.id}
-              className="bg-white hover:shadow-t-sm transition-all duration-300 transform overflow-hidden group"
-              style={{
-                animationDelay: `${index * 100}ms`,
-              }}
-            >
-              {/* Featured Image */}
-              <div className="w-full h-[208.67px] md:h-[227.3333282470703px] lg:h-[261.3333435058594px] mb-4 relative overflow-hidden">
-                <div
-                  className="w-full h-full rounded-2xl bg-cover bg-center transition-transform duration-300 "
-                  style={{
-                    backgroundImage: `url(${item.image})`,
-                    backgroundColor: item.bgColor,
-                  }}
-                />
-                {/* External link arrow */}
-                {/* <div className="absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <svg
-                    className="w-4 h-4 text-gray-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </div> */}
-              </div>
-
-              {/* Content */}
-              <div className="">
-                {/* Category Tag */}
-                <div className="mb-2">
-                  {/* <span
-                    className={`inline-block px-3 py-1 text-xs font-medium rounded-full text-[rgba(105,65,198,1)] md:text-[rgba(1,117,68,1)] ${getCategoryColor(
-                      item.category
-                    )}`}
-                  > */}
-                  <span
-                    className={`inline-block text-sm font-semibold text-[rgba(105,65,198,1)] md:text-[rgba(1,117,68,1)]`}
-                  >
-                    {item.category}
-                  </span>
-                </div>
-
-                {/* Title */}
-                {/* // Dynamic link based on item ID and title */}
-                <Link
-                  href={`/blog/${item.id}/${item.title
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
-                    className="cursor-pointer"
-                >
-                  <h3 className="flex text-lg font-semibold leading-7 text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">
-                    {item.title}
-
-                    <Image
-                      src={ArrowUpRightGoToArticleGrayIcon}
-                      alt="Go to article"
-                      className="ml-auto"
-                    />
-                  </h3>
-                </Link>
-
-                {/* Description */}
-                <p className="text-gray-600 mb-5 line-clamp-2">
-                  {item.description}
-                </p>
-
-                {/* Author and Date */}
-                <div className="flex items-center space-x-2">
-                  <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
-                    {item.authorAvatar || item.author === "" ? (
-                      <Image
-                        src={item.authorAvatar}
-                        alt={item.author}
-                        className="w-10 h-10 rounded-full"
-                        width={40}
-                        height={40}
-                      />
-                    ) : (
-                      <span className="text-white text-xs font-medium">
-                        {item.author
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-gray-900">
-                      {item.author}
-                    </div>
-                    <div className="text-sm text-gray-600">{item.date}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              index={index}
+              id={item.id}
+              title={item.title}
+              description={item.description}
+              category={item.category}
+              author={item.author}
+              date={item.date}
+              image={item.image || "/images/default-article-image.jpg"}
+              bgColor={item.bgColor}
+              authorAvatar={item.authorAvatar || "/images/default-avatar.jpg"}
+            />
           ))}
         </div>
 
