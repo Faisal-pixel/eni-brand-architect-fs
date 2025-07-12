@@ -14,9 +14,11 @@ type Props = {
   image: string;
   bgColor?: string;
   authorAvatar?: string;
+  shouldHide?: boolean;
 };
 
 const ArticleCardComponent = ({
+  shouldHide,
   index,
   id,
   title,
@@ -32,7 +34,9 @@ const ArticleCardComponent = ({
   return (
     <div
       key={id}
-      className="bg-white hover:shadow-t-sm transition-all duration-300 transform overflow-hidden group"
+      className={`bg-white hover:shadow-t-sm transition-all duration-300 transform overflow-hidden group ${
+        shouldHide ? "hidden" : "block"
+      }`}
       style={{
         animationDelay: `${index * 100}ms`,
       }}

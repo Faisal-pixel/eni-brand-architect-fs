@@ -129,6 +129,7 @@ const LatestArticleCard = ({
       {/* MOBILE SCREEN VIEW */}
 
       <ArticleCardComponent 
+      shouldHide={true}
       index={0}
       id={0}
       title={title}
