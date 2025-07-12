@@ -92,7 +92,7 @@ const CTASection: React.FC = () => {
         <div className={`mb-4 transition-all duration-1000 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-xl md:text-3xl text-gray-900 leading-[30px]">
+          <h2 className="text-3xl font-semibold text-gray-900 leading-[38px]">
             {ctaConfig.title}
           </h2>
         </div>
@@ -120,7 +120,7 @@ const CTASection: React.FC = () => {
       </div>
 
       {/* Footer */}
-      <footer className={`mt-auto pt-8 transition-all duration-1000 delay-700 ${
+      <footer className={`mt-auto pt-8 border-t border-[rgba(233,234,235,1)] transition-all duration-1000 delay-700 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
         <div className="flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
