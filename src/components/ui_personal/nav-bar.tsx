@@ -114,14 +114,14 @@ const NavBar = () => {
             <nav className="flex-1 flex flex-col">
               <div className="flex flex-col space-y-4 mb-6">
                 <Link
-                  href="#"
+                  href="/blog"
                   className="text-[rgba(31,41,55,1)] font-medium text-lg"
                   onClick={toggleMenu}
                 >
                   Blog
                 </Link>
                 <Link
-                  href="#"
+                  href="/careers"
                   className="text-[rgba(31,41,55,1)] font-medium text-lg"
                   onClick={toggleMenu}
                 >
