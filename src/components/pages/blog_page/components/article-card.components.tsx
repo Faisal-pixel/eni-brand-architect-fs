@@ -35,7 +35,7 @@ const ArticleCardComponent = ({
     <div
       key={id}
       className={`bg-white hover:shadow-t-sm transition-all duration-300 transform overflow-hidden group ${
-        shouldHideonMediumToLargeScreens ? "md:hidden" : "block"
+        shouldHideonMediumToLargeScreens && "md:hidden"
       }`}
       style={{
         animationDelay: `${index * 100}ms`,
