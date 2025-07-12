@@ -1,11 +1,13 @@
 "use client";
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const TabNavigation = () => {
+const TabNavigationExample = () => {
   const [activeTab, setActiveTab] = useState('View all');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sortBy, setSortBy] = useState('Most recent');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages] = useState(10);
 
   const tabs = [
     'View all',
@@ -117,7 +119,7 @@ const TabNavigation = () => {
   ];
 
   const getCategoryColor = (category: string) => {
-    const colors: { [key: string]: string } = {
+    const colors: {[key: string]: string} = {
       'Design': 'bg-purple-100 text-purple-700',
       'Product': 'bg-blue-100 text-blue-700',
       'Software Engineering': 'bg-green-100 text-green-700',
@@ -134,8 +136,16 @@ const TabNavigation = () => {
     return contentData.filter(item => item.category === activeTab);
   };
 
+  const handlePrevPage = () => {
+    setCurrentPage(prev => Math.max(1, prev - 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage(prev => Math.min(totalPages, prev + 1));
+  };
+
   return (
-    <div className="w-full">
+    <div className="w-full max-w-6xl mx-auto p-6">
       <div className="flex items-center justify-between border-b border-gray-200 pb-4">
         {/* Tab Navigation */}
         <div className="flex items-center space-x-8">
@@ -272,6 +282,113 @@ const TabNavigation = () => {
             </div>
           ))}
         </div>
+        
+        {/* Pagination - Mobile Only */}
+        <div className="mt-8 flex items-center justify-center md:hidden">
+          <div className="flex items-center space-x-4">
+            {/* Previous Button */}
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className={`w-12 h-12 rounded-xl border-2 flex items-center justify-center transition-all duration-200 ${
+                currentPage === 1
+                  ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed'
+                  : 'border-gray-300 bg-white text-gray-600 hover:border-gray-400 hover:bg-gray-50 active:scale-95'
+              }`}
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            
+            {/* Page Indicator */}
+            <div className="px-4 py-2">
+              <span className="text-sm font-medium text-gray-700">
+                Page {currentPage} of {totalPages}
+              </span>
+            </div>
+            
+            {/* Next Button */}
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`w-12 h-12 rounded-xl border-2 flex items-center justify-center transition-all duration-200 ${
+                currentPage === totalPages
+                  ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed'
+                  : 'border-gray-300 bg-white text-gray-600 hover:border-gray-400 hover:bg-gray-50 active:scale-95'
+              }`}
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+        
+        {/* Pagination - Desktop */}
+        <div className="mt-8 hidden md:flex items-center justify-center">
+          <div className="flex items-center space-x-2">
+            {/* Previous Button */}
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
+                currentPage === 1
+                  ? 'text-gray-400 cursor-not-allowed'
+                  : 'text-gray-600 hover:bg-gray-50 active:bg-gray-100'
+              }`}
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span className="text-sm font-medium">Previous</span>
+            </button>
+            
+            {/* Page Numbers */}
+            <div className="flex items-center space-x-1 mx-4 cursor-pointer">
+              {[1, 2, 3].map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-10 h-10 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    currentPage === page
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-600 hover:bg-gray-50 active:bg-gray-100'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+              
+              {/* Dots */}
+              <div className="px-2">
+                <span className="text-gray-400">...</span>
+              </div>
+              
+              {[8, 9, 10].map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-10 h-10 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    currentPage === page
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-600 hover:bg-gray-50 active:bg-gray-100'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+            
+            {/* Next Button */}
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer ${
+                currentPage === totalPages
+                  ? 'text-gray-400 cursor-not-allowed'
+                  : 'text-gray-600 hover:bg-gray-50 active:bg-gray-100'
+              }`}
+            >
+              <span className="text-sm font-medium">Next</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Custom CSS for animations */}
@@ -307,4 +424,4 @@ const TabNavigation = () => {
   );
 };
 
-export default TabNavigation;
+export default TabNavigationExample;

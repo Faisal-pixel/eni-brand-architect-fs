@@ -34,6 +34,9 @@ export {default as MarkerPinContactUsIcon} from "@/assets/icons/ui/marker-pin-co
 export {default as PhoneContactUsIcon} from "@/assets/icons/ui/phone-contact-us-icon.svg";
 export {default as XCloseBuyYourTicketIcon} from "@/assets/icons/ui/x-close-buy-your-ticket-icon.svg";
 export {default as ArrowUpRightGoToArticleIcon} from "@/assets/icons/ui/arrow-up-right-go-to-article-icon.svg";
+export {default as ArrowUpRightGoToArticleGrayIcon} from "@/assets/icons/ui/arrow-up-right-go-to-article-gray-icon.svg";
+export {default as PaginationLeft} from "@/assets/icons/ui/pagination-left.svg";
+export {default as PaginationRight} from "@/assets/icons/ui/pagination-right.svg";
 
 
 // LOGO

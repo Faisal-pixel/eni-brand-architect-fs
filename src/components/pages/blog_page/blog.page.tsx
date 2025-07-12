@@ -2,7 +2,7 @@ import React from "react";
 import BlogHeader from "./components/blog-header.components";
 import BlogPageContainer from "./components/blog-page-container";
 import LatestArticleCard from "./components/latest-article-card.component";
-import TabNavigation from "./components/tab-navigation-claude-ai";
+import TabNavigation from "./components/tab-navigation";
 
 const BlogPage = () => {
   return (
@@ -15,7 +15,7 @@ const BlogPage = () => {
         </BlogPageContainer>
       </section>
       {/* ARTICLE CARD */}
-      <section id="blog-article-card" className="md:mb-16">
+      <section id="blog-article-card" className="mb-12 md:mb-16">
         <BlogPageContainer>
           <LatestArticleCard
             title="Article Title"
@@ -35,6 +35,7 @@ const BlogPage = () => {
       <section className="mb-16">
         <BlogPageContainer>
           <TabNavigation />
+          {/* Example component to always delete */}
         </BlogPageContainer>
       </section>
 
