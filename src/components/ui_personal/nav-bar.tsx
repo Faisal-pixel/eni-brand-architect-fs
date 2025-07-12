@@ -1,32 +1,35 @@
 "use client";
-import React, { useState } from 'react';
-import Container from '../container';
-import Image from 'next/image';
-import { EbaNavbarLogo, NavLinkDivider, XCloseDropdownMenuIcon } from '@/assets/icons';
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import GreenOutlineButton from './green-outline-button';
-import GreenButton from './green-button';
+import React, { useState } from "react";
+import Image from "next/image";
+import {
+  EbaNavbarLogo,
+  NavLinkDivider,
+  XCloseDropdownMenuIcon,
+} from "@/assets/icons";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import GreenOutlineButton from "./green-outline-button";
+import GreenButton from "./green-button";
 
 // type Props = {}
 
 const NavBar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const toggleMenu = () => {
+  const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
     <>
       {/* NAVBAR */}
-      <section id="navbar" className="bg-white relative">
-        <Container>
-          <div className="py-4 px-10 md:pr-0 md:pl-20 lg:px-20">
+      <section id="navbar" className="bg-white relative px-10 sm:px-[60px] lg:px-[100px]">
+        
+          <div className="py-4 md:pr-0">
             <div className="flex items-center justify-between">
               <Link href="/">
                 <div className="flex items-center">
-                <Image src={EbaNavbarLogo} alt="eba-logo" className="" />
-              </div>
+                  <Image src={EbaNavbarLogo} alt="eba-logo" className="" />
+                </div>
               </Link>
 
               {/* Desktop Navigation - hidden on medium tablet and smaller */}
@@ -78,6 +81,22 @@ const NavBar = () => {
                     Career
                   </Link>
                 </span>
+
+                <Image src={NavLinkDivider} alt="" className="mr-8 ml-12" />
+                <span className="flex gap-4">
+                  <Button
+                    variant={"green-outline"}
+                    className="px-[20px] py-[14px] cursor-pointer"
+                  >
+                    Download the Brochure
+                  </Button>
+                  <Button
+                    variant={"green"}
+                    className="px-[20px] py-[14px] cursor-pointer"
+                  >
+                    Book a Consultation
+                  </Button>
+                </span>
               </nav>
 
               {/* Mobile hamburger menu */}
@@ -93,17 +112,18 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-        </Container>
+        
 
         {/* Mobile Menu Dropdown */}
+        {/* CLASSES I REMOVED: w-[375px] from the topmost div below */}
         <div
-          className={`absolute top-full right-0 w-[375px] bg-white shadow-lg z-50 md:hidden transition-all duration-300 ease-in-out ${
+          className={`absolute top-full right-0 left-0 bg-white shadow-lg z-50 md:hidden transition-all duration-300 ease-in-out ${
             isMenuOpen
               ? "opacity-100 transform translate-y-0"
               : "opacity-0 transform -translate-y-2 pointer-events-none"
           }`}
         >
-          <div className="px-4 py-2.5 h-full flex flex-col">
+          <div className="px-5 py-2.5 h-full flex flex-col">
             <div className="flex items-center justify-between mb-6">
               <Image src={EbaNavbarLogo} alt="eba-logo" />
               <button onClick={toggleMenu} className="cursor-pointer">
@@ -145,8 +165,8 @@ const NavBar = () => {
           </div>
         </div>
       </section>
-      </>
-  )
-}
+    </>
+  );
+};
 
 export default NavBar;
