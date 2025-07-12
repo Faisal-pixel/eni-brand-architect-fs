@@ -12,7 +12,7 @@ const HeroVideoSection = () => {
   }, []);
 
   return (
-    <div className="relative w-full md:max-h-[456px] lg:max-h-[787.5px] overflow-hidden rounded-xl pt-[48px] md:pt-[83px] lg:pt-[204px] pl-[13px] sm:pl-[34px] lg:pl-[285.5px] pb-[102px] mb-6">
+    <div className="relative w-full overflow-hidden rounded-xl mb-6 pt-[48px] md:pt-[83px] lg:pt-[204px] pb-[102px] md:pb-[83px] lg:pb-[285.5px] pl-[13px] md:pl-[22px] lg:pl-[89px]">
       {/* Background Video */}
       <video
         ref={videoRef}
@@ -31,7 +31,7 @@ const HeroVideoSection = () => {
       {/* <div className="absolute inset-0 bg-black bg-opacity-70" /> */}
 
       {/* Content Overlay */}
-      <div className="relative z-10 flex flex-col justify-center max-w-[287px] md:w-[370px] lg:max-w-[603px]">
+      <div className="relative z-10  max-w-[287px] md:max-w-[370px] lg:max-w-[603px]">
         {/* Main Heading */}
         <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
           Building Brands That{' '}
@@ -46,12 +46,12 @@ const HeroVideoSection = () => {
         {/* Buttons Container */}
         <div className="flex flex-col md:flex-row gap-2 lg:gap-3">
           {/* Primary Button */}
-          <button className="bg-emerald-600  text-white px-3 py-[13px] md:px-4 md:py-[17px] lg:px-5 lg:py-3.5 rounded-lg font-semibold text-xs md:text-base lg:text-lg transition-colors duration-200 shadow-lg">
+          <button className="bg-emerald-600  text-white whitespace-nowrap cursor-pointer px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold text-xs md:text-base lg:text-lg transition-colors duration-200 shadow-lg">
             Book a Free Consultation
           </button>
 
           {/* Secondary Button */}
-          <button className="bg-white border-2 border-[rgba(1,117,68,1)] text-[rgba(1,117,68,1)] px-3 py-[13px] md:px-4 md:py-[17px] lg:px-5 lg:py-3.5 rounded-lg font-semibold text-xs transition-all duration-200">
+          <button className="bg-white border-2 whitespace-nowrap cursor-pointer border-[rgba(1,117,68,1)] text-[rgba(1,117,68,1)] px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold text-xs transition-all duration-200">
             Download the Brochure
           </button>
         </div>
