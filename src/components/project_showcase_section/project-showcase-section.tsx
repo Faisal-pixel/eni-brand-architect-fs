@@ -1,123 +1,322 @@
-"use client";
-import { TeeSideImage } from '@/assets/icons';
-import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from "react";
+import { motion, AnimatePresence, Variants } from "motion/react";
+import Image from "next/image";
 
 const ProjectShowcaseSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, []);
+  const [expandedProject, setExpandedProject] = useState<string | null>("tee");
 
   const projects = [
     {
-      id: "01",
+      id: "tee",
+      number: "01",
       title: "TEE",
-      description: "The ones with (*) at the end of the point are the points they feel we should add to the design.",
+      category: "Outreach",
+      description:
+        "The ones with (*) at the end of the point are the points they feel we should add to the design.",
       year: "2025",
-      category: "Outreach",
       images: [
-        "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        "https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-      ]
+        {
+          src: "/images/TEE-project-showcase-img-1.jpg",
+          alt: "TEE project image 1",
+        },
+        {
+          src: "/images/TEE-project-showcase-img-2.jpg",
+          alt: "TEE project image 2",
+        },
+        {
+          src: "/images/TEE-project-showcase-img-3.jpg",
+          alt: "TEE project image 3",
+        },
+        {
+          src: "/images/TEE-project-showcase-img-4.jpg",
+          alt: "TEE project image 4",
+        },
+      ],
     },
     {
-      id: "02",
+      id: "golf",
+      number: "02",
       title: "PLAYWITHSTEPHEN GOLF TASTING",
-      description: "",
-      year: "",
       category: "Outreach",
-      images: []
+      description:
+        "An exclusive golf tasting experience combining premium golf equipment testing with curated beverage tastings. This project brings together golf enthusiasts and connoisseurs in a unique setting.",
+      year: "2024",
+      images: [
+        {
+          src: "/images/TEE-project-showcase-img-1.jpg",
+          alt: "TEE project image 1",
+        },
+        {
+          src: "/images/TEE-project-showcase-img-2.jpg",
+          alt: "PLAYWITHSTEPHEN GOLF TASTING project image 2",
+        },
+        {
+          src: "/images/TEE-project-showcase-img-3.jpg",
+          alt: "PLAYWITHSTEPHEN GOLF TASTING project image 3",
+        },
+        {
+          src: "/images/TEE-project-showcase-img-4.jpg",
+          alt: "PLAYWITHSTEPHEN GOLF TASTING project image 4",
+        },
+      ],
     },
     {
-      id: "03",
+      id: "led",
+      number: "03",
       title: "Talentville LED",
-      description: "",
-      year: "",
       category: "Outreach",
-      images: []
-    }
+      description:
+        "A dynamic LED installation project showcasing talent and creativity through interactive light displays. This project combines technology with artistic expression.",
+      year: "2024",
+      images: [
+        {
+          src: "/images/TEE-project-showcase-img-1.jpg",
+          alt: "LED project image 1",
+        },
+        {
+          src: "/images/TEE-project-showcase-img-2.jpg",
+          alt: "LED project image 2",
+        },
+        {
+          src: "/images/TEE-project-showcase-img-3.jpg",
+          alt: "LED project image 3",
+        },
+        {
+          src: "/images/TEE-project-showcase-img-4.jpg",
+          alt: "LED project image 4",
+        },
+      ],
+    },
   ];
 
+  const toggleProject = (projectId: string) => {
+    setExpandedProject(expandedProject === projectId ? null : projectId);
+  };
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const contentVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+    visible: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const imageVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <div className="min-h-screen py-16 px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className={`mb-16 transition-all duration-1000 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Project Showcase
-          </h1>
-          <div className="w-full h-px bg-gray-300"></div>
-        </div>
+    <div className="pt-24">
+      <div className="">
+        <motion.h1
+          className="text-4xl font-semibold leading-11 text-gray-900 mb-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Project Showcase
+        </motion.h1>
 
-        {/* Projects List */}
-        <div className="space-y-16">
-          {projects.map((project, index) => (
-            <div 
+        <motion.div
+          className="space-y-2"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {projects.map((project) => (
+            <motion.div
               key={project.id}
-              className={`transition-all duration-1000 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              variants={itemVariants}
+              className={`border-b border-gray-200 pb-6 ${
+                project.number === "01" && "border-t"
               }`}
-              style={{ transitionDelay: `${(index + 1) * 200}ms` }}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                {/* Left Content */}
-                <div className="space-y-6">
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-4">
-                        <span className="text-sm font-medium text-emerald-600">
-                          {project.id}
-                        </span>
-                        <span className="text-right text-sm text-gray-500">
-                          {project.category}
-                        </span>
-                      </div>
-                      <h2 className="text-2xl font-bold text-gray-900">
-                        {project.title}
-                      </h2>
-                    </div>
-                  </div>
-
-                  {project.description && (
-                    <p className="text-gray-600 leading-relaxed max-w-md">
-                      {project.description}
-                    </p>
-                  )}
-
-                  {project.year && (
-                    <p className="text-lg font-semibold text-gray-900">
-                      {project.year}
-                    </p>
-                  )}
+              <div
+                className="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-4 rounded-lg transition-colors"
+                onClick={() => toggleProject(project.id)}
+              >
+                <div className="flex items-center">
+                  <h2 className="text-xl font-medium text-[rgba(30,32,34,1)] py-4">
+                    {project.title}
+                  </h2>
+                  <span className="text-sm self-start text-[rgba(1,117,68,1)] font-medium">
+                    {project.number}
+                  </span>
                 </div>
-
-                {/* Right Images Grid */}
-                <div className="relative">
-                  {
-                    index === 0 && (
-                        <Image src={TeeSideImage} alt='TEE side image' className='ml-auto'/>
-                    )
-                  }
-                    
+                <div className="flex items-center space-x-4">
+                  <span className="text-sm text-[rgba(71,75,84,1)]">
+                    {project.category}
+                  </span>
+                  <motion.div
+                    animate={{
+                      rotate: expandedProject === project.id ? 180 : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="w-6 h-6 flex items-center justify-center"
+                  >
+                    <svg
+                      className="w-4 h-4 text-[rgba(71,75,84,1)]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </motion.div>
                 </div>
               </div>
 
-              {/* Separator line */}
-              {index < projects.length - 1 && (
-                <div className="w-full h-px bg-gray-300"></div>
-              )}
-            </div>
+              <AnimatePresence>
+                {expandedProject === project.id && (
+                  <motion.div
+                    variants={contentVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    className="overflow-hidden"
+                  >
+                    <div className="">
+                      <div className="flex flex-col md:flex-row md:gap-x-[39px] items-start mb-6">
+                        <motion.div
+                          variants={itemVariants}
+                          className="mb-[39px] md:mb-0"
+                        >
+                          <p className="text-gray-700 leading-relaxed mb-[39px]">
+                            {project.description}
+                          </p>
+                          <span className="text-sm  inline-flex items-end text-gray-500 h-[147px]">
+                            {project.year}
+                          </span>
+                        </motion.div>
+
+                        <motion.div variants={itemVariants} className="">
+                          <div className="grid grid-cols-2 gap-2 h-[256px] w-[346px] pb-3.5">
+                            {/* {project.images.map((image, index) => (
+                              <motion.div
+                                key={index}
+                                variants={imageVariants}
+                                className={`relative group ${index === 0 ? "row-span-2" : ""} `}
+                              >
+                                <div className="w-32 h-24 bg-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                                  <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
+                                    <svg 
+                                      className="w-8 h-8 text-gray-500" 
+                                      fill="none" 
+                                      stroke="currentColor" 
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path 
+                                        strokeLinecap="round" 
+                                        strokeLinejoin="round" 
+                                        strokeWidth={2} 
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" 
+                                      />
+                                    </svg>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            ))} */}
+
+                            <motion.div
+                              variants={imageVariants}
+                              className={`relative group row-span-2`}
+                            >
+                              <Image
+                                src={project.images[0].src}
+                                alt={project.images[0].alt}
+                                fill
+                                className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
+                              />
+                            </motion.div>
+                            <motion.div
+                              variants={imageVariants}
+                              className={`relative group `}
+                            >
+                              <Image
+                                src={project.images[1].src}
+                                alt={project.images[1].alt}
+                                fill
+                                className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
+                              />
+                            </motion.div>
+                            <motion.div
+                              variants={imageVariants}
+                              className={`relative group grid grid-cols-2 gap-x-2 `}
+                            >
+                              <div className="relative">
+                                <Image
+                                  src={project.images[2].src}
+                                  alt={project.images[2].alt}
+                                  fill
+                                  className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
+                                />
+                              </div>
+                              <div className="relative">
+                                <Image
+                                  src={project.images[3].src}
+                                  alt={project.images[3].alt}
+                                  fill
+                                  className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
+                                />
+                              </div>
+                            </motion.div>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
