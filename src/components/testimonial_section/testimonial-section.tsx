@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
-import GreenButton from '../ui_personal/green-button';
+import React, { useState, useEffect, useRef } from "react";
+import GreenButton from "../ui_personal/green-button";
+import Link from "next/link";
 
 const TestimonialsSection = () => {
   const [visibleItems, setVisibleItems] = useState(new Set());
@@ -12,8 +13,10 @@ const TestimonialsSection = () => {
       name: "Stephen Onaivi",
       title: "Founder, Play With Stephen Golf Tournament & Okton Foundation",
       image: "/api/placeholder/60/60",
-      quote: "People now recognize my page as one of the leading golf platforms in Nigeria.",
-      content: "EBA has been instrumental in the growth and visibility of my brand across multiple platforms. From producing our press conference and masterclass events to curating premium video content and managing my personal and foundation pages, their work is top-tier. The team created my logo, media kit, and brand assets, and the feedback has been incredible.\n\nWhat I love most is the passion the EBA team brings to every project. They don't just deliver, they care deeply.\n\nIf you want your brand handled with intentionality and excellence, work with EBA."
+      quote:
+        "People now recognize my page as one of the leading golf platforms in Nigeria.",
+      content:
+        "EBA has been instrumental in the growth and visibility of my brand across multiple platforms. From producing our press conference and masterclass events to curating premium video content and managing my personal and foundation pages, their work is top-tier. The team created my logo, media kit, and brand assets, and the feedback has been incredible.\n\nWhat I love most is the passion the EBA team brings to every project. They don't just deliver, they care deeply.\n\nIf you want your brand handled with intentionality and excellence, work with EBA.",
     },
     {
       id: 2,
@@ -21,7 +24,8 @@ const TestimonialsSection = () => {
       title: "CEO, Dinku Transational",
       image: "/api/placeholder/60/60",
       quote: "Every touchpoint exceeded my expectations.",
-      content: "Working with Eni Brand Architect has been nothing short of transformational. From the pace of delivery to the professionalism of the entire team, every touchpoint exceeded my expectations. They didn't just help shape my corporate brand; they refined my brand with strategic precision and clarity. I now have a brand presence that feels powerful, premium, and aligned with my values.\n\nI highly recommend EBA to any leader looking to elevate both their business and personal brand."
+      content:
+        "Working with Eni Brand Architect has been nothing short of transformational. From the pace of delivery to the professionalism of the entire team, every touchpoint exceeded my expectations. They didn't just help shape my corporate brand; they refined my brand with strategic precision and clarity. I now have a brand presence that feels powerful, premium, and aligned with my values.\n\nI highly recommend EBA to any leader looking to elevate both their business and personal brand.",
     },
     {
       id: 3,
@@ -29,16 +33,19 @@ const TestimonialsSection = () => {
       title: "Founder, Talentville Africa & Loud Urban Choir",
       image: "/api/placeholder/60/60",
       quote: "Their attention to detail and crisis management is unmatched.",
-      content: "Eni Brand Architect manages my brand and our community platforms with an exceptional blend of creativity and strategy. Whether it's organic content, storytelling, or design, the ideas they generate are always fresh, thoughtful, and aligned with our voice.\n\nTheir attention to detail, quick turnaround time, and ability to calmly manage even chaotic situations are unmatched. I trust them completely, and I'm always excited to see what they'll come up with next.\n\nEBA is a creative partner every visionary brand needs."
+      content:
+        "Eni Brand Architect manages my brand and our community platforms with an exceptional blend of creativity and strategy. Whether it's organic content, storytelling, or design, the ideas they generate are always fresh, thoughtful, and aligned with our voice.\n\nTheir attention to detail, quick turnaround time, and ability to calmly manage even chaotic situations are unmatched. I trust them completely, and I'm always excited to see what they'll come up with next.\n\nEBA is a creative partner every visionary brand needs.",
     },
     {
       id: 4,
       name: "Miss Amarchi",
       title: "Founder, HostessNG",
       image: "/api/placeholder/60/60",
-      quote: "EBA works like they're in the future, and the rest of us are catching up.",
-      content: "What stands out most about working with Eni Brand Architect is their ability to think and execute ahead of the curve. They're not just building brands for now, they're designing for the future.\n\nEBA fully understands brand vision and aligns every creative decision with long-term growth. It always feels like they're three steps ahead, and the rest of us are just catching up. Their work isn't only smart, it's visionary.\n\nIf you want future-ready branding, EBA is the team to trust."
-    }
+      quote:
+        "EBA works like they're in the future, and the rest of us are catching up.",
+      content:
+        "What stands out most about working with Eni Brand Architect is their ability to think and execute ahead of the curve. They're not just building brands for now, they're designing for the future.\n\nEBA fully understands brand vision and aligns every creative decision with long-term growth. It always feels like they're three steps ahead, and the rest of us are just catching up. Their work isn't only smart, it's visionary.\n\nIf you want future-ready branding, EBA is the team to trust.",
+    },
   ];
 
   useEffect(() => {
@@ -46,22 +53,22 @@ const TestimonialsSection = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const dataId = entry.target.getAttribute('data-id');
+            const dataId = entry.target.getAttribute("data-id");
             if (dataId !== null) {
               const id = parseInt(dataId);
-              setVisibleItems(prev => new Set([...prev, id]));
+              setVisibleItems((prev) => new Set([...prev, id]));
             }
           }
         });
       },
       {
         threshold: 0.1,
-        rootMargin: '50px'
+        rootMargin: "50px",
       }
     );
 
-    const elements = document.querySelectorAll('[data-testimonial]');
-    elements.forEach(el => observer.observe(el));
+    const elements = document.querySelectorAll("[data-testimonial]");
+    elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
@@ -83,7 +90,12 @@ const TestimonialsSection = () => {
             Book a Consultation
           </button> */}
 
-          <GreenButton title='Book a Consultation' className='bg-[rgba(1,117,68,1)] w-full md:w-auto self-start md:ml-auto py-3.5 md:px-5 cursor-pointer' />
+          <Link href="https://forms.gle/nAtf3DJH6sWFTGvV9" target="_blank" rel="noopener noreferrer">
+            <GreenButton
+              title="Book a Consultation"
+              className="bg-[rgba(1,117,68,1)] w-full md:w-auto self-start md:ml-auto py-3.5 md:px-5 cursor-pointer"
+            />
+          </Link>
         </div>
 
         {/* Testimonials Grid */}
@@ -95,11 +107,11 @@ const TestimonialsSection = () => {
               data-id={testimonial.id}
               className={`transform transition-all duration-1000 ease-out ${
                 visibleItems.has(testimonial.id)
-                  ? 'translate-y-0 opacity-100'
-                  : 'translate-y-12 opacity-0'
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-12 opacity-0"
               }`}
               style={{
-                transitionDelay: `${index * 200}ms`
+                transitionDelay: `${index * 200}ms`,
               }}
             >
               <div className="bg-white border-b border-[rgba(229,231,235,1)] pb-8">
@@ -110,7 +122,7 @@ const TestimonialsSection = () => {
                       <div className="w-full h-full bg-gray-200 rounded-full"></div>
                     </div>
                     {/* Name and Title */}
-                    <div className='flex-1'>
+                    <div className="flex-1">
                       <h3 className="text-base md:text-xl font-semibold text-gray-900 mb-1">
                         {testimonial.name}
                       </h3>
@@ -131,11 +143,13 @@ const TestimonialsSection = () => {
 
                     {/* Full Content */}
                     <div className="text-gray-700 leading-relaxed">
-                      {testimonial.content.split('\n\n').map((paragraph, idx) => (
-                        <p key={idx} className={idx > 0 ? 'mt-4' : ''}>
-                          {paragraph}
-                        </p>
-                      ))}
+                      {testimonial.content
+                        .split("\n\n")
+                        .map((paragraph, idx) => (
+                          <p key={idx} className={idx > 0 ? "mt-4" : ""}>
+                            {paragraph}
+                          </p>
+                        ))}
                     </div>
                   </div>
                 </div>

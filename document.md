@@ -26,3 +26,4 @@
 3. How does the import in react project work? Like importing images and importing components?
 4. What is build time? Fill layout? Compile time? Optimze the image? static optimization?
 5. What does the `fill` layout do in Next.js Image component?
+6. What does rel="noopener noreferrer" mean

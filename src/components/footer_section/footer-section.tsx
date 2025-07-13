@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { useState, useEffect, useRef } from 'react';
 import GreenButton from '../ui_personal/green-button';
 import GreenOutlineButton from '../ui_personal/green-outline-button';
+import Link from 'next/link';
 
 // Configuration object - easily editable
 const ctaConfig = {
@@ -20,7 +21,7 @@ const ctaConfig = {
     },
     secondary: {
       text: "Download the Brochure",
-      href: "#brochure"
+      href: "https://forms.gle/nAtf3DJH6sWFTGvV9"
     }
   },
   footer: {
@@ -112,10 +113,14 @@ const CTASection: React.FC = () => {
         }`}>
           {/* Primary button */}
           
-          <GreenButton onClickFunction={() => handleButtonClick(ctaConfig.buttons.primary.href)} title={ctaConfig.buttons.primary.text} className='py-3.5 md:px-5 leading-4 cursor-pointer' />
+          <Link href={ctaConfig.buttons.primary.href} target="_blank" rel="noopener noreferrer" className='w-full md:w-auto'>
+          <GreenButton  title={ctaConfig.buttons.primary.text} className='py-3.5 w-full md:px-5 leading-4 cursor-pointer' />
+          </Link>
 
           {/* Secondary button */}
-          <GreenOutlineButton title={ctaConfig.buttons.secondary.text} onClickFunction={() => handleButtonClick(ctaConfig.buttons.secondary.href)} className='py-3.5 md:px-5 leading-4 cursor-pointer' />
+          <Link href={ctaConfig.buttons.secondary.href} target="_blank" rel="noopener noreferrer" className='w-full md:w-auto'>
+          <GreenOutlineButton title={ctaConfig.buttons.secondary.text} className='py-3.5 w-full md:px-5 leading-4 cursor-pointer' />
+          </Link>
         </div>
       </div>
 

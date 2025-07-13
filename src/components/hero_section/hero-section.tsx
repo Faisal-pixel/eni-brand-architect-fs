@@ -1,5 +1,6 @@
-"use client"
-import React, { useRef, useEffect } from 'react';
+"use client";
+import Link from "next/link";
+import React, { useRef, useEffect } from "react";
 // import { Play } from 'lucide-react';
 
 const HeroVideoSection = () => {
@@ -34,24 +35,32 @@ const HeroVideoSection = () => {
       <div className="relative z-10  max-w-[287px] md:max-w-[370px] lg:max-w-[603px]">
         {/* Main Heading */}
         <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
-          Building Brands That{' '}
-          <span className="block md:inline">Resonate</span>
+          Building Brands That <span className="block md:inline">Resonate</span>
         </h1>
 
         {/* Description */}
         <p className="text-[rgba(255,255,255,1)] text-[13px] md:text-[15px] lg:text-lg leading-relaxed mb-8 max-w-lg">
-          We help brands and individuals craft identities that connect deeply and communicate clearly—combining cultural insight with world-class strategy.
+          We help brands and individuals craft identities that connect deeply
+          and communicate clearly—combining cultural insight with world-class
+          strategy.
         </p>
 
         {/* Buttons Container */}
         <div className="flex flex-col md:flex-row gap-2 lg:gap-3">
           {/* Primary Button */}
-          <button className="bg-emerald-600  text-white whitespace-nowrap cursor-pointer px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold text-xs md:text-base lg:text-lg transition-colors duration-200 shadow-lg">
-            Book a Free Consultation
-          </button>
+          <Link
+            href="https://forms.gle/nAtf3DJH6sWFTGvV9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full md:w-auto"
+          >
+            <button className="bg-emerald-600 w-full  text-white whitespace-nowrap cursor-pointer px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold transition-colors duration-200 shadow-lg">
+              Book a Free Consultation
+            </button>
+          </Link>
 
           {/* Secondary Button */}
-          <button className="bg-white border-2 whitespace-nowrap cursor-pointer border-[rgba(1,117,68,1)] text-[rgba(1,117,68,1)] px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold text-xs transition-all duration-200">
+          <button className="bg-white border-2 whitespace-nowrap cursor-pointer border-[rgba(1,117,68,1)] text-[rgba(1,117,68,1)] px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold transition-all duration-200">
             Download the Brochure
           </button>
         </div>

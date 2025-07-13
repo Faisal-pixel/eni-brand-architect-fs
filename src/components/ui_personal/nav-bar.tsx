@@ -22,97 +22,98 @@ const NavBar = () => {
   return (
     <>
       {/* NAVBAR */}
-      <section id="navbar" className="bg-white relative px-10 sm:px-[60px] lg:px-[100px]">
-        
-          <div className="py-4 md:pr-0">
-            <div className="flex items-center justify-between">
-              <Link href="/">
-                <div className="flex items-center">
-                  <Image src={EbaNavbarLogo} alt="eba-logo" className="" />
-                </div>
-              </Link>
-
-              {/* Desktop Navigation - hidden on medium tablet and smaller */}
-              <nav className="hidden lg:flex items-center">
-                <span className="flex gap-x-8">
-                  <Link
-                    href="/blog"
-                    className="text-[rgba(31,41,55,1)] font-medium"
-                  >
-                    Blog
-                  </Link>
-                  <Link
-                    href="/careers"
-                    className="text-[rgba(31,41,55,1)] font-medium"
-                  >
-                    Career
-                  </Link>
-                </span>
-                <Image src={NavLinkDivider} alt="" className="mr-8 ml-12" />
-                <span className="flex gap-4">
-                  <Button
-                    variant={"green-outline"}
-                    className="px-[20px] py-[14px] cursor-pointer"
-                  >
-                    Download the Brochure
-                  </Button>
-                  <Button
-                    variant={"green"}
-                    className="px-[20px] py-[14px] cursor-pointer"
-                  >
-                    Book a Consultation
-                  </Button>
-                </span>
-              </nav>
-
-              {/* Medium tablet navigation - shows only Blog and Career */}
-              <nav className="hidden md:flex lg:hidden items-center">
-                <span className="flex gap-x-8">
-                  <Link
-                    href="/blog"
-                    className="text-[rgba(31,41,55,1)] font-medium"
-                  >
-                    Blog
-                  </Link>
-                  <Link
-                    href="/careers"
-                    className="text-[rgba(31,41,55,1)] font-medium"
-                  >
-                    Career
-                  </Link>
-                </span>
-
-                <Image src={NavLinkDivider} alt="" className="mr-8 ml-12" />
-                <span className="flex gap-4">
-                  <Button
-                    variant={"green-outline"}
-                    className="px-[20px] py-[14px] cursor-pointer"
-                  >
-                    Download the Brochure
-                  </Button>
-                  <Button
-                    variant={"green"}
-                    className="px-[20px] py-[14px] cursor-pointer"
-                  >
-                    Book a Consultation
-                  </Button>
-                </span>
-              </nav>
-
-              {/* Mobile hamburger menu */}
-              <div className="md:hidden">
-                <button
-                  onClick={toggleMenu}
-                  className="flex flex-col items-center justify-center w-8 h-8 space-y-1 cursor-pointer"
-                >
-                  <span className="block w-6 h-0.5 bg-black"></span>
-                  <span className="block w-6 h-0.5 bg-black"></span>
-                  <span className="block w-6 h-0.5 bg-black"></span>
-                </button>
+      <section
+        id="navbar"
+        className="bg-white relative px-10 sm:px-[60px] lg:px-[100px]"
+      >
+        <div className="py-4 md:pr-0">
+          <div className="flex items-center justify-between">
+            <Link href="/">
+              <div className="flex items-center">
+                <Image src={EbaNavbarLogo} alt="eba-logo" className="" />
               </div>
+            </Link>
+
+            {/* Desktop Navigation - hidden on medium tablet and smaller */}
+            <nav className="hidden lg:flex items-center">
+              <span className="flex gap-x-8">
+                <Link
+                  href="/blog"
+                  className="text-[rgba(31,41,55,1)] font-medium"
+                >
+                  Blog
+                </Link>
+                <Link
+                  href="/careers"
+                  className="text-[rgba(31,41,55,1)] font-medium"
+                >
+                  Career
+                </Link>
+              </span>
+              <Image src={NavLinkDivider} alt="" className="mr-8 ml-12" />
+              <span className="flex gap-4">
+                <Button
+                  variant={"green-outline"}
+                  className="px-[20px] py-[14px] cursor-pointer"
+                >
+                  Download the Brochure
+                </Button>
+                <Button
+                  variant={"green"}
+                  className="px-[20px] py-[14px] cursor-pointer"
+                >
+                  Book a Consultation
+                </Button>
+              </span>
+            </nav>
+
+            {/* Medium tablet navigation - shows only Blog and Career */}
+            <nav className="hidden md:flex lg:hidden items-center">
+              <span className="flex gap-x-8">
+                <Link
+                  href="/blog"
+                  className="text-[rgba(31,41,55,1)] font-medium"
+                >
+                  Blog
+                </Link>
+                <Link
+                  href="/careers"
+                  className="text-[rgba(31,41,55,1)] font-medium"
+                >
+                  Career
+                </Link>
+              </span>
+
+              <Image src={NavLinkDivider} alt="" className="mr-8 ml-12" />
+              <span className="flex gap-4">
+                <Button
+                  variant={"green-outline"}
+                  className="px-[20px] py-[14px] cursor-pointer"
+                >
+                  Download the Brochure
+                </Button>
+                <Button
+                  variant={"green"}
+                  className="px-[20px] py-[14px] cursor-pointer"
+                >
+                  Book a Consultation
+                </Button>
+              </span>
+            </nav>
+
+            {/* Mobile hamburger menu */}
+            <div className="md:hidden">
+              <button
+                onClick={toggleMenu}
+                className="flex flex-col items-center justify-center w-8 h-8 space-y-1 cursor-pointer"
+              >
+                <span className="block w-6 h-0.5 bg-black"></span>
+                <span className="block w-6 h-0.5 bg-black"></span>
+                <span className="block w-6 h-0.5 bg-black"></span>
+              </button>
             </div>
           </div>
-        
+        </div>
 
         {/* Mobile Menu Dropdown */}
         {/* CLASSES I REMOVED: w-[375px] from the topmost div below */}
@@ -155,11 +156,17 @@ const NavBar = () => {
                   className="px-[7.75px] py-[11px] cursor-pointer text-sm"
                   onClickFunction={toggleMenu}
                 />
-                <GreenButton
-                  title="Book a Consultation"
-                  className="px-[19.25px] py-[11px] cursor-pointer text-sm"
-                  onClickFunction={toggleMenu}
-                />
+                <Link
+                  href="https://forms.gle/nAtf3DJH6sWFTGvV9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <GreenButton
+                    title="Book a Consultation"
+                    className="px-[19.25px] py-[11px] cursor-pointer text-sm"
+                    onClickFunction={toggleMenu}
+                  />
+                </Link>
               </div>
             </nav>
           </div>
