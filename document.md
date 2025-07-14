@@ -27,3 +27,7 @@
 4. What is build time? Fill layout? Compile time? Optimze the image? static optimization?
 5. What does the `fill` layout do in Next.js Image component?
 6. What does rel="noopener noreferrer" mean
+7. Study why useState doesnt update immediately in nextjs. Something about fast reload but it updates when the project is built. Updates on the live site. Example can be found in the buy your ticket component
+8. How to convert google drive link to direct download link?
+   - Use the format: `https://drive.google.com/uc?export=download&id=FILE_ID`
+   - Replace `FILE_ID` with the actual file ID from the Google Drive shareable link.

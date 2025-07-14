@@ -15,6 +15,12 @@ import GreenButton from "./green-button";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [downloadBrochureUrl] = useState(
+    "https://drive.google.com/uc?export=download&id=1Mjd0th8vojVCXNNUiR5ixjKWZ_sjDA3z"
+  );
+  const [bookAConsultationUrl] = useState(
+    "https://forms.gle/nAtf3DJH6sWFTGvV9"
+  );
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -52,18 +58,30 @@ const NavBar = () => {
               </span>
               <Image src={NavLinkDivider} alt="" className="mr-8 ml-12" />
               <span className="flex gap-4">
-                <Button
-                  variant={"green-outline"}
-                  className="px-[20px] py-[14px] cursor-pointer"
+                <Link
+                  href={downloadBrochureUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Download the Brochure
-                </Button>
-                <Button
-                  variant={"green"}
-                  className="px-[20px] py-[14px] cursor-pointer"
+                  <Button
+                    variant={"green-outline"}
+                    className="px-[20px] py-[14px] cursor-pointer"
+                  >
+                    Download the Brochure
+                  </Button>
+                </Link>
+                <Link
+                  href={bookAConsultationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Book a Consultation
-                </Button>
+                  <Button
+                    variant={"green"}
+                    className="px-[20px] py-[14px] cursor-pointer"
+                  >
+                    Book a Consultation
+                  </Button>
+                </Link>
               </span>
             </nav>
 
@@ -86,18 +104,30 @@ const NavBar = () => {
 
               <Image src={NavLinkDivider} alt="" className="mr-8 ml-12" />
               <span className="flex gap-4">
-                <Button
-                  variant={"green-outline"}
-                  className="px-[20px] py-[14px] cursor-pointer"
+                <Link
+                  href={downloadBrochureUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Download the Brochure
-                </Button>
-                <Button
-                  variant={"green"}
-                  className="px-[20px] py-[14px] cursor-pointer"
+                  <Button
+                    variant={"green-outline"}
+                    className="px-[20px] py-[14px] cursor-pointer"
+                  >
+                    Download the Brochure
+                  </Button>
+                </Link>
+                <Link
+                  href={bookAConsultationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Book a Consultation
-                </Button>
+                  <Button
+                    variant={"green"}
+                    className="px-[20px] py-[14px] cursor-pointer"
+                  >
+                    Book a Consultation
+                  </Button>
+                </Link>
               </span>
             </nav>
 
@@ -151,15 +181,23 @@ const NavBar = () => {
               </div>
 
               <div className="flex space-x-2 mt-auto">
-                <GreenOutlineButton
-                  title="Download the Brochure"
-                  className="px-[7.75px] py-[11px] cursor-pointer text-sm"
-                  onClickFunction={toggleMenu}
-                />
                 <Link
-                  href="https://forms.gle/nAtf3DJH6sWFTGvV9"
+                  href={downloadBrochureUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex-1"
+                >
+                  <GreenOutlineButton
+                    title="Download the Brochure"
+                    className="px-[7.75px] py-[11px] cursor-pointer text-sm"
+                    onClickFunction={toggleMenu}
+                  />
+                </Link>
+                <Link
+                  href={bookAConsultationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
                 >
                   <GreenButton
                     title="Book a Consultation"
