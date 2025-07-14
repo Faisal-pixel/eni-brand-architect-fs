@@ -9,10 +9,10 @@ const ProjectShowcaseSection = () => {
     {
       id: "tee",
       number: "01",
-      title: "TEE",
+      title: "The Eniivy Experience (TEE)",
       category: "Outreach",
       description:
-        "The ones with (*) at the end of the point are the points they feel we should add to the design.",
+        "Tallentville Africa is a pan african platform/community focused on discovering, showcasing, and empowering young African talent in the creative and performance arts",
       year: "2025",
       images: [
         {
@@ -36,10 +36,10 @@ const ProjectShowcaseSection = () => {
     {
       id: "golf",
       number: "02",
-      title: "PLAYWITHSTEPHEN GOLF TASTING",
+      title: "PLAY WITH STEPHEN",
       category: "Outreach",
       description:
-        "An exclusive golf tasting experience combining premium golf equipment testing with curated beverage tastings. This project brings together golf enthusiasts and connoisseurs in a unique setting.",
+        "Play With Stephen is a purpose-driven African golf movement powered by the Olston Foundation. Since 2020, it has grown from a casual golf hangout into a multi-dimensional campaign advancing autism awareness, inclusion, and sport-driven advocacy across the continent.",
       year: "2024",
       images: [
         {
@@ -65,8 +65,7 @@ const ProjectShowcaseSection = () => {
       number: "03",
       title: "Talentville LED",
       category: "Outreach",
-      description:
-        "A dynamic LED installation project showcasing talent and creativity through interactive light displays. This project combines technology with artistic expression.",
+      description: "A Community of Storytelling, Soul, and Shared Moments Curated by ENI Brand Architect",
       year: "2024",
       images: [
         {
@@ -181,7 +180,7 @@ const ProjectShowcaseSection = () => {
                   <h2 className="text-xl font-medium text-[rgba(30,32,34,1)] py-4">
                     {project.title}
                   </h2>
-                  <span className="text-sm self-start text-[rgba(1,117,68,1)] font-medium">
+                  <span className={`text-sm self-start font-medium ${expandedProject === project.id && "text-[rgba(1,117,68,1)]"}`}>
                     {project.number}
                   </span>
                 </div>
@@ -238,32 +237,6 @@ const ProjectShowcaseSection = () => {
 
                         <motion.div variants={itemVariants} className="">
                           <div className="grid grid-cols-2 gap-2 h-[256px] w-[346px] pb-3.5">
-                            {/* {project.images.map((image, index) => (
-                              <motion.div
-                                key={index}
-                                variants={imageVariants}
-                                className={`relative group ${index === 0 ? "row-span-2" : ""} `}
-                              >
-                                <div className="w-32 h-24 bg-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                                  <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
-                                    <svg 
-                                      className="w-8 h-8 text-gray-500" 
-                                      fill="none" 
-                                      stroke="currentColor" 
-                                      viewBox="0 0 24 24"
-                                    >
-                                      <path 
-                                        strokeLinecap="round" 
-                                        strokeLinejoin="round" 
-                                        strokeWidth={2} 
-                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" 
-                                      />
-                                    </svg>
-                                  </div>
-                                </div>
-                              </motion.div>
-                            ))} */}
-
                             <motion.div
                               variants={imageVariants}
                               className={`relative group row-span-2`}

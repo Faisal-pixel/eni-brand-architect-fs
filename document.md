@@ -33,3 +33,4 @@
    - Replace `FILE_ID` with the actual file ID from the Google Drive shareable link.
 9. What is bandwidth
 10. What is S3 Bucket
+11. What is blob storage/images
