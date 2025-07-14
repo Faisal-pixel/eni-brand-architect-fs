@@ -95,7 +95,7 @@ const MarketingAmplificationSection = () => {
           >
             {/* Header with Icon */}
             <div className="flex flex-col space-y-6">
-              <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 flex items-center justify-center">
                 <Image src={GraphIcon} alt="Graph Icon for Marketing & Amplification" />
               </div>
               <h1 className="text-4xl font-bold text-gray-900">
@@ -156,7 +156,7 @@ const MarketingAmplificationSection = () => {
                   <video
                     ref={videoRef}
                     className="w-full h-full object-cover"
-                    src="/videos/eni-brand-sample-video.mp4" // from public folder
+                    src="https://res.cloudinary.com/daya1fdka/video/upload/f_auto,q_auto/v1752459204/8371d80f-d358-433c-ad14-c47d78a063be_art5zr.mp4" // from public folder
                     muted
                     onTimeUpdate={handleTimeUpdate}
                     onLoadedMetadata={handleMetadataLoaded}

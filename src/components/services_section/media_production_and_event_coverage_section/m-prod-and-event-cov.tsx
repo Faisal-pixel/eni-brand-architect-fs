@@ -92,7 +92,7 @@ const MediaProdAndEventCoverage = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Media Showcase */}
           <div
-            className={`transition-all duration-1000 ease-out order-2 ${
+            className={`transition-all duration-1000 ease-out order-2 lg:order-1 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -185,7 +185,7 @@ const MediaProdAndEventCoverage = () => {
 
           {/* Right Content */}
           <div
-            className={`space-y-8 transition-all duration-1000 ease-out order-1 ${
+            className={`space-y-8 transition-all duration-1000 ease-out order-1 lg:order-2 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"

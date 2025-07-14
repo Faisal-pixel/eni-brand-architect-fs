@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Megaphone } from 'lucide-react';
-import { CheckmarkIcon, PublicRelationsAndCommunication } from '@/assets/icons';
+import { CheckmarkIcon, PublicRelationsAndCommunication, PublicRelationsAndCommunicationMegaphoneIcon } from '@/assets/icons';
 import Image from 'next/image';
 
 const PRAndCommunication = () => {
@@ -34,7 +33,7 @@ const PRAndCommunication = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Media Showcase */}
           <div 
-            className={`relative transform transition-all duration-1000 order-2 ${
+            className={`relative transform transition-all duration-1000 order-2 lg:order-1 ${
               isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
             }`}
             style={{ transitionDelay: '300ms' }}
@@ -43,7 +42,7 @@ const PRAndCommunication = () => {
           </div>
 
           {/* Right Content */}
-          <div className="space-y-8 order-1">
+          <div className="space-y-8 order-1 lg:order-2">
             {/* Icon and Title */}
             <div 
               className={`transform transition-all duration-1000 ${
@@ -51,9 +50,10 @@ const PRAndCommunication = () => {
               }`}
             >
               <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                {/* <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
                   <Megaphone className="w-6 h-6 text-green-600" />
-                </div>
+                </div> */}
+                <Image src={PublicRelationsAndCommunicationMegaphoneIcon} alt="PR and Communication Icon" className="w-12 h-12" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Public Relations & Communication

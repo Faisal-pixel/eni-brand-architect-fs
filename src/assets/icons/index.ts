@@ -37,6 +37,8 @@ export {default as ArrowUpRightGoToArticleIcon} from "@/assets/icons/ui/arrow-up
 export {default as ArrowUpRightGoToArticleGrayIcon} from "@/assets/icons/ui/arrow-up-right-go-to-article-gray-icon.svg";
 export {default as PaginationLeft} from "@/assets/icons/ui/pagination-left.svg";
 export {default as PaginationRight} from "@/assets/icons/ui/pagination-right.svg";
+export {default as BrandingAndIdentityTagIcon} from "@/assets/icons/ui/branding-and-identity-tag-icon.svg";
+export {default as PublicRelationsAndCommunicationMegaphoneIcon} from "@/assets/icons/ui/pr-and-comms-megaphone-icon.svg";
 
 
 // LOGO

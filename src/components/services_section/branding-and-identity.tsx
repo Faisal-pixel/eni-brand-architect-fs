@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Tag } from 'lucide-react';
-import { BrandingAndIdentity, CheckmarkIcon } from '@/assets/icons';
+import { BrandingAndIdentity, BrandingAndIdentityTagIcon, CheckmarkIcon } from '@/assets/icons';
 import Image from 'next/image';
 
 const BrandingIdentity = () => {
@@ -41,9 +40,10 @@ const BrandingIdentity = () => {
               }`}
             >
               <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                {/* <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
                   <Tag className="w-6 h-6 text-green-600" />
-                </div>
+                </div> */}
+                <Image src={BrandingAndIdentityTagIcon} alt="Branding and Identity Icon" className="w-12 h-12 mr-4" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Branding & Identity
