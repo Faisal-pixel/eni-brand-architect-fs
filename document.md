@@ -31,3 +31,5 @@
 8. How to convert google drive link to direct download link?
    - Use the format: `https://drive.google.com/uc?export=download&id=FILE_ID`
    - Replace `FILE_ID` with the actual file ID from the Google Drive shareable link.
+9. What is bandwidth
+10. What is S3 Bucket

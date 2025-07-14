@@ -23,7 +23,11 @@ const HeroVideoSection = () => {
         loop
         playsInline
       >
-        <source src="/videos/eni-brand-sample-video.mp4" type="video/mp4" />
+        <source
+          src="https://res.cloudinary.com/daya1fdka/video/upload/f_auto,q_auto/v1752458170/Hero_Section_Video_Collated_l8j1ao.mov"
+          type="video/mp4"
+        />
+
         {/* Fallback for browsers that don't support video */}
         {/* <div className="absolute inset-0 bg-gray-800" /> */}
       </video>
