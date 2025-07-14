@@ -1,10 +1,13 @@
 "use client";
 import Link from "next/link";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 // import { Play } from 'lucide-react';
 
 const HeroVideoSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [downloadBrochureUrl] = useState(
+    "https://drive.google.com/uc?export=download&id=1Mjd0th8vojVCXNNUiR5ixjKWZ_sjDA3z"
+  );
 
   useEffect(() => {
     if (videoRef.current) {
@@ -64,9 +67,16 @@ const HeroVideoSection = () => {
           </Link>
 
           {/* Secondary Button */}
-          <button className="bg-white border-2 whitespace-nowrap cursor-pointer border-[rgba(1,117,68,1)] text-[rgba(1,117,68,1)] px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold transition-all duration-200">
-            Download the Brochure
-          </button>
+          <Link
+            href={downloadBrochureUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full md:w-auto"
+          >
+            <button className="bg-white w-full border-2 whitespace-nowrap cursor-pointer border-[rgba(1,117,68,1)] text-[rgba(1,117,68,1)] px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold transition-all duration-200">
+              Download the Brochure
+            </button>
+          </Link>
         </div>
       </div>
 

@@ -1,37 +1,37 @@
 "use client";
-import { EbaFooterLogo } from '@/assets/icons';
-import Image from 'next/image';
-import React, { useState, useEffect, useRef } from 'react';
-import GreenButton from '../ui_personal/green-button';
-import GreenOutlineButton from '../ui_personal/green-outline-button';
-import Link from 'next/link';
+import { EbaFooterLogo } from "@/assets/icons";
+import Image from "next/image";
+import React, { useState, useEffect, useRef } from "react";
+import GreenButton from "../ui_personal/green-button";
+import GreenOutlineButton from "../ui_personal/green-outline-button";
+import Link from "next/link";
 
 // Configuration object - easily editable
 const ctaConfig = {
   logo: {
     text: "eba.",
-    tagline: "Do things different"
+    tagline: "Do things different",
   },
   title: "Let's get started on something great",
   subtitle: "Join over 4,000+ startups already growing with EBA.",
   buttons: {
     primary: {
       text: "Book a Consultation",
-      href: "#consultation"
+      href: "https://forms.gle/nAtf3DJH6sWFTGvV9",
     },
     secondary: {
       text: "Download the Brochure",
-      href: "https://forms.gle/nAtf3DJH6sWFTGvV9"
-    }
+      href: "https://drive.google.com/uc?export=download&id=1Mjd0th8vojVCXNNUiR5ixjKWZ_sjDA3z",
+    },
   },
   footer: {
     copyright: "© 2025 EBA Team. All rights reserved.",
     links: [
       { text: "Terms", href: "#terms" },
       { text: "Privacy", href: "#privacy" },
-      { text: "Cookies", href: "#cookies" }
-    ]
-  }
+      { text: "Cookies", href: "#cookies" },
+    ],
+  },
 };
 
 const CTASection: React.FC = () => {
@@ -50,7 +50,7 @@ const CTASection: React.FC = () => {
       },
       {
         threshold: 0.1,
-        rootMargin: '50px',
+        rootMargin: "50px",
       }
     );
 
@@ -83,56 +83,80 @@ const CTASection: React.FC = () => {
       {/* Main content container */}
       <div className="flex-1 flex flex-col justify-center items-center text-center max-w-4xl mx-auto">
         {/* Logo */}
-        <div className={`mb-12 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <Image src={EbaFooterLogo} alt='Eba footer logo' />
+        <div
+          className={`mb-12 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <Image src={EbaFooterLogo} alt="Eba footer logo" />
         </div>
 
         {/* Main heading */}
-        <div className={`mb-4 transition-all duration-1000 delay-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div
+          className={`mb-4 transition-all duration-1000 delay-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <h2 className="text-3xl font-semibold text-gray-900 leading-[38px]">
             {ctaConfig.title}
           </h2>
         </div>
 
         {/* Subtitle */}
-        <div className={`mb-12 transition-all duration-1000 delay-300 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div
+          className={`mb-12 transition-all duration-1000 delay-300 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             {ctaConfig.subtitle}
           </p>
         </div>
 
         {/* Action buttons */}
-        <div className={`w-full flex flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-x-2 mb-16 transition-all duration-1000 delay-500 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div
+          className={`w-full flex flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-x-2 mb-16 transition-all duration-1000 delay-500 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           {/* Primary button */}
-          
-          <Link href={ctaConfig.buttons.primary.href} target="_blank" rel="noopener noreferrer" className='w-full md:w-auto'>
-          <GreenButton  title={ctaConfig.buttons.primary.text} className='py-3.5 w-full md:px-5 leading-4 cursor-pointer' />
+
+          <Link
+            href={ctaConfig.buttons.primary.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full md:w-auto"
+          >
+            <GreenButton
+              title={ctaConfig.buttons.primary.text}
+              className="py-3.5 w-full md:px-5 leading-4 cursor-pointer"
+            />
           </Link>
 
           {/* Secondary button */}
-          <Link href={ctaConfig.buttons.secondary.href} target="_blank" rel="noopener noreferrer" className='w-full md:w-auto'>
-          <GreenOutlineButton title={ctaConfig.buttons.secondary.text} className='py-3.5 w-full md:px-5 leading-4 cursor-pointer' />
+          <Link
+            href={ctaConfig.buttons.secondary.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full md:w-auto"
+          >
+            <GreenOutlineButton
+              title={ctaConfig.buttons.secondary.text}
+              className="py-3.5 w-full md:px-5 leading-4 cursor-pointer"
+            />
           </Link>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className={`mt-auto pt-8 border-t border-[rgba(233,234,235,1)] transition-all duration-1000 delay-700 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}>
+      <footer
+        className={`mt-auto pt-8 border-t border-[rgba(233,234,235,1)] transition-all duration-1000 delay-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
         <div className="flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
           {/* Copyright */}
-          <p className="mb-4 md:mb-0">
-            {ctaConfig.footer.copyright}
-          </p>
+          <p className="mb-4 md:mb-0">{ctaConfig.footer.copyright}</p>
 
           {/* Footer links */}
           <div className="flex space-x-8">
