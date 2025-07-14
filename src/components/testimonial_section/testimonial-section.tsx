@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import GreenButton from "../ui_personal/green-button";
 import Link from "next/link";
+import Image from "next/image";
 
 const TestimonialsSection = () => {
   const [visibleItems, setVisibleItems] = useState(new Set());
@@ -12,7 +13,7 @@ const TestimonialsSection = () => {
       id: 1,
       name: "Stephen Onaivi",
       title: "Founder, Play With Stephen Golf Tournament & Okton Foundation",
-      image: "/api/placeholder/60/60",
+      image: "/images/avatars/stephen-onaivi.png",
       quote:
         "People now recognize my page as one of the leading golf platforms in Nigeria.",
       content:
@@ -22,7 +23,7 @@ const TestimonialsSection = () => {
       id: 2,
       name: "Tega Agbosa",
       title: "CEO, Dinku Transational",
-      image: "/api/placeholder/60/60",
+      image: "/images/avatars/tega-agbosa.png",
       quote: "Every touchpoint exceeded my expectations.",
       content:
         "Working with Eni Brand Architect has been nothing short of transformational. From the pace of delivery to the professionalism of the entire team, every touchpoint exceeded my expectations. They didn't just help shape my corporate brand; they refined my brand with strategic precision and clarity. I now have a brand presence that feels powerful, premium, and aligned with my values.\n\nI highly recommend EBA to any leader looking to elevate both their business and personal brand.",
@@ -31,7 +32,7 @@ const TestimonialsSection = () => {
       id: 3,
       name: "Ann Obaseki",
       title: "Founder, Talentville Africa & Loud Urban Choir",
-      image: "/api/placeholder/60/60",
+      image: "/images/avatars/ann-obaseki.png",
       quote: "Their attention to detail and crisis management is unmatched.",
       content:
         "Eni Brand Architect manages my brand and our community platforms with an exceptional blend of creativity and strategy. Whether it's organic content, storytelling, or design, the ideas they generate are always fresh, thoughtful, and aligned with our voice.\n\nTheir attention to detail, quick turnaround time, and ability to calmly manage even chaotic situations are unmatched. I trust them completely, and I'm always excited to see what they'll come up with next.\n\nEBA is a creative partner every visionary brand needs.",
@@ -40,7 +41,7 @@ const TestimonialsSection = () => {
       id: 4,
       name: "Miss Amarchi",
       title: "Founder, HostessNG",
-      image: "/api/placeholder/60/60",
+      image: "/images/avatars/miss-amarchi.png",
       quote:
         "EBA works like they're in the future, and the rest of us are catching up.",
       content:
@@ -90,7 +91,7 @@ const TestimonialsSection = () => {
             Book a Consultation
           </button> */}
 
-          <Link href="https://forms.gle/nAtf3DJH6sWFTGvV9" target="_blank" rel="noopener noreferrer">
+          <Link href="https://forms.gle/nAtf3DJH6sWFTGvV9" target="_blank" rel="noopener noreferrer" className="w-auto md:ml-auto md:self-start">
             <GreenButton
               title="Book a Consultation"
               className="bg-[rgba(1,117,68,1)] w-full md:w-auto self-start md:ml-auto py-3.5 md:px-5 cursor-pointer"
@@ -117,9 +118,16 @@ const TestimonialsSection = () => {
               <div className="bg-white border-b border-[rgba(229,231,235,1)] pb-8">
                 <div className="flex flex-col-reverse md:flex-row items-start md:gap-8">
                   {/* Profile Image */}
-                  <div className="w-full flex gap-x-4 md:flex-1 ">
-                    <div className="w-16 h-16 flex-shrink-0 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center overflow-hidden">
-                      <div className="w-full h-full bg-gray-200 rounded-full"></div>
+                  <div className="w-full flex gap-x-4 mt-8 md:mt-0 md:flex-1 ">
+                    <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                      {/* <div className="w-full h-full bg-gray-200 rounded-full"></div> */}
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        width={56}
+                        height={56}
+                        className="w-full h-full object-cover rounded-full"
+                      />
                     </div>
                     {/* Name and Title */}
                     <div className="flex-1">
