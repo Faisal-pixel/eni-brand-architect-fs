@@ -173,7 +173,7 @@ const ProjectShowcaseSection = () => {
               }`}
             >
               <div
-                className="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-4 rounded-lg transition-colors"
+                className="flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors"
                 onClick={() => toggleProject(project.id)}
               >
                 <div className="flex items-center">
