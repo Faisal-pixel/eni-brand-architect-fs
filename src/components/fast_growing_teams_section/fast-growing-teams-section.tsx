@@ -14,7 +14,7 @@ const FastGrowingTeamSection = () => {
       id: 1,
       name: "Eniola Omoniyi",
       role: "Founder, Creative Director",
-      image: "/api/placeholder/80/80",
+      image: "/images/avatars/eniola-omoniyi.png",
       socialLinks: {
         twitter: "#",
         linkedin: "#",
@@ -25,7 +25,7 @@ const FastGrowingTeamSection = () => {
       id: 2,
       name: "Kayode Ayeni",
       role: "Community Manager & Video Editor",
-      image: "/api/placeholder/80/80",
+      image: "/images/avatars/kayode-ayeni.png",
       socialLinks: {
         twitter: "#",
         linkedin: "#",
@@ -36,7 +36,7 @@ const FastGrowingTeamSection = () => {
       id: 3,
       name: "Perfect Alamuoye",
       role: "Projects & Production Lead",
-      image: "/api/placeholder/80/80",
+      image: "/images/avatars/perfect-alamuoye.jpg",
       socialLinks: {
         twitter: "#",
         linkedin: "#",
@@ -47,7 +47,7 @@ const FastGrowingTeamSection = () => {
       id: 4,
       name: "Sanusi Posi",
       role: "Creative Stylist & Producer",
-      image: "/api/placeholder/80/80",
+      image: "/images/avatars/sanusi-posi.png",
       socialLinks: {
         twitter: "#",
         linkedin: "#",
@@ -58,7 +58,7 @@ const FastGrowingTeamSection = () => {
       id: 5,
       name: "Tomiwa Adeoye",
       role: "Graphics designer",
-      image: "/api/placeholder/80/80",
+      image: "/images/avatars/tomiwa-adeoye.png",
       socialLinks: {
         twitter: "#",
         linkedin: "#",
@@ -69,8 +69,7 @@ const FastGrowingTeamSection = () => {
       id: 6,
       name: "Tamilore Tifase",
       role: "Graphics Designer & Copywriter",
-      image: "/api/placeholder/80/80",
-      isFlag: true,
+      image: "/images/avatars/tamilore-tifase.png",
       socialLinks: {
         twitter: "#",
         linkedin: "#",
@@ -81,7 +80,7 @@ const FastGrowingTeamSection = () => {
       id: 7,
       name: "Amarachi Pen",
       role: "Branding & Costume Specialist",
-      image: "/api/placeholder/80/80",
+      image: "/images/avatars/amarachi-pen.png",
       socialLinks: {
         twitter: "#",
         linkedin: "#",
@@ -92,7 +91,7 @@ const FastGrowingTeamSection = () => {
       id: 8,
       name: "Adebambo Jamiu Ademola",
       role: "Admin",
-      image: "/api/placeholder/80/80",
+      image: "/images/avatars/adebambo-jamiu-ademola.png",
       socialLinks: {
         twitter: "#",
         linkedin: "#",
@@ -103,7 +102,7 @@ const FastGrowingTeamSection = () => {
       id: 9,
       name: "Taiwo Akintan",
       role: "Executive Assistant to the Founder",
-      image: "/api/placeholder/80/80",
+      image: "/images/avatars/taiwo-akintan.png",
       socialLinks: {
         twitter: "#",
         linkedin: "#",
@@ -114,7 +113,7 @@ const FastGrowingTeamSection = () => {
       id: 10,
       name: "Okonkwo Chidubem",
       role: "Writer",
-      image: "/api/placeholder/80/80",
+      image: "/images/avatars/okonkwo-chidubem.png",
       isColorful: true,
       socialLinks: {
         twitter: "#",
@@ -184,13 +183,21 @@ const FastGrowingTeamSection = () => {
                 {/* Profile Image */}
                 <div className="mb-6 flex">
                   <div className="w-20 h-20 rounded-full overflow-hidden">
-                    {member.isFlag ? (
+                    {/* {member.isFlag ? (
                       <div className="w-full h-full bg-gradient-to-b from-black via-red-500 to-yellow-400"></div>
                     ) : member.isColorful ? (
                       <div className="w-full h-full bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500"></div>
                     ) : (
                       <div className="w-full h-full bg-gray-200"></div>
-                    )}
+                    )} */}
+
+                    <Image
+                      src={member.image}
+                      alt={`${member.name}'s profile`}
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
 
