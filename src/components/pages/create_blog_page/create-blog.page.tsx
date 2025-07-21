@@ -3,15 +3,12 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
-  Upload,
-  Plus,
   Trash2,
   Edit3,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 import AdminContainer from "@/components/admin-container";
-import GreenOutlineButton from "@/components/ui_personal/green-outline-button";
 import Image from "next/image";
 import { AddBlogPostIcon, UploadIcon } from "@/assets/icons";
 
