@@ -34,3 +34,4 @@
 9. What is bandwidth
 10. What is S3 Bucket
 11. What is blob storage/images
+12. What is hydration mismatch in Next.js: https://chatgpt.com/c/687c35f8-011c-800c-90fd-86733fc08749

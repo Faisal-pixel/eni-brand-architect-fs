@@ -39,6 +39,8 @@ export {default as PaginationLeft} from "@/assets/icons/ui/pagination-left.svg";
 export {default as PaginationRight} from "@/assets/icons/ui/pagination-right.svg";
 export {default as BrandingAndIdentityTagIcon} from "@/assets/icons/ui/branding-and-identity-tag-icon.svg";
 export {default as PublicRelationsAndCommunicationMegaphoneIcon} from "@/assets/icons/ui/pr-and-comms-megaphone-icon.svg";
+export {default as UploadIcon} from "@/assets/icons/ui/upload-icon.svg";
+export {default as AddBlogPostIcon} from  "@/assets/icons/ui/add-blog-post-plus-icon.svg";
 
 
 // LOGO
