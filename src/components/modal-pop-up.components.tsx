@@ -118,7 +118,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="bg-white rounded-[8px] shadow-2xl w-full max-w-[1006px] max-h-[700px] overflow-hidden pt-[54px] px-[40px]"
+            className="bg-white rounded-[8px] shadow-2xl w-full max-w-[1006px] max-h-[700px] overflow-hidden pt-[24px] px-[40px]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}

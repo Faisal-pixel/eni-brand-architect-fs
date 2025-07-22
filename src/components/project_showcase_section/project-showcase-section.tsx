@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import Image from "next/image";
+import ModalPopUp from "../modal-pop-up.components";
+import { playWithStephenData, talentvilleAfricaData, TEEData } from "@/data/modal-pop-up-data";
+import { DateSection } from "@/app/types/modal-pop-up.types";
 
 const ProjectShowcaseSection = () => {
   const [expandedProject, setExpandedProject] = useState<string | null>("tee");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const projects = [
     {
@@ -14,6 +18,7 @@ const ProjectShowcaseSection = () => {
       description:
         "Tallentville Africa is a pan african platform/community focused on discovering, showcasing, and empowering young African talent in the creative and performance arts",
       year: "2025",
+      modalDetails: TEEData,
       images: [
         {
           src: "/images/TEE-project-showcase-img-1.jpg",
@@ -41,6 +46,7 @@ const ProjectShowcaseSection = () => {
       description:
         "Play With Stephen is a purpose-driven African golf movement powered by the Olston Foundation. Since 2020, it has grown from a casual golf hangout into a multi-dimensional campaign advancing autism awareness, inclusion, and sport-driven advocacy across the continent.",
       year: "2024",
+      modalDetails: playWithStephenData,
       images: [
         {
           src: "/images/TEE-project-showcase-img-1.jpg",
@@ -65,8 +71,10 @@ const ProjectShowcaseSection = () => {
       number: "03",
       title: "Talentville LED",
       category: "Outreach",
-      description: "A Community of Storytelling, Soul, and Shared Moments Curated by ENI Brand Architect",
+      description:
+        "A Community of Storytelling, Soul, and Shared Moments Curated by ENI Brand Architect",
       year: "2024",
+      modalDetails: talentvilleAfricaData,
       images: [
         {
           src: "/images/TEE-project-showcase-img-1.jpg",
@@ -180,7 +188,12 @@ const ProjectShowcaseSection = () => {
                   <h2 className="text-xl font-medium text-[rgba(30,32,34,1)] py-4">
                     {project.title}
                   </h2>
-                  <span className={`text-sm self-start font-medium ${expandedProject === project.id && "text-[rgba(1,117,68,1)]"}`}>
+                  <span
+                    className={`text-sm self-start font-medium ${
+                      expandedProject === project.id &&
+                      "text-[rgba(1,117,68,1)]"
+                    }`}
+                  >
                     {project.number}
                   </span>
                 </div>
@@ -260,10 +273,13 @@ const ProjectShowcaseSection = () => {
                               />
                             </motion.div>
                             <motion.div
+                              onClick={() => {
+                                setIsModalOpen(true);
+                              }}
                               variants={imageVariants}
-                              className={`relative group grid grid-cols-2 gap-x-2 `}
+                              className={`relative  bg-[#EAF3F0] flex justify-center items-center cursor-pointer rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]`}
                             >
-                              <div className="relative">
+                              {/* <div className="relative">
                                 <Image
                                   src={project.images[2].src}
                                   alt={project.images[2].alt}
@@ -278,7 +294,10 @@ const ProjectShowcaseSection = () => {
                                   fill
                                   className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
                                 />
-                              </div>
+                              </div> */}
+                              <span className="text-lg font-medium leading-[28px] text-[#36393F]">
+                                See More
+                              </span>
                             </motion.div>
                           </div>
                         </motion.div>
@@ -291,6 +310,12 @@ const ProjectShowcaseSection = () => {
           ))}
         </motion.div>
       </div>
+      <ModalPopUp
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={(expandedProject ? projects.find(p => p.id === expandedProject)?.title : "") as string} 
+        data={(expandedProject === "tee" ? TEEData : expandedProject === "golf" ? playWithStephenData : talentvilleAfricaData) as DateSection[]}
+      />
     </div>
   );
 };

@@ -8,10 +8,12 @@ import {
 } from "lucide-react";
 import { CheckmarkIcon, MediaProductionIcon } from "@/assets/icons";
 import Image from "next/image";
+import ModalPopUp from "@/components/modal-pop-up.components";
+import { MediaProductionAndEventCoverageData } from "@/data/modal-pop-up-data";
 
 const MediaProdAndEventCoverage = () => {
   const [isVisible, setIsVisible] = useState(false);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -234,9 +236,21 @@ const MediaProdAndEventCoverage = () => {
                 </div>
               ))}
             </div>
+            <span
+              onClick={() => setIsModalOpen(true)}
+              className="text-lg leading-[28px] text-[#017544] cursor-pointer"
+            >
+              Explore {'>'}
+            </span>
           </div>
         </div>
       </div>
+      <ModalPopUp
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Media Production & Event Coverage"
+        data={MediaProductionAndEventCoverageData}
+      />
     </div>
   );
 };
