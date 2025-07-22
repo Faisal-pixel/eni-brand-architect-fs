@@ -67,9 +67,9 @@ const ProjectShowcaseSection = () => {
       ],
     },
     {
-      id: "led",
+      id: "talentville",
       number: "03",
-      title: "Talentville LED",
+      title: "Talentville Africa",
       category: "Outreach",
       description:
         "A Community of Storytelling, Soul, and Shared Moments Curated by ENI Brand Architect",
@@ -78,19 +78,19 @@ const ProjectShowcaseSection = () => {
       images: [
         {
           src: "/images/TEE-project-showcase-img-1.jpg",
-          alt: "LED project image 1",
+          alt: "Talentville Africa project image 1",
         },
         {
           src: "/images/TEE-project-showcase-img-2.jpg",
-          alt: "LED project image 2",
+          alt: "Talentville Africa project image 2",
         },
         {
           src: "/images/TEE-project-showcase-img-3.jpg",
-          alt: "LED project image 3",
+          alt: "Talentville Africa project image 3",
         },
         {
           src: "/images/TEE-project-showcase-img-4.jpg",
-          alt: "LED project image 4",
+          alt: "Talentville Africa project image 4",
         },
       ],
     },
