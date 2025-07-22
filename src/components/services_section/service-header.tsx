@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const ServiceHeader = () => {
   return (
@@ -18,8 +18,9 @@ const ServiceHeader = () => {
 
         {/* Subtitle */}
         <p className="text-lg  md:text-xl text-[rgba(83,88,98,1)] leading-relaxed max-w-3xl mx-auto">
-          Powerful, self-serve product and growth analytics to help you convert, engage, 
-          and retain more users. Trusted by over 4,000 startups.
+          From brand strategy and visual identity to PR, media production, and
+          amplification, we help you launch, scale, and stay seen. Chosen by
+          founders, creatives, and impact-0led teams
         </p>
       </div>
     </div>

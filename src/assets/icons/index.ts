@@ -41,6 +41,7 @@ export {default as BrandingAndIdentityTagIcon} from "@/assets/icons/ui/branding-
 export {default as PublicRelationsAndCommunicationMegaphoneIcon} from "@/assets/icons/ui/pr-and-comms-megaphone-icon.svg";
 export {default as UploadIcon} from "@/assets/icons/ui/upload-icon.svg";
 export {default as AddBlogPostIcon} from  "@/assets/icons/ui/add-blog-post-plus-icon.svg";
+export {default as XModalIcon} from "@/assets/icons/ui/x-modal-icon.svg"
 
 
 // LOGO

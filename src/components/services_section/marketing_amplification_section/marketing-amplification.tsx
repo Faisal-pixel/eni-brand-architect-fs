@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import {
   Play,
@@ -8,10 +9,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { CheckmarkIcon, GraphIcon } from "@/assets/icons";
+import ModalPopUp from "@/components/modal-pop-up.components";
+import { MarketingAndAmplificationData } from "@/data/modal-pop-up-data";
 
 const MarketingAmplificationSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -137,6 +140,10 @@ const MarketingAmplificationSection = () => {
                 </div>
               ))}
             </div>
+
+            <span 
+            onClick={() => setIsModalOpen(true)} 
+            className="text-lg leading-[28px] text-[#017544] cursor-pointer">Explore {'>'}</span>
           </div>
 
           {/* Right Video Player */}
@@ -233,6 +240,13 @@ const MarketingAmplificationSection = () => {
           </div>
         </div>
       </div>
+
+      <ModalPopUp
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Marketing & Amplification"
+        data={MarketingAndAmplificationData}
+      />
     </div>
   );
 };
