@@ -13,4 +13,4 @@ interface DateSection {
 }
 
 
-export { MediaItem, DateSection };
+export type { MediaItem, DateSection };
