@@ -6,6 +6,7 @@ import TabNavigation from "./components/tab-navigation";
 import CTASection from "@/components/footer_section/footer-section";
 
 const BlogPage = () => {
+  
   return (
     <>
       {/* Header */}

@@ -8,20 +8,25 @@ import {
   PaginationRight,
 } from "@/assets/icons";
 import Link from "next/link";
+import articles from "@/data/blog-articles.data";
+import { Articles } from "@/app/types/blog-articles.types";
+import { useRouter } from "next/navigation";
+import slugify from "@/helpers/slugify";
 
 const TabNavigation = () => {
+  const router = useRouter();
+  // soon i will fetch the articles from the backend
   const [activeTab, setActiveTab] = useState("View all");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sortBy, setSortBy] = useState("Most recent");
   const [currentPage, setCurrentPage] = useState(1);
+  const [articlesData] = useState<Articles>(articles);
   const [totalPages] = useState(10);
+
 
   const tabs = [
     "View all",
-    "Design",
-    "Product",
-    "Software Engineering",
-    "Customer Success",
+    "Inspiration",
   ];
 
   const sortOptions = [
@@ -32,116 +37,7 @@ const TabNavigation = () => {
   ];
 
   // Sample content data matching your image
-  const contentData = [
-    {
-      id: 1,
-      category: "Design",
-      title: "UX review presentations",
-      description:
-        "How do you create compelling presentations that wow your colleagues and impress your managers?",
-      author: "Olivia Rhye",
-      authorAvatar: "/images/olivia-rhye.jpg",
-      date: "20 Jan 2025",
-      image: "/images/ux-review-presentations.jpg",
-      bgColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-    },
-    {
-      id: 2,
-      category: "Product",
-      title: "Migrating to Linear 101",
-      description:
-        "Linear helps streamline software projects, sprints, tasks, and bug tracking. Here's how to get started.",
-      author: "Phoenix Baker",
-      authorAvatar: "/images/phoenix-baker.jpg",
-      date: "19 Jan 2025",
-      image: "",
-      bgColor: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-    },
-    {
-      id: 3,
-      category: "Software Engineering",
-      title: "Building your API stack",
-      description:
-        "The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.",
-      author: "Lana Steiner",
-      authorAvatar: "/images/lana-steiner.jpg",
-      date: "18 Jan 2025",
-      image: "",
-      bgColor: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-    },
-    {
-      id: 4,
-      category: "Leadership",
-      title: "Bill Walsh leadership lessons",
-      description:
-        "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
-      author: "Alec Whitten",
-      authorAvatar: "/images/alec-whitten.jpg",
-      date: "17 Jan 2025",
-      image: "",
-      bgColor: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
-    },
-    {
-      id: 5,
-      category: "Product",
-      title: "PM mental models",
-      description:
-        "Mental models are simple expressions of complex processes or relationships.",
-      author: "Demi Wilkinson",
-      authorAvatar: "/images/demi-wilkinson.jpg",
-      date: "16 Jan 2025",
-      image: "",
-      bgColor: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-    },
-    {
-      id: 6,
-      category: "Design",
-      title: "What is wireframing?",
-      description:
-        "Introduction to Wireframing and its Principles. Learn from the best in the industry.",
-      author: "Candice Wu",
-      authorAvatar: "/images/candice-wu.jpg",
-      date: "15 Jan 2025",
-      image: "",
-      bgColor: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
-    },
-    {
-      id: 7,
-      category: "Design",
-      title: "How collaboration makes us better designers",
-      description:
-        "Collaboration can make our teams stronger, and our individual designs better.",
-      author: "Natali Craig",
-      authorAvatar: "/images/natali-craig.jpg",
-      date: "14 Jan 2025",
-      image: "",
-      bgColor: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
-    },
-    {
-      id: 8,
-      category: "Product",
-      title: "Our top 10 Javascript frameworks to use",
-      description:
-        "JavaScript frameworks make development easy with extensive features and functionalities.",
-      author: "Drew Cano",
-      authorAvatar: "/images/drew-cano.jpg",
-      date: "13 Jan 2025",
-      image: "",
-      bgColor: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
-    },
-    {
-      id: 9,
-      category: "Customer Success",
-      title: "Podcast: Creating a better CX Community",
-      description:
-        "Starting a community doesn't need to be complicated, but how do you get started?",
-      author: "Orlando Diggs",
-      authorAvatar: "/images/orlando-diggs.jpg",
-      date: "12 Jan 2025",
-      image: "",
-      bgColor: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
-    },
-  ];
+  
 
   // const getCategoryColor = (category: string) => {
   //   const colors: { [key: string]: string } = {
@@ -156,9 +52,9 @@ const TabNavigation = () => {
 
   const getFilteredContent = () => {
     if (activeTab === "View all") {
-      return contentData;
+      return articlesData;
     }
-    return contentData.filter((item) => item.category === activeTab);
+    return articlesData.filter((item) => item.category === activeTab);
   };
 
   const handlePrevPage = () => {
@@ -167,6 +63,11 @@ const TabNavigation = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prev) => Math.min(totalPages, prev + 1));
+  };
+
+  const handleArticleCardClick = (id: number, title: string) => {
+    // Navigate to the article page
+    router.push(`/blog/${id}/${slugify(title)}`);
   };
 
   return (
@@ -247,7 +148,7 @@ const TabNavigation = () => {
 
       {/* Content Area with Reveal Animation */}
       <div className="mt-12 md:mt-16 opacity-0 animate-fade-in">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 cursor-pointer">
           {/* Sample content cards */}
           {getFilteredContent().map((item, index) => (
             <div
@@ -256,6 +157,7 @@ const TabNavigation = () => {
               style={{
                 animationDelay: `${index * 100}ms`,
               }}
+              onClick={() => handleArticleCardClick(item.id, item.title)}
             >
               {/* Featured Image */}
               <div className="w-full h-[208.67px] md:h-[227.3333282470703px] lg:h-[261.3333435058594px] mb-4 relative overflow-hidden">

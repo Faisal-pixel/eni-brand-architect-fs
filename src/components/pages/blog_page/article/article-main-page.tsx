@@ -2,6 +2,11 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
+import { Article } from '@/app/types/blog-articles.types'
+
+type ArticleMainPageProps = {
+    article: Article
+}
 
 interface BlogPageProps {
   title: string;
@@ -57,23 +62,23 @@ const BlogPage: React.FC<BlogPageProps> = ({
     >
       {/* Header Section */}
       <motion.div 
-        className="text-center py-16 px-4"
+        className="flex flex-col items-center justify-center mb-16"
         variants={itemVariants}
       >
         <motion.h1 
-          className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+          className="text-4xl font-semibold text-gray-900 mb-4 leading-[44px]"
           variants={itemVariants}
         >
           {title}
         </motion.h1>
         <motion.p 
-          className="text-lg md:text-xl text-gray-600 italic mb-6 max-w-2xl mx-auto"
+          className="text-xl leading-[30px] text-gray-600 italic mb-6"
           variants={itemVariants}
         >
           {description}
         </motion.p>
         <motion.p 
-          className="text-gray-500 text-sm md:text-base"
+          className="text-gray-500 text-sm leading-[30px]"
           variants={itemVariants}
         >
           {date}
@@ -82,13 +87,13 @@ const BlogPage: React.FC<BlogPageProps> = ({
 
       {/* Hero Image */}
       <motion.div 
-        className="relative w-full h-96 md:h-[500px] overflow-hidden"
+        className="relative w-full h-[426px] md:h-[716px] mb-16"
         variants={imageVariants}
       >
         <Image 
           src={blogImage} 
           alt={title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-[10px]"
           fill
           priority // optional: ensures it's not lazy-loaded (useful for hero/banner)
         />
@@ -96,7 +101,7 @@ const BlogPage: React.FC<BlogPageProps> = ({
 
       {/* Blog Content */}
       <motion.div 
-        className="max-w-4xl mx-auto px-4 py-16"
+        className=""
         variants={itemVariants}
       >
         <motion.div
@@ -104,9 +109,9 @@ const BlogPage: React.FC<BlogPageProps> = ({
           variants={itemVariants}
           dangerouslySetInnerHTML={{ __html: blogText }}
           style={{
-            lineHeight: '1.8',
+            lineHeight: '28px',
             fontSize: '1.1rem',
-            color: '#374151'
+            color: '#535862'
           }}
         />
       </motion.div>
@@ -144,7 +149,7 @@ const BlogPage: React.FC<BlogPageProps> = ({
 };
 
 // Example usage component
-const ExampleBlogPage = () => {
+const ArticleMainPage = ({ article }: ArticleMainPageProps) => {
   const sampleBlogText = `
     <p>Some people follow the rules. Others rewrite them. <strong>Falz?</strong> He flips the whole script, adds a beat, drops a verse, and still shows up to court in a suit if he has to. In a world where you're told to "stick to one thing," Falz is out here being everything; rapper, actor, lawyer, activist and doing it well. He's not playing roles. He's living layers. And somehow, they all align. We're told that being multi-talented can be messy. But Falz proves that versatility, when intentional, is <strong>POWER</strong>. Brains, creativity, and a killer brand don't just coexist; they feed each other. Falz demonstrates that intellect, artistry, and strategy can coexist in harmony, not just in theory, but also in practice.</p>
 
@@ -163,15 +168,17 @@ const ExampleBlogPage = () => {
     <p>The answer? <strong>All of them.</strong> Falz doesn't confuse versatility with inconsistency. He's proof that you can be everything if you're intentional about it. <em>So, what can we learn from Falz?</em> Your background isn't a barrier, it is a launchpad. Consistency isn't sameness, it's showing up differently with the same values. A personal brand isn't a costume, it is a character built, lived, and refined. Like we have said, Falz? One man! All three! No compromise!!</p>
   `;
 
+  const { title, description, date, image } = article;
+
   return (
     <BlogPage
-      title="Falz: Brains, Bars & Branding"
-      description="One man! All three! No compromise!!!"
-      date="Oct 12, 2024"
-      blogImage="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+      title={title}
+      description={description}
+      date={date}
+      blogImage={image}
       blogText={sampleBlogText}
     />
   );
 };
 
-export default ExampleBlogPage;
+export default ArticleMainPage;
