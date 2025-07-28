@@ -72,8 +72,8 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="relative group cursor-pointer"
-      style={{ width: "175.6px", height: "175.6px" }}
+      className="relative group cursor-pointer w-[157.5px] h-[157.5px] md:w-[159.5px] md:h-[159.5px] lg:w-[175.6px] lg:h-[175.6px] rounded-[6px] overflow-hidden"
+      // style={{ width: "175.6px", height: "175.6px" }}
     >
       {item.type === "image" ? (
         <Image
@@ -118,7 +118,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="bg-white rounded-[8px] shadow-2xl w-full max-w-[1006px] max-h-[700px] overflow-hidden pt-[24px] px-[40px]"
+            className="bg-white rounded-[8px] flex flex-col shadow-2xl max-w-[375px] md:max-w-[754px] lg:max-w-[1006px] max-h-[80vh] overflow-hidden  pt-[24px] px-[24px] md:px-[40px]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -200,7 +200,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
                         </p>
 
                         {/* Media Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                           {filteredMedia.map((item, index) =>
                             renderMediaItem(item, index)
                           )}

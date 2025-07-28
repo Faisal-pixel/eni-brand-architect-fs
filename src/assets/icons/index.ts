@@ -56,6 +56,7 @@ export {default as AttachImageContentButtonIcon} from "@/assets/icons/ui/attach-
 export {default as AttachFileButtonIcon} from "@/assets/icons/ui/attach-file-button-icon.svg";
 export {default as EmptyStateBG} from "@/assets/icons/ui/empty-state-bg.svg";
 export {default as EmptyStateBookIcon} from "@/assets/icons/ui/empty-state-book-icon.svg";
+export {default as EventCalendarIcon} from "@/assets/icons/ui/event-calendar-icon.svg";
 
 
 

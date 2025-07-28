@@ -50,10 +50,10 @@ const NavBar = () => {
                   Blog
                 </Link>
                 <Link
-                  href="/careers"
+                  href="/events"
                   className="text-[rgba(31,41,55,1)] font-medium"
                 >
-                  Career
+                  Events
                 </Link>
               </span>
               <Image src={NavLinkDivider} alt="" className="mr-8 ml-12" />
