@@ -168,7 +168,7 @@ const BlogCreationModal: React.FC<BlogCreationModalProps> = ({
         onClick={onClose}
       >
         <motion.div
-          className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+          className="bg-white rounded-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto"
           variants={modalVariants}
           initial="hidden"
           animate="visible"
@@ -357,10 +357,12 @@ const BlogCreationModal: React.FC<BlogCreationModalProps> = ({
                       }
                       alt="Featured"
                       className="w-full h-48 object-cover rounded-lg"
+                      width={84}
+                      height={66}
                     />
                     <button
                       onClick={() => handleInputChange("image", undefined)}
-                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                      className="absolute top-2 cursor-pointer right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
                     >
                       <X size={16} />
                     </button>

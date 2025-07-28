@@ -7,9 +7,10 @@ type Props = {
     emptyStateTitle?: string;
     emptyStateDescription?: string;
     emptyStateButtonText?: string;
+    handleButtonClicked?: () => void;
 };
 
-const EmptyStateComponent = ({emptyStateTitle, emptyStateDescription, emptyStateButtonText}: Props) => {
+const EmptyStateComponent = ({emptyStateTitle, emptyStateDescription, emptyStateButtonText, handleButtonClicked}: Props) => {
   return (
     <div className="flex items-center justify-center h-[80vh]">
       <div>
@@ -38,6 +39,7 @@ const EmptyStateComponent = ({emptyStateTitle, emptyStateDescription, emptyState
         <GreenButton
           title={emptyStateButtonText || "Explore Services"}
           className="self-center py-2.5 px-3.5 cursor-pointer rounded-[8px]"
+          onClickFunction={handleButtonClicked}
         />
       </div>
     </div>
