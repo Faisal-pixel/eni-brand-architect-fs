@@ -1,16 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Search,
-  Trash2,
-  Edit3,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Search, Trash2, Edit3, ChevronLeft, ChevronRight } from "lucide-react";
 import AdminContainer from "@/components/admin-container";
 import Image from "next/image";
 import { AddBlogPostIcon, UploadIcon } from "@/assets/icons";
+import TestForm from "@/components/example-to-always-delete";
+import BlogCreationModal from "./components/blog-creation-model.component";
+import { BlogFormData } from "@/app/types/create-blog-page.types";
 
 interface BlogPost {
   id: string;
@@ -24,21 +21,21 @@ const CreateBlogPage = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([
     {
       id: "1",
-      image: "/api/placeholder/80/80",
+      image: "/images/create-blog-sample-image.png",
       title: "The real life something of Falz",
       date: "12/10/2025",
       category: "Design",
     },
     {
       id: "2",
-      image: "/api/placeholder/80/80",
+      image: "/images/create-blog-sample-image.png",
       title: "The real life something of Falz",
       date: "12/10/2025",
       category: "Product",
     },
     {
       id: "3",
-      image: "/api/placeholder/80/80",
+      image: "/images/create-blog-sample-image.png",
       title: "The real life something of Falz",
       date: "12/10/2025",
       category: "Marketing",
@@ -49,6 +46,7 @@ const CreateBlogPage = () => {
   const [selectedPosts, setSelectedPosts] = useState<string[]>([]);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [postToDelete, setPostToDelete] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getCategoryColor = (category: string) => {
     switch (category) {
@@ -96,6 +94,10 @@ const CreateBlogPage = () => {
       post.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleBlogSubmit = (data: BlogFormData) => {
+    console.log("Form submitted", data);
+  };
+
   return (
     <AdminContainer>
       <section id="create-blog" className="">
@@ -116,7 +118,7 @@ const CreateBlogPage = () => {
                 <Image src={UploadIcon} alt="Upload" width={20} height={20} />
                 Import
               </button>
-              <button className="flex items-center gap-2 text-sm leading-[20px] px-3.5 py-2.5 text-white bg-[#017544] border border-gray-300 rounded-[8px] cursor-pointer">
+              <button onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 text-sm leading-[20px] px-3.5 py-2.5 text-white bg-[#017544] border border-gray-300 rounded-[8px] cursor-pointer">
                 <Image
                   src={AddBlogPostIcon}
                   alt="Add Post"
@@ -153,22 +155,22 @@ const CreateBlogPage = () => {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="w-12 p-4">
+                  <th className="w-12 pl-[24px] ">
                     <input
                       type="checkbox"
-                      className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                      className="cursor-pointer w-5 h-5 rounded-[6px] border border-gray-300"
                     />
                   </th>
-                  <th className="text-left p-4 text-sm font-medium text-gray-700">
+                  <th className="text-left p-4 text-sm font-medium text-gray-700 leading-[18px]">
                     Image
                   </th>
-                  <th className="text-left p-4 text-sm font-medium text-gray-700">
+                  <th className="text-left p-4 text-xs font-semibold text-gray-500 leading-[18px]">
                     Title
                   </th>
-                  <th className="text-left p-4 text-sm font-medium text-gray-700">
+                  <th className="text-left p-4 text-xs font-semibold text-gray-500 leading-[18px]">
                     Date
                   </th>
-                  <th className="text-left p-4 text-sm font-medium text-gray-700">
+                  <th className="text-left p-4 text-xs font-semibold text-gray-500 leading-[18px]">
                     Category
                   </th>
                   <th className="w-20 p-4"></th>
@@ -185,17 +187,22 @@ const CreateBlogPage = () => {
                       transition={{ duration: 0.2 }}
                       className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
                     >
-                      <td className="p-4">
+                      <td className="pl-[24px] py-[26px]">
                         <input
                           type="checkbox"
                           checked={selectedPosts.includes(post.id)}
                           onChange={() => handleSelectPost(post.id)}
-                          className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                          className="w-5 h-5 text-emerald-600 cursor-pointer border border-gray-300 rounded-[6px] focus:ring-emerald-500"
                         />
                       </td>
-                      <td className="p-4">
-                        <div className="w-12 h-12 bg-purple-200 rounded-lg flex items-center justify-center">
-                          <div className="w-6 h-6 bg-purple-400 rounded-full"></div>
+                      <td className="p-4 pl-3">
+                        <div className="w-[86px] h-[40px] relative overflow-hidden bg-purple-200 rounded-[5px]">
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            className="object-cover"
+                          />
                         </div>
                       </td>
                       <td className="p-4 text-gray-900">{post.title}</td>
@@ -298,6 +305,12 @@ const CreateBlogPage = () => {
             </motion.div>
           )}
         </AnimatePresence>
+        <TestForm />
+        <BlogCreationModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={handleBlogSubmit}
+        />
       </section>
     </AdminContainer>
   );

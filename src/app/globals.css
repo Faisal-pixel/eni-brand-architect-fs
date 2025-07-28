@@ -169,6 +169,13 @@ body {
     width: max-content;
   }
 
+  /* Add this to your global CSS or Tailwind config */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+
+
   .prose h1,
   .prose h2,
   .prose h3,

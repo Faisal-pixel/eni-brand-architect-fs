@@ -8,12 +8,15 @@ import {
   PaginationRight,
 } from "@/assets/icons";
 import Link from "next/link";
-import articles from "@/data/blog-articles.data";
 import { Articles } from "@/app/types/blog-articles.types";
 import { useRouter } from "next/navigation";
 import slugify from "@/helpers/slugify";
 
-const TabNavigation = () => {
+type TabNavigationProps = {
+  articles: Articles;
+};
+
+const TabNavigation = ({ articles }: TabNavigationProps) => {
   const router = useRouter();
   // soon i will fetch the articles from the backend
   const [activeTab, setActiveTab] = useState("View all");
@@ -148,12 +151,12 @@ const TabNavigation = () => {
 
       {/* Content Area with Reveal Animation */}
       <div className="mt-12 md:mt-16 opacity-0 animate-fade-in">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 cursor-pointer">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {/* Sample content cards */}
           {getFilteredContent().map((item, index) => (
             <div
               key={item.id}
-              className={`bg-white hover:shadow-t-sm transition-all duration-300 transform overflow-hidden group`}
+              className={`bg-white hover:shadow-t-sm transition-all duration-300 md:max-w-[392px]  transform overflow-hidden group flex flex-col h-full`}
               style={{
                 animationDelay: `${index * 100}ms`,
               }}
@@ -187,7 +190,7 @@ const TabNavigation = () => {
               </div>
 
               {/* Content */}
-              <div className="">
+              <div className="flex flex-col flex-grow">
                 {/* Category Tag */}
                 <div className="mb-2">
                   {/* <span
@@ -222,13 +225,13 @@ const TabNavigation = () => {
                 </Link>
 
                 {/* Description */}
-                <p className="text-gray-600 mb-5 line-clamp-2">
+                <p className="text-gray-600 mb-5 line-clamp-2 flex-grow">
                   {item.description}
                 </p>
 
                 {/* Author and Date */}
                 <div className="flex items-center space-x-2">
-                  <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                  {/* <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
                     {item.authorAvatar || item.author === "" ? (
                       <Image
                         src={item.authorAvatar as string}
@@ -245,11 +248,11 @@ const TabNavigation = () => {
                           .join("")}
                       </span>
                     )}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-gray-900">
+                  </div> */}
+                  <div className="mt-auto flex items-center space-x-2">
+                    {/* <div className="text-sm font-semibold text-gray-900">
                       {item.author}
-                    </div>
+                    </div> */}
                     <div className="text-sm text-gray-600">{item.date}</div>
                   </div>
                 </div>
@@ -305,7 +308,7 @@ const TabNavigation = () => {
         </div>
 
         {/* Pagination - Desktop */}
-        <div className="mt-8 hidden md:flex items-center justify-center">
+        <div className="mt-16 border-t border-gray-200 pt-5 hidden md:flex items-center justify-center">
           <div className="flex items-center space-x-2">
             {/* Previous Button */}
             <button
@@ -327,9 +330,9 @@ const TabNavigation = () => {
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`w-10 h-10 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  className={`w-10 h-10 rounded-full cursor-pointer text-sm font-medium transition-all duration-200 ${
                     currentPage === page
-                      ? "bg-gray-900 text-white"
+                      ? "bg-gray-100 text-gray-700"
                       : "text-gray-600 hover:bg-gray-50 active:bg-gray-100"
                   }`}
                 >
@@ -346,9 +349,9 @@ const TabNavigation = () => {
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`w-10 h-10 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  className={`w-10 h-10 rounded-full cursor-pointer text-sm font-medium transition-all duration-200 ${
                     currentPage === page
-                      ? "bg-gray-900 text-white"
+                      ? "bg-gray-100 text-gray-700"
                       : "text-gray-600 hover:bg-gray-50 active:bg-gray-100"
                   }`}
                 >
