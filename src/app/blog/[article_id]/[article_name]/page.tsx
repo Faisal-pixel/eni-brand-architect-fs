@@ -12,7 +12,7 @@ interface BlogPostProps {
   };
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({ params }: BlogPostProps) => {
+const BlogPost = ({ params }: BlogPostProps) => {
   // Fetch blog post data using params.article_id
   const { article_id } = params;
 
