@@ -41,7 +41,24 @@ export {default as BrandingAndIdentityTagIcon} from "@/assets/icons/ui/branding-
 export {default as PublicRelationsAndCommunicationMegaphoneIcon} from "@/assets/icons/ui/pr-and-comms-megaphone-icon.svg";
 export {default as UploadIcon} from "@/assets/icons/ui/upload-icon.svg";
 export {default as AddBlogPostIcon} from  "@/assets/icons/ui/add-blog-post-plus-icon.svg";
-export {default as XModalIcon} from "@/assets/icons/ui/x-modal-icon.svg"
+export {default as XModalIcon} from "@/assets/icons/ui/x-modal-icon.svg";
+export {default as CalendarDatePickerIcon} from "@/assets/icons/ui/calendar-date-picker-icon.svg";
+export {default as BoldButtonIcon} from "@/assets/icons/ui/bold-button-icon.svg";
+export {default as ItalicButtonIcon} from "@/assets/icons/ui/italic-button-icon.svg";
+export {default as UnderlineButtonIcon} from "@/assets/icons/ui/underline-button-icon.svg";
+export {default as LinkButtonIcon} from "@/assets/icons/ui/link-button-icon.svg";
+export {default as ListButtonIcon} from "@/assets/icons/ui/list-button-icon.svg";
+export {default as AlignLeftButtonIcon} from "@/assets/icons/ui/align-left-button-icon.svg";
+export {default as AlignCenterButtonIcon} from "@/assets/icons/ui/align-center-button-icon.svg";
+export {default as AlignRightButtonIcon} from "@/assets/icons/ui/align-right-button-icon.svg";
+export {default as AlignJustifyButtonIcon} from "@/assets/icons/ui/align-justify-button-icon.svg";
+export {default as AttachImageContentButtonIcon} from "@/assets/icons/ui/attach-image-content-button-icon.svg";
+export {default as AttachFileButtonIcon} from "@/assets/icons/ui/attach-file-button-icon.svg";
+export {default as EmptyStateBG} from "@/assets/icons/ui/empty-state-bg.svg";
+export {default as EmptyStateBookIcon} from "@/assets/icons/ui/empty-state-book-icon.svg";
+export {default as EventCalendarIcon} from "@/assets/icons/ui/event-calendar-icon.svg";
+export {default as XCloseUpPopUpOnceIcon} from "@/assets/icons/ui/x-close-pop-up-once-icon.svg";
+
 
 
 // LOGO

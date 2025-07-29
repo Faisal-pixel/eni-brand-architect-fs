@@ -1,43 +1,21 @@
 "use client";
+import { Jobs } from '@/app/types/job-listings.types';
 import React, { useState, useEffect } from 'react';
 
-const JobListings = () => {
+type JobListingsProps = {
+  jobs: Jobs
+};
+
+const JobListings = ({ jobs }: JobListingsProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('Show all');
 
   const categories = [
-    { name: 'Show all', count: 17 },
-    { name: 'Design', count: null },
-    { name: 'Development', count: null },
-    { name: 'Marketing', count: null },
-    { name: 'Management', count: null },
-  ];
-
-  const jobs = [
-    {
-      id: 1,
-      title: 'Executive Assistant',
-      timeAgo: '4 Hours ago',
-      description: 'Are you an aspiring Executive Assistant looking for an opportunity to take on new challenges and advance your career?',
-      detailedDescription: 'If you are an enthusiastic leader with the ability to balance big-picture thinking with deep-dive research and attention to detail, we have the perfect job for you!',
-      type: 'Full-time',
-    },
-    {
-      id: 2,
-      title: 'Executive Assistant',
-      timeAgo: '4 Hours ago',
-      description: 'Are you an aspiring Executive Assistant looking for an opportunity to take on new challenges and advance your career?',
-      detailedDescription: 'If you are an enthusiastic leader with the ability to balance big-picture thinking with deep-dive research and attention to detail, we have the perfect job for you!',
-      type: 'Full-time',
-    },
-    {
-      id: 3,
-      title: 'Executive Assistant',
-      timeAgo: '4 Hours ago',
-      description: 'Are you an aspiring Executive Assistant looking for an opportunity to take on new challenges and advance your career?',
-      detailedDescription: 'If you are an enthusiastic leader with the ability to balance big-picture thinking with deep-dive research and attention to detail, we have the perfect job for you!',
-      type: 'Full-time',
-    },
+    { name: 'Show all', count: jobs.length },
+    { name: 'Design', count: jobs.filter(job => job.type === 'Design').length },
+    { name: 'Development', count: jobs.filter(job => job.type === 'Development').length },
+    { name: 'Marketing', count: jobs.filter(job => job.type === 'Marketing').length },
+    { name: 'Management', count: jobs.filter(job => job.type === 'Management').length },
   ];
 
   useEffect(() => {
@@ -76,9 +54,9 @@ const JobListings = () => {
                   }}
                 >
                   {category.name}
-                  {category.count && (
+                  {category.count ? (
                     <span className="ml-2 text-xs opacity-75">{category.count}</span>
-                  )}
+                  ) : null}
                 </button>
               ))}
             </div>
@@ -114,11 +92,11 @@ const JobListings = () => {
                           : 'hover:text-gray-900 hover:bg-white hover:shadow-sm'
                       }`}
                     >
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-x-[17px]">
                         <span className="font-medium">{category.name}</span>
-                        {category.count && (
+                        {category.count ? (
                           <span className="text-sm text-gray-500">{category.count}</span>
-                        )}
+                        ) : null}
                       </div>
                     </button>
                   </div>

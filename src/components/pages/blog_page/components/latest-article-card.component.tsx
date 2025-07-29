@@ -14,7 +14,7 @@ type Props = {
   date: string;
   imageUrl: string;
   category: string;
-  fileUnderTags: string[];
+  fileUnderTags?: string[];
   linkToArticle: string;
   isLatest?: boolean;
 };
@@ -27,7 +27,6 @@ const LatestArticleCard = ({
   date,
   imageUrl,
   category,
-  fileUnderTags,
   linkToArticle,
 }: Props) => {
   console.log(category);
@@ -74,13 +73,13 @@ const LatestArticleCard = ({
 
           {/* ARTICLE AUTHOR AND DATE AND FILE UNDER TAGS */}
           <div className="flex gap-x-6">
-            {/* AUTHOR AND DATE */}
+            {/* AUTHOR AND DATE 
             <div className="flex flex-2 gap-x-8">
-              {/* WRITTEN BY - AUTHOR PROFILE AND NAME */}
+              WRITTEN BY - AUTHOR PROFILE AND NAME 
               <div className="flex flex-col gap-y-2">
                 <span className="self-start">Written by</span>
                 <div className="flex">
-                  {/* PROFILE PICTURE */}
+                  PROFILE PICTURE 
                   <div className="h-10 w-10 flex items-center justify-center overflow-hidden">
                     <Image
                       src={authorAvatar && "/images/article-author-profile.png"}
@@ -90,24 +89,24 @@ const LatestArticleCard = ({
                       className="object-cover rounded-full"
                     />
                   </div>
-                  {/* AUTHOR NAME */}
+                   AUTHOR NAME 
                   <span className="self-center ml-2">{author}</span>
                 </div>
               </div>
 
-              {/* PUBLISHED ON - DATE */}
+              PUBLISHED ON - DATE 
               <div className="flex flex-col gap-y-2">
                 <span className="self-start">Published on {date}</span>
                 <span className="py-2">{date && "10 April, 2023"}</span>
               </div>
-            </div>
+            </div> */}
 
             {/* FILE UNDER TAGS */}
             <div className="flex flex-col flex-1 gap-y-2 text-sm">
-              <span>File under</span>
+              <span>Category</span>
 
               <div className="py-2 flex flex-wrap gap-2">
-                {(fileUnderTags || ["Design", "Research", "Presentation"]).map(
+                {/* {(fileUnderTags || ["Design", "Research", "Presentation"]).map(
                   (tag, index) => {
                     console.log(tag, index, typeof tag);
                     return (
@@ -119,7 +118,11 @@ const LatestArticleCard = ({
                       </span>
                     );
                   }
-                )}
+                )} */}
+
+                <span className="bg-transparent py-0.5 px-2.5 border-[1.5px] border-white rounded-2xl">
+                  {category}
+                </span>
               </div>
             </div>
           </div>
@@ -135,10 +138,10 @@ const LatestArticleCard = ({
         title={title}
         description={description}
         author={author}
-      authorAvatar={authorAvatar && "/images/article-author-profile.png"} // I am using the and operator for now as a fall back
-      date={date}
-      image={imageUrl && "/images/latest-article-card.jpg"}
-      category={category}
+        authorAvatar={authorAvatar && "/images/article-author-profile.png"} // I am using the and operator for now as a fall back
+        date={date}
+        image={imageUrl && "/images/latest-article-card.jpg"}
+        category={category}
       />
     </motion.div>
   );

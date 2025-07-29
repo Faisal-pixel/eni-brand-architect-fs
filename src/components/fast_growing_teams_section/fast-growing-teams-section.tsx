@@ -4,10 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import GreenButton from '../ui_personal/green-button';
+import { useRouter } from 'next/navigation';
 
 const FastGrowingTeamSection = () => {
   const [visibleItems, setVisibleItems] = useState(new Set());
   const sectionRef = useRef(null);
+  const router = useRouter();
 
   const teamMembers = [
     {
@@ -165,7 +167,9 @@ const FastGrowingTeamSection = () => {
               We&#39;re always on the lookout for passionate, dynamic, and talented individuals.
             </p>
           </div>
-          <GreenButton title='Open Positions' className='text-lg md:text-sm md:font-medium py-3.5 mb-12 cursor-pointer md:py-2.5 md:px-4'/>
+          <GreenButton title='Open Positions'onClickFunction={() => {
+            router.push('/careers');
+          }} className='text-lg md:text-sm md:font-medium py-3.5 mb-12 cursor-pointer md:py-2.5 md:px-4'/>
         </div>
 
         {/* Team Grid */}

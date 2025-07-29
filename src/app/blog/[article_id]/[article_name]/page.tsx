@@ -5,16 +5,13 @@ import ArticleMainPage from "@/components/pages/blog_page/article/article-main-p
 import CTASection from "@/components/footer_section/footer-section";
 import BlogPageContainer from "@/components/pages/blog_page/components/blog-page-container";
 
-interface BlogPostProps {
-  params: {
-    article_id: string;
-    article_name: string;
-  };
-}
-
-const BlogPost: React.FC<BlogPostProps> = ({ params }: BlogPostProps) => {
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ article_id: string; article_name: string }>;
+}) {
   // Fetch blog post data using params.article_id
-  const { article_id } = params;
+  const { article_id } = await params;
 
   // const post = fetchPostById(article_id);
   // if (!post) return notFound();
@@ -35,9 +32,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ params }: BlogPostProps) => {
       </section>
     </>
   );
-};
-
-export default BlogPost;
+}
 
 export async function generateStaticParams() {
   // This function can be used to generate static paths for the blog posts

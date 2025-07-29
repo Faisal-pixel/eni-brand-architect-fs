@@ -8,8 +8,7 @@ import {
 } from "lucide-react";
 import { CheckmarkIcon, MediaProductionIcon } from "@/assets/icons";
 import Image from "next/image";
-import ModalPopUp from "@/components/modal-pop-up.components";
-import { MediaProductionAndEventCoverageData } from "@/data/modal-pop-up-data";
+import MediaModalPopUpComponent from "../components/media-modal-pop-up.component";
 
 const MediaProdAndEventCoverage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -245,11 +244,9 @@ const MediaProdAndEventCoverage = () => {
           </div>
         </div>
       </div>
-      <ModalPopUp
+      <MediaModalPopUpComponent
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Media Production & Event Coverage"
-        data={MediaProductionAndEventCoverageData}
       />
     </div>
   );

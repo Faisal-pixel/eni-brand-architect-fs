@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../container";
 import HeroVideoSection from "../hero_section/hero-section";
 import TrustedBrandsSection from "../trusted_brands/trusted-brands-section";
@@ -13,14 +13,25 @@ import FAQSection from "../faq_section/faq-section";
 import ContactSection from "../contact_us_section/contact-us-section";
 import NewsletterSection from "../news_letter_section/news-letter-section";
 import CTASection from "../footer_section/footer-section";
+import PopUpOnceBanner from "./components/pop-up-once-banner.components";
 
 // type Props = {}
 
 function HomePage() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // Simulate a condition to open the modal, e.g., after 3 seconds
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 300);
+
+    return () => clearTimeout(timer); // Cleanup the timer on unmount
+  }, []);
 
   return (
     <div>
-      
+      <PopUpOnceBanner isOpen={isOpen} onClose={() => setIsOpen(false)} />
 
       {/* NAVBAR */}
       {/* <NavBar /> */}

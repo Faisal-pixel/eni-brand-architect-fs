@@ -72,8 +72,8 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="relative group cursor-pointer"
-      style={{ width: "175.6px", height: "175.6px" }}
+      className="relative group cursor-pointer w-[157.5px] h-[157.5px] md:w-[159.5px] md:h-[159.5px] lg:w-[175.6px] lg:h-[175.6px] rounded-[6px] overflow-hidden"
+      // style={{ width: "175.6px", height: "175.6px" }}
     >
       {item.type === "image" ? (
         <Image
@@ -118,7 +118,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="bg-white rounded-[8px] shadow-2xl w-full max-w-[1006px] max-h-[700px] overflow-hidden pt-[24px] px-[40px]"
+            className="bg-white rounded-[8px] flex flex-col shadow-2xl max-w-[375px] md:max-w-[754px] lg:max-w-[1006px] max-h-[80vh] overflow-hidden  pt-[24px] px-[24px] md:px-[40px]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -143,7 +143,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
               </div>
 
               {/* Filter Tabs */}
-              <div className="flex p-1 mt-[10px] gap-x-1 border border-[#E9EAEB] max-w-fit rounded-[10px] bg-[#FAFAFA]">
+              <div className="flex p-1 mt-[10px] gap-x-1 border border-[#E9EAEB] w-full md:max-w-fit rounded-[10px] bg-[#FAFAFA]">
                 {[
                   { key: "all", label: "All" },
                   { key: "photos", label: "Photos" },
@@ -154,7 +154,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
                     onClick={() =>
                       setActiveFilter(tab.key as "photos" | "videos" | "all")
                     }
-                    className={`px-[65.5px] py-2 text-sm font-medium transition-colors relative cursor-pointer ${
+                    className={`px-3 min-w-[103.66666412353516px] md:min-w-auto md:px-[65.5px] py-2 text-sm font-medium transition-colors relative cursor-pointer ${
                       activeFilter === tab.key
                         ? "bg-white text-[#414651] rounded-[6px]"
                         : "text-gray-500 hover:text-gray-700 bg-transparent"
@@ -200,7 +200,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
                         </p>
 
                         {/* Media Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                           {filteredMedia.map((item, index) =>
                             renderMediaItem(item, index)
                           )}

@@ -9,8 +9,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { CheckmarkIcon, GraphIcon } from "@/assets/icons";
-import ModalPopUp from "@/components/modal-pop-up.components";
-import { MarketingAndAmplificationData } from "@/data/modal-pop-up-data";
+import MarketingModalPopUpComponent from "../components/marketing-modal-pop-up.component";
 
 const MarketingAmplificationSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -241,11 +240,10 @@ const MarketingAmplificationSection = () => {
         </div>
       </div>
 
-      <ModalPopUp
+      <MarketingModalPopUpComponent
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Marketing & Amplification"
-        data={MarketingAndAmplificationData}
       />
     </div>
   );
