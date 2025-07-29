@@ -165,13 +165,20 @@ const CareersListsComponent = ({ careersPostsProp, setIsModalOpen}: Props) => {
                     <td className="p-4 pl-3">
                         {post.jobTitle}
                     </td>
-                    <td className="p-4 text-gray-900">{post.category}</td>
-                    <td className="p-4 text-gray-600">{post.jobType}</td>
-                    <td className="p-4">
-                      <span
+                    <td className={`p-4 text-gray-900 `}>
+
+                          <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(
                           post.category
                         )}`}
+                      >
+                        {post.category}
+                      </span>
+                        </td>
+                    <td className="p-4 text-gray-600">{post.jobType}</td>
+                    <td className="p-4">
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium`}
                       >
                         {post.date}
                       </span>

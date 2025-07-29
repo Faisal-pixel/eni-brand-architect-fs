@@ -10,7 +10,7 @@ import CareersCreationModal from "./components/career-creation-modal.component";
 const CreateCareersPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleBlogSubmit = (data: CareerFormData) => {
+  const handleCareerSubmit = (data: CareerFormData) => {
     console.log("Form submitted", data);
   };
 
@@ -39,7 +39,7 @@ const CreateCareersPage = () => {
       <CareersCreationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onSubmit={handleBlogSubmit}
+        onSubmit={handleCareerSubmit}
       />
     </AdminContainer>
   );
