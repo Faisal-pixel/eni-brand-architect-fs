@@ -68,7 +68,7 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
     setCurrentPage((prev) => Math.min(totalPages, prev + 1));
   };
 
-  const handleArticleCardClick = (id: number, title: string) => {
+  const handleArticleCardClick = (id: string, title: string) => {
     // Navigate to the article page
     router.push(`/blog/${id}/${slugify(title)}`);
   };
