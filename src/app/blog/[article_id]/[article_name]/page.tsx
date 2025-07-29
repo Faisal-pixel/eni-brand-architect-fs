@@ -5,14 +5,9 @@ import ArticleMainPage from "@/components/pages/blog_page/article/article-main-p
 import CTASection from "@/components/footer_section/footer-section";
 import BlogPageContainer from "@/components/pages/blog_page/components/blog-page-container";
 
-interface BlogPostProps {
-  params: {
-    article_id: string;
-    article_name: string;
-  };
-}
 
-export default function BlogPost ({ params }: BlogPostProps) {
+
+export default function BlogPost ({ params }: { params: { article_id: string; article_name: string; } }) {
   // Fetch blog post data using params.article_id
   const { article_id } = params;
 
