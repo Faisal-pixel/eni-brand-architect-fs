@@ -81,11 +81,11 @@ const NavBar = () => {
                   >
                     Book a Consultation
                   </Button>
-                </Link>
+                </Link> 
               </span>
             </nav>
 
-            {/* Medium tablet navigation - shows only Blog and Career */}
+            {/* Medium tablet navigation - shows only Blog and Events */}
             <nav className="hidden md:flex lg:hidden items-center">
               <span className="flex gap-x-8">
                 <Link
@@ -95,10 +95,10 @@ const NavBar = () => {
                   Blog
                 </Link>
                 <Link
-                  href="/careers"
+                  href="/events"
                   className="text-[rgba(31,41,55,1)] font-medium"
                 >
-                  Career
+                  Events
                 </Link>
               </span>
 
@@ -172,11 +172,11 @@ const NavBar = () => {
                   Blog
                 </Link>
                 <Link
-                  href="/careers"
+                  href="/events"
                   className="text-[rgba(31,41,55,1)] font-medium text-lg"
                   onClick={toggleMenu}
                 >
-                  Careers
+                  Events
                 </Link>
               </div>
 
