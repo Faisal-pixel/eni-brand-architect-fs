@@ -143,7 +143,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
               </div>
 
               {/* Filter Tabs */}
-              <div className="flex p-1 mt-[10px] gap-x-1 border border-[#E9EAEB] max-w-fit rounded-[10px] bg-[#FAFAFA]">
+              <div className="flex p-1 mt-[10px] gap-x-1 border border-[#E9EAEB] w-full md:max-w-fit rounded-[10px] bg-[#FAFAFA]">
                 {[
                   { key: "all", label: "All" },
                   { key: "photos", label: "Photos" },
@@ -154,7 +154,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
                     onClick={() =>
                       setActiveFilter(tab.key as "photos" | "videos" | "all")
                     }
-                    className={`px-[65.5px] py-2 text-sm font-medium transition-colors relative cursor-pointer ${
+                    className={`px-3 min-w-[103.66666412353516px] md:min-w-auto md:px-[65.5px] py-2 text-sm font-medium transition-colors relative cursor-pointer ${
                       activeFilter === tab.key
                         ? "bg-white text-[#414651] rounded-[6px]"
                         : "text-gray-500 hover:text-gray-700 bg-transparent"
