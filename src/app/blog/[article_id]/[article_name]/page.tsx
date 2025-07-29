@@ -12,7 +12,7 @@ interface BlogPostProps {
   };
 }
 
-const BlogPost = ({ params }: BlogPostProps) => {
+export default function BlogPost ({ params }: BlogPostProps) {
   // Fetch blog post data using params.article_id
   const { article_id } = params;
 
@@ -37,7 +37,6 @@ const BlogPost = ({ params }: BlogPostProps) => {
   );
 };
 
-export default BlogPost;
 
 export async function generateStaticParams() {
   // This function can be used to generate static paths for the blog posts
