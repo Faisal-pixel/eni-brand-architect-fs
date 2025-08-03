@@ -3,7 +3,7 @@ import db from "@/lib/db";
 
 
 interface RouteContext {
-  params: { id: string };
+  params: { params: Promise<{ id: string }> };
 }
 
 export async function GET(
@@ -12,7 +12,7 @@ export async function GET(
 ) {
   try {
     await db.read();
-    const postId = await context.params.id;
+    const { id: postId } = await context.params.params;
     const post = db.data?.blogPosts.find((post) => post.id === postId);
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
@@ -45,7 +45,7 @@ export async function PUT(
   try {
     await db.read();
     const body = await req.json();
-    const { id: postId } = await context.params;
+    const { id: postId } = await context.params.params;
 
     const postIndex = db.data?.blogPosts.findIndex(
       (post) => post.id === postId
@@ -82,7 +82,7 @@ export async function DELETE(
 
   try {
     await db.read();
-    const {id: postId}  = await context.params;
+    const { id: postId } = await context.params.params;
     const blogPosts = db.data?.blogPosts;
     const postToDeleteIndex = blogPosts.findIndex(p => p.id === postId);
 
