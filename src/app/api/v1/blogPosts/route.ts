@@ -47,15 +47,15 @@ export async function GET(req: NextRequest) {
   const endIndex = startIndex + limit;
 
   const paginatedPosts = posts.slice(startIndex, endIndex);
-  const totalPosts = posts.length;
-  const totalPages = Math.ceil(totalPosts / limit);
+  const totalNumberOfPosts = posts.length;
+  const totalPages = Math.ceil(totalNumberOfPosts / limit);
 
   return NextResponse.json(
     {
       posts: paginatedPosts,
       page,
       totalPages,
-      totalPosts,
+      totalNumberOfPosts,
     },
     { status: 200 }
   );
