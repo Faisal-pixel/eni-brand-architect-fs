@@ -1,10 +1,13 @@
 So now I am trying to connect the backend
 For the creation of blogs:
 I want to be able to do these things:
-1. Create a blog
-2. Delete a blog
-3. Edit a blog
-4. Get all blogs
+1. Create a blog check [done]
+2. Delete a blog [done]
+3. Edit a blog [done]
+4. Get all blogs [done]
+5. Get a single blog by id [done]
+6. Filter blogs by category [done - basically hit the same route as get all blogs and pass the category as a query param]
+7. Get latest blog [well when the user reaches out to the backend to call all blogs, then you can filter the latest blog by checking the latestArticle field in the blog data structure]
 
 For the creation of careers:
 I want to be able to do these thigns:
@@ -29,6 +32,7 @@ export type Article = {
     date: string;
     image: string;
     bgColor: string;
+    latestArticle: boolean; (default all latestArticle field will be false)
 };
 For the blog list in the create-blog-post the data structure is different, what we have is:
 {
@@ -37,6 +41,7 @@ For the blog list in the create-blog-post the data structure is different, what 
     title: "The real life something of Falz",
     date: "12/10/2025",
     category: "inspiration",
+    latestArticle: false
 },
 
 So we will need to transform the data from the backend to the frontend for the create-blog page
