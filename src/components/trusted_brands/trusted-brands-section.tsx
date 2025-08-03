@@ -9,6 +9,9 @@ import {
   SixthLogo,
   SeventhLogo,
   EightLogo,
+  BigiLogo,
+  MunchItLogo,
+  MaltaLogo,
 } from "@/assets/icons";
 import Image from "next/image";
 
@@ -31,7 +34,10 @@ export default function TrustedBrandsSection() {
             <Image src={FifthLogo} alt="Fifth Logo" />
             <Image src={SixthLogo} alt="Sixth Logo" />
             <Image src={SeventhLogo} alt="Seventh Logo" />
-            <Image src={EightLogo} alt="Seventh Logo" />
+            <Image src={EightLogo} alt="Eighth Logo" />
+            <Image src={BigiLogo} alt="Bigi Logo" />
+            <Image src={MunchItLogo} alt="Munch It Logo" />
+            <Image src={MaltaLogo} alt="Malta Logo" />
 
             {/* Duplicate logos for seamless loop */}
 
@@ -41,7 +47,11 @@ export default function TrustedBrandsSection() {
             <Image src={FourthLogo} alt="Fourth Logo" />
             <Image src={FifthLogo} alt="Fifth Logo" />
             <Image src={SixthLogo} alt="Sixth Logo" />
-            <Image src={EightLogo} alt="Seventh Logo" />
+            <Image src={EightLogo} alt="Eighth Logo" />
+            <Image src={SeventhLogo} alt="Seventh Logo" />
+            <Image src={BigiLogo} alt="Bigi Logo" />
+            <Image src={MunchItLogo} alt="Munch It Logo" />
+            <Image src={MaltaLogo} alt="Malta Logo" />
           </div>
         </div>
       </div>

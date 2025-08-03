@@ -76,3 +76,6 @@ export {default as FifthLogo} from "@/assets/icons/logo/trusted-brands-logos/fif
 export {default as SixthLogo} from "@/assets/icons/logo/trusted-brands-logos/sixth-logo.svg";
 export {default as SeventhLogo} from "@/assets/icons/logo/trusted-brands-logos/seventh-logo.svg";
 export {default as EightLogo} from "@/assets/icons/logo/trusted-brands-logos/eigth-logo.svg";
+export {default as BigiLogo} from "@/assets/icons/logo/trusted-brands-logos/bigi.svg";
+export {default as MunchItLogo} from "@/assets/icons/logo/trusted-brands-logos/munch-it.svg";
+export {default as MaltaLogo} from "@/assets/icons/logo/trusted-brands-logos/malta.svg";
