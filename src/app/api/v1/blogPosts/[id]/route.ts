@@ -1,9 +1,14 @@
 import { NextResponse, NextRequest } from "next/server";
 import db from "@/lib/db";
 
+
+interface RouteContext {
+  params: { id: string };
+}
+
 export async function GET(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: RouteContext
 ) {
   try {
     await db.read();
@@ -26,7 +31,7 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: RouteContext
 ) {
   // First thing, we want to extract the body
 
@@ -72,7 +77,7 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: RouteContext
 ) {
 
   try {
