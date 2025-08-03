@@ -3,11 +3,11 @@ import db from "@/lib/db";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await db.read();
-    const careerId = await params.id;
+    const { id: careerId } = await params;
     const career = db.data?.careers.find((career) => career.id === careerId);
     if (!career) {
       return NextResponse.json({ error: "Career not found" }, { status: 404 });
@@ -26,9 +26,8 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
     await db.read();
     const body = await req.json();
@@ -63,17 +62,16 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-
   try {
     await db.read();
-    const {id: careerId}  = await params;
+    const { id: careerId } = await params;
     const careers = db.data?.careers;
-    const careerToDeleteIndex = careers.findIndex(c => c.id === careerId);
+    const careerToDeleteIndex = careers.findIndex((c) => c.id === careerId);
 
-    if(careerToDeleteIndex === -1 || careerToDeleteIndex === undefined) {
-        return NextResponse.json({ error: "Career not found" }, { status: 404 });
+    if (careerToDeleteIndex === -1 || careerToDeleteIndex === undefined) {
+      return NextResponse.json({ error: "Career not found" }, { status: 404 });
     }
     /**
      * The below basically mutate the careers array and removes items from an array. So i am
@@ -82,7 +80,7 @@ export async function DELETE(
      */
     const deletedCareer = careers.splice(careerToDeleteIndex, 1)[0];
     await db.write();
-    return NextResponse.json(deletedCareer, {status: 200})
+    return NextResponse.json(deletedCareer, { status: 200 });
   } catch (error) {
     console.error("Error fetching careers:", error);
     return NextResponse.json(
