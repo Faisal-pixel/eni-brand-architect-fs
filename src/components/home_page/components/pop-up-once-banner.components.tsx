@@ -56,7 +56,7 @@ const PopUpOnceBanner = ({ isOpen, onClose }: Props) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="bg-white rounded-[8px] flex flex-col shadow-2xl max-w-[375px] md:max-w-[684px] overflow-hidden  pt-[24px] pb-[24px] md:pb-[44px] px-[24px] md:px-[40px]"
+            className="bg-white rounded-[8px] flex flex-col shadow-2xl max-w-[300px] md:max-w-[684px] overflow-hidden pt-[10px] md:pt-[24px] pb-[10px] md:pb-[44px] px-[14px] md:px-[40px]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className='flex cursor-pointer' onClick={onClose}>
@@ -64,7 +64,7 @@ const PopUpOnceBanner = ({ isOpen, onClose }: Props) => {
             </div>
 
             <div className='flex flex-col md:flex-row gap-8'>
-                <Image src="/images/pop-once-img.png" alt='pop once img' className='w-full' width={294} height={394}/>
+                <Image src="/images/pop-once-img.png" alt='pop once img' className=' h-[300px] w-full' width={294} height={394}/>
 
                 <div className='self-start'>
                     <div className='mb-8'>
