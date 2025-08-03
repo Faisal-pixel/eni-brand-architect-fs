@@ -7,16 +7,16 @@ export async function GET(
 ) {
   try {
     await db.read();
-    const postId = params.id;
+    const postId = await params.id;
     const post = db.data?.blogPosts.find((post) => post.id === postId);
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
     return NextResponse.json(post, { status: 200 });
   } catch (error) {
-    console.error("Error fetching posts:", error);
+    console.error("Error fetching the post:", error);
     return NextResponse.json(
-      { error: "Failed to fetch posts" },
+      { error: "Failed to fetch the post" },
       { status: 500 }
     );
   }
@@ -47,7 +47,7 @@ export async function PUT(
     );
 
     if (postIndex === -1 || postIndex === undefined) {
-      NextResponse.json({ error: "Post not found" }, { status: 404 });
+      return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
     console.log(body);
 

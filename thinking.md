@@ -7,7 +7,7 @@ I want to be able to do these things:
 4. Get all blogs [done]
 5. Get a single blog by id [done]
 6. Filter blogs by category [done - basically hit the same route as get all blogs and pass the category as a query param]
-7. Get latest blog [well when the user reaches out to the backend to call all blogs, then you can filter the latest blog by checking the latestArticle field in the blog data structure]
+7. Get latest blog [added a new resource for this]
 
 For the creation of careers:
 I want to be able to do these thigns:
@@ -15,6 +15,15 @@ I want to be able to do these thigns:
 2. Delete a career.
 3. Edit a career
 4. Get all careers posted
+
+{
+    id: string;
+    jobTitle: string;
+    jobType: "Full-time" | "Part-time" | "Internship" | "Contract";
+    jobCategory: "Engineering"| "Development" | "Marketing" | "Sales" | "Design" | "Product" | "Customer";
+    shortJobBrief: string;
+    datePosted: string;
+}
 
 Solution
 For Blogs:

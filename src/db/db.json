@@ -33,5 +33,15 @@
       "content": "Well this is a test 20 content",
       "latestArticle": true
     }
+  ],
+  "careers": [
+    {
+      "id": "e2ad9da4-818b-4d32-8e02-16e2eece03fb",
+      "jobTitle": "Executive Assistant",
+      "jobType": "Full-time",
+      "jobCategory": "Management",
+      "shortJobBrief": "<p>Are you an aspiring Executive Assistant looking for an opportunity to take on new challenges and advance your career?</p><br /> <p>If you are an enthusiastic leader with the ability to balance big-picture thinking with deep-dive research and attention to detail, we have the perfect job for you!</p>",
+      "datePosted": "2025-08-03T02:35:53.377Z"
+    }
   ]
 }
