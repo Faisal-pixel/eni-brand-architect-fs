@@ -1,18 +1,13 @@
 import { NextResponse, NextRequest } from "next/server";
 import db from "@/lib/db";
 
-
-interface RouteContext {
-  params: { params: Promise<{ id: string }> };
-}
-
 export async function GET(
   req: NextRequest,
-  context: RouteContext
+  { params }: { params: { id: string } }
 ) {
   try {
     await db.read();
-    const { id: postId } = await context.params.params;
+    const postId = await params.id;
     const post = db.data?.blogPosts.find((post) => post.id === postId);
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
@@ -31,7 +26,7 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  context: RouteContext
+  { params }: { params: { id: string } }
 ) {
   // First thing, we want to extract the body
 
@@ -45,7 +40,7 @@ export async function PUT(
   try {
     await db.read();
     const body = await req.json();
-    const { id: postId } = await context.params.params;
+    const { id: postId } = await params;
 
     const postIndex = db.data?.blogPosts.findIndex(
       (post) => post.id === postId
@@ -77,12 +72,12 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  context: RouteContext
+  { params }: { params: { id: string } }
 ) {
 
   try {
     await db.read();
-    const { id: postId } = await context.params.params;
+    const {id: postId}  = await params;
     const blogPosts = db.data?.blogPosts;
     const postToDeleteIndex = blogPosts.findIndex(p => p.id === postId);
 
