@@ -3,7 +3,7 @@ import { career } from "./career.backend.types";
 
 type dbData = {
     blogPosts: blogPosts[];
-    careers: career[];
+    careers: career[]
 }
 
 export type { dbData };
