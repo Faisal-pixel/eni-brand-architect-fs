@@ -7,7 +7,7 @@ export type Article = {
     authorAvatar: string;
     date: string;
     image: string;
-    bgColor: string;
+    content: string;
 };
 
 export type Articles = Article[];

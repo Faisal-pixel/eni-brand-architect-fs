@@ -149,24 +149,8 @@ const BlogPage: React.FC<BlogPageProps> = ({
 };
 
 // Example usage component
-const ArticleMainPage = ({ article }: ArticleMainPageProps) => {
-  const sampleBlogText = `
-    <p>Some people follow the rules. Others rewrite them. <strong>Falz?</strong> He flips the whole script, adds a beat, drops a verse, and still shows up to court in a suit if he has to. In a world where you're told to "stick to one thing," Falz is out here being everything; rapper, actor, lawyer, activist and doing it well. He's not playing roles. He's living layers. And somehow, they all align. We're told that being multi-talented can be messy. But Falz proves that versatility, when intentional, is <strong>POWER</strong>. Brains, creativity, and a killer brand don't just coexist; they feed each other. Falz demonstrates that intellect, artistry, and strategy can coexist in harmony, not just in theory, but also in practice.</p>
-
-    <p>Born <em>Folarin Falana</em> in Mushin, Lagos, to renowned human rights lawyers Funmi and Femi Falana (SANs), Falz didn't just grow up around justice; he studied it. With a Law degree from the University of Reading and a call to the Nigerian Bar, he was well on track to join the family legacy. While he may not be clocking hours in court, his understanding of the law echoes through his music, activism, and public commentary. He uses that legal insight as a compass, navigating injustice, challenging power structures, and amplifying causes with precision. The degree might not hang in a courtroom, but it shows up every time he speaks truth to power.</p>
-
-    <p>Falz burst onto the scene in 2009, and by the time "Marry Me" hit the airwaves, he was making us laugh, dance, and think. But he didn't stop at catchy tunes. He created music that resonated with social commentary, often disguised as satire, laced with Afrobeats and hip-hop. With his independent label, <strong>Bahd Guys Records</strong>, he became both the talent and the boss.</p>
-
-    <p>Then came <em>"This Is Nigeria."</em> Inspired by Childish Gambino's "This Is America," Falz gave us a version that cut to the bone of Nigeria's reality: corruption, power abuse, and failed systems. Suddenly, Falz wasn't just entertaining. He was enlightening. He followed up with Moral Instruction, an album that doubled as a national conscience. Long before #EndSARS became a global cry, Falz was already calling out injustice. And when the protests erupted in 2020, he was at the forefront, not just as an artist, but as a citizen. <strong>Mobilizing celebrities. Calling out the government. Demanding justice.</strong> Even after the tragic end of the protests, he didn't go silent. He doubled down. "Johnny," one of the most powerful tributes to victims of police brutality, isn't just a song, it's a memorial. As Falz wrote: <em>"We will never forget the heroes that have been unlawfully slain... For every single Nigerian life snatched away unlawfully, we must make sure we get justice."</em></p>
-
-    <blockquote>
-      <p>"Through the 2023 elections and beyond, he's kept the same energy, dropping politically charged tracks like 'Yakubu,' challenging corruption and urging youth to participate in democracy."</p>
-    </blockquote>
-
-    <p>But what truly sets Falz apart isn't just the activism. It's the coherence of his brand. From humorous skits in faux accents to serious courtroom speeches to gritty movie roles across three worlds without losing his core. Whether he's cracking jokes in Jenifa's Diary or going full throttle in Brotherhood, he makes you ask: <strong>"Which version is the real him?"</strong></p>
-
-    <p>The answer? <strong>All of them.</strong> Falz doesn't confuse versatility with inconsistency. He's proof that you can be everything if you're intentional about it. <em>So, what can we learn from Falz?</em> Your background isn't a barrier, it is a launchpad. Consistency isn't sameness, it's showing up differently with the same values. A personal brand isn't a costume, it is a character built, lived, and refined. Like we have said, Falz? One man! All three! No compromise!!</p>
-  `;
+const ArticleMainPage = ({ article }: ArticleMainPageProps) => { 
+  const sampleBlogText = `<p>${article.content}</p>`;
 
   const { title, description, date, image } = article;
 
