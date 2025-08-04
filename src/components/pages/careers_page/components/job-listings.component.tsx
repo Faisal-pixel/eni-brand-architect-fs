@@ -15,21 +15,31 @@ const JobListings = ({ jobs }: JobListingsProps) => {
     { name: "Show all", count: jobs.length },
     {
       name: "Design",
-      count: jobs.filter((job) => job.type === "Design").length,
+      count: jobs.filter((job) => job.jobCategory === "Design").length,
     },
     {
       name: "Development",
-      count: jobs.filter((job) => job.type === "Development").length,
+      count: jobs.filter((job) => job.jobCategory === "Development").length,
     },
     {
       name: "Marketing",
-      count: jobs.filter((job) => job.type === "Marketing").length,
+      count: jobs.filter((job) => job.jobCategory === "Marketing").length,
     },
     {
       name: "Management",
-      count: jobs.filter((job) => job.type === "Management").length,
+      count: jobs.filter((job) => job.jobCategory === "Management").length,
+    },
+    {
+      name: "Product",
+      count: jobs.filter((job) => job.jobCategory === "Product").length,
     },
   ];
+
+
+  const filteredJobs =
+    selectedCategory === "Show all"
+      ? jobs
+      : jobs.filter((job) => job.jobCategory === selectedCategory); 
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -127,7 +137,7 @@ const JobListings = ({ jobs }: JobListingsProps) => {
           {/* Job listings */}
           <div className="flex-1">
             <div className="space-y-6">
-              {jobs.map((job, index) => (
+              {filteredJobs.map((job, index) => (
                 <div
                   key={job.id}
                   className={`transform transition-all duration-800 ease-out ${
