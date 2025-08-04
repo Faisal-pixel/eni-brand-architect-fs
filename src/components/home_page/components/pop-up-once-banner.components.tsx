@@ -64,12 +64,12 @@ const PopUpOnceBanner = ({ isOpen, onClose }: Props) => {
             </div>
 
             <div className='flex flex-col md:flex-row gap-8'>
-                <Image src="/images/pop-once-img.png" alt='pop once img' className=' h-[300px] md:h-auto w-full' width={294} height={394}/>
+                <Image src="/images/events/upcoming-events-4-img.png" alt='pop once img' className=' h-[300px] md:h-auto w-full' width={294} height={394}/>
 
                 <div className='self-start'>
                     <div className='mb-8'>
-                        <h3 className='mb-2 text-lg font-medium leading-[28px]'>The Eniivy Experience</h3>
-                        <p className='text-sm leading-[20px]'>Register for the “The Eniivy Experience (Movies & Conversations)”</p>
+                        <h3 className='mb-2 text-lg font-medium leading-[28px]'>Let&#39;s swing for Autism (Play with Stephen Golf Tournament)</h3>
+                        <p className='text-sm leading-[20px]'>Register for the “Let&#39;s swing for Autism (Play with Stephen Golf Tournament)”</p>
                     </div>
 
                     <GreenButton title='Register' className='w-full cursor-pointer' />

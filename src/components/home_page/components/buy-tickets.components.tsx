@@ -34,10 +34,10 @@ const BuyTicketsComponent = () => {
                 in an inspiring live experience.
               </span> */}
               <span className="text-base font-semibold">
-                The Eniivy Experience (Movies & Conversations)
+                Let&#39;s swing for Autism (Play with Stephen Golf Tournament)
               </span>
               <span className="text-[rgba(233,215,254,1)] leading-6">
-                July 27th, 2025
+                August 22nd - 24th, 2025 | Achimota Golf Club, Ghana
               </span>
             </div>
 
