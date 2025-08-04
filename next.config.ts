@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "**", // allow all paths
+      },
+      {
+        protocol: "https",
         hostname: "randomuser.me",
         pathname: "**", // allow all paths
       },

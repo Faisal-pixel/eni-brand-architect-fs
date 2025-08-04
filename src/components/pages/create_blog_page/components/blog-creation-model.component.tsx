@@ -18,6 +18,7 @@ import {
   ListButtonIcon,
   UnderlineButtonIcon,
 } from "@/assets/icons";
+import toast from "react-hot-toast";
 
 // Zod validation schema
 
@@ -122,8 +123,6 @@ const BlogCreationModal: React.FC<BlogCreationModalProps> = ({
 
       setErrors({});
 
-    
-
       const validatedData = blogSchema.parse(formData);
       await onSubmit(validatedData);
       setFormData({
@@ -133,6 +132,7 @@ const BlogCreationModal: React.FC<BlogCreationModalProps> = ({
         content: "",
         category: undefined,
       });
+      toast.success("Blog post created successfully!");
       onClose();
     } catch (error) {
       console.log("Validation error caught:", error);

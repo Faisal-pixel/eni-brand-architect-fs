@@ -4,19 +4,40 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { BlogPost } from "@/app/types/create-blog-page.types";
+import { toast } from "react-hot-toast";
+import deleteBlogPostApi from "@/helpers/api_callers/delete-blog.api.callers";
 
 type Props = {
   blogPostsProp: BlogPost[];
   setIsModalOpen: (isOpen: boolean) => void;
   isModalOpen: boolean;
+  page: number;
+  setPage: (page: number) => void;
+  totalNumberOfPosts: number;
+  totalPages: number;
+  onDeletePost?: (postId: string) => void; // Add callback for deletion
 };
 
-const BlogListsComponent = ({ blogPostsProp, setIsModalOpen}: Props) => {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(blogPostsProp);
+const BlogListsComponent = ({
+  blogPostsProp,
+  setIsModalOpen,
+  page,
+  setPage,
+  totalNumberOfPosts,
+  totalPages,
+  onDeletePost,
+}: Props) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedPosts, setSelectedPosts] = useState<string[]>([]);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [postToDelete, setPostToDelete] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+
+  const filteredPosts = blogPostsProp.filter(
+    (post) =>
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const getCategoryColor = (category: string) => {
     switch (category) {
@@ -39,10 +60,25 @@ const BlogListsComponent = ({ blogPostsProp, setIsModalOpen}: Props) => {
     );
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     if (postToDelete) {
-      setBlogPosts((prev) => prev.filter((post) => post.id !== postToDelete));
-      setSelectedPosts((prev) => prev.filter((id) => id !== postToDelete));
+      try {
+        setDeleting(true);
+        // Call the API to delete the blog post
+        const deletedPost = await deleteBlogPostApi(postToDelete);
+        toast.success(`${deletedPost.title} deleted successfully!`);
+
+        // Call parent callback to refresh the data
+        if (onDeletePost) {
+          onDeletePost(postToDelete);
+        }
+      } catch (error) {
+        console.error("Error deleting blog post:", error);
+        toast.error("Failed to delete blog post.");
+      } finally {
+        setSelectedPosts((prev) => prev.filter((id) => id !== postToDelete));
+        setDeleting(false);
+      }
     }
     setShowDeleteConfirm(false);
     setPostToDelete(null);
@@ -58,11 +94,6 @@ const BlogListsComponent = ({ blogPostsProp, setIsModalOpen}: Props) => {
     setShowDeleteConfirm(true);
   };
 
-  const filteredPosts = blogPosts.filter(
-    (post) =>
-      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
   return (
     <section id="create-blog" className="">
       <div className="flex flex-col h-[81vh] rounded-[12px] border border-[#E9EAEB]">
@@ -73,7 +104,7 @@ const BlogListsComponent = ({ blogPostsProp, setIsModalOpen}: Props) => {
               Blog Posts
             </h1>
             <span className="bg-[#EAF8F2] text-[#017544] border border-[#E9D7FE] py-[2px] px-2 rounded-[16px] text-xs font-medium">
-              {blogPosts.length} Posts
+              {totalNumberOfPosts} Posts
             </span>
           </div>
 
@@ -118,7 +149,7 @@ const BlogListsComponent = ({ blogPostsProp, setIsModalOpen}: Props) => {
         </div>
 
         {/* Table */}
-        <div className="bg-white border border-gray-200 overflow-hidden">
+        <div className="bg-white border border-gray-200 overflow-scroll scrollbar-hide">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
@@ -187,11 +218,11 @@ const BlogListsComponent = ({ blogPostsProp, setIsModalOpen}: Props) => {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleDeleteClick(post.id)}
-                          className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                          className="p-1 text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
                         >
                           <Trash2 size={16} />
                         </button>
-                        <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+                        <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
                           <Edit3 size={16} />
                         </button>
                       </div>
@@ -205,27 +236,36 @@ const BlogListsComponent = ({ blogPostsProp, setIsModalOpen}: Props) => {
 
         {/* Pagination */}
         <div className="flex items-center justify-between mt-auto">
-          <button className="flex items-center gap-2 px-4 py-2 text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage(page - 1)}
+            className={`flex items-center gap-2 px-4 py-2 text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+          >
             <ChevronLeft size={18} />
             Previous
           </button>
 
           <div className="flex items-center gap-2">
-            {[1, 2, 3, "...", 8, 9, 10].map((page, index) => (
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <button
-                key={index}
+                key={p}
+                onClick={() => setPage(p)}
                 className={`px-3 py-2 rounded-lg text-sm transition-colors ${
-                  page === 1
+                  page === p
                     ? "bg-emerald-600 text-white"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
-                {page}
+                {p}
               </button>
             ))}
           </div>
 
-          <button className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <button
+            disabled={page === totalPages}
+            onClick={() => setPage(page + 1)}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             Next
             <ChevronRight size={18} />
           </button>
@@ -239,7 +279,7 @@ const BlogListsComponent = ({ blogPostsProp, setIsModalOpen}: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+            className="fixed inset-0 bg-black/30 flex items-center justify-center p-4 z-50"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -257,22 +297,22 @@ const BlogListsComponent = ({ blogPostsProp, setIsModalOpen}: Props) => {
               <div className="flex gap-3 justify-end">
                 <button
                   onClick={cancelDelete}
-                  className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
+                  disabled={deleting}
                   onClick={confirmDelete}
-                  className="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
+                  className="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors cursor-pointer"
                 >
-                  Delete
+                  {deleting ? "Deleting..." : "Delete"}
                 </button>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-      
     </section>
   );
 };

@@ -1,15 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdminContainer from "@/components/admin-container";
 import BlogCreationModal from "./components/blog-creation-model.component";
-import { BlogFormData } from "@/app/types/create-blog-page.types";
+import {
+  BlogFormData,
+  BlogPost,
+  BlogPostResponse,
+} from "@/app/types/create-blog-page.types";
 import BlogListsComponent from "./components/blog-lists.component";
-import blogPosts from "@/data/blog-posts.data";
 import EmptyStateComponent from "@/components/empty-state-component";
 import { toast } from "react-hot-toast";
 
 const CreateBlogPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [page, setPage] = useState(1);
+  const [totalNumberOfPosts, setTotalNumberOfPosts] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const handleBlogSubmit = async (data: BlogFormData) => {
     try {
@@ -24,7 +33,8 @@ const CreateBlogPage = () => {
 
       // Prepare the data for cloudinary
       const formData = new FormData();
-      if (data.image) { // This ensures that the Image file is present
+      if (data.image) {
+        // This ensures that the Image file is present
         formData.append("file", data.image);
       } else {
         throw new Error("Image file is required.");
@@ -80,18 +90,104 @@ const CreateBlogPage = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      console.log("Fetching blog posts for page:", page);
+      try {
+        const response = await fetch(`/api/v1/blogPosts?page=${page}&limit=6`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch blog posts");
+        }
+        const data: {
+          page: number;
+          posts: BlogPostResponse[];
+          totalNumberOfPosts: number;
+          totalPages: number;
+        } = await response.json();
+        const transformedPosts = data.posts.map((post: BlogPostResponse) => ({
+          ...post,
+          image: post.imageUrl, // Ensure image is a string for display
+          date: post.date?.slice(0, 10), // Format date to YYYY-MM-DD
+        })) as BlogPost[];
+        setBlogPosts(transformedPosts);
+        setPage(data.page);
+        setTotalNumberOfPosts(data.totalNumberOfPosts);
+        setTotalPages(data.totalPages);
+
+        console.log("Fetched blog posts:", data);
+      } catch (error) {
+        console.error("Error fetching blog posts:", error);
+        setError(error instanceof Error ? error.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogPosts();
+  }, [page]);
+
   const handleButtonClicked = () => {
     setIsModalOpen(true);
   };
+
+  const handleDeletePost = async () => {
+    // Refetch the current page data after deletion
+    try {
+      const response = await fetch(`/api/v1/blogPosts?page=${page}&limit=6`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch blog posts");
+      }
+      const data: {
+        page: number;
+        posts: BlogPostResponse[];
+        totalNumberOfPosts: number;
+        totalPages: number;
+      } = await response.json();
+      const transformedPosts = data.posts.map((post: BlogPostResponse) => ({
+        ...post,
+        image: post.imageUrl,
+        date: post.date?.slice(0, 10),
+      })) as BlogPost[];
+      setBlogPosts(transformedPosts);
+      setTotalNumberOfPosts(data.totalNumberOfPosts);
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.error("Error refetching blog posts:", error);
+    }
+  };
+
+  if (error) {
+    toast.error(`Error: ${error}`, {
+      id: "fetch-blog-posts-error",
+    });
+    return (
+      <AdminContainer>
+        <div className="flex items-center justify-center h-full">
+          <p className="text-red-500">{error}</p>
+        </div>
+      </AdminContainer>
+    );
+  }
+
+  console.log("The console.log at the bottom", page, blogPosts);
 
   return (
     <AdminContainer>
       {blogPosts && blogPosts.length > 0 ? (
         <BlogListsComponent
+          page={page}
+          setPage={setPage}
           blogPostsProp={blogPosts}
           setIsModalOpen={setIsModalOpen}
           isModalOpen={isModalOpen}
+          totalNumberOfPosts={totalNumberOfPosts}
+          totalPages={totalPages}
+          onDeletePost={handleDeletePost}
         />
+      ) : loading ? (
+        <div className="flex items-center justify-center h-full">
+          <p className="text-gray-500">Loading blog posts...</p>
+        </div>
       ) : (
         <EmptyStateComponent
           emptyStateTitle="Your blog is looking empty"

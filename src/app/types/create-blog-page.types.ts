@@ -33,5 +33,17 @@ type BlogPost = {
   category: "inspiration";
 };
 
-export type { BlogFormData, BlogPost };
+type BlogPostResponse = {
+  id: string;
+  title: string;
+  description?: string;
+  date: string;
+  imageUrl: string; // Changed to required string for display purposes
+  content?: string;
+  authorName?: string;
+  authorImage?: string | File;
+  category: "inspiration";
+};
+
+export type { BlogFormData, BlogPost, BlogPostResponse };
 export { blogSchema };
