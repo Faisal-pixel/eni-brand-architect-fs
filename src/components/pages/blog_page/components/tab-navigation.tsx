@@ -29,7 +29,7 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
 
   const tabs = [
     "View all",
-    "Inspiration",
+    "inspiration",
   ];
 
   const sortOptions = [
@@ -168,7 +168,6 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
                   className="w-full h-full rounded-2xl bg-cover bg-center transition-transform duration-300 "
                   style={{
                     backgroundImage: `url(${item.image})`,
-                    backgroundColor: item.bgColor,
                   }}
                 />
                 {/* External link arrow */}

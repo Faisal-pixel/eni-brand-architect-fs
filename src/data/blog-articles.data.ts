@@ -3,7 +3,7 @@ import { Articles } from "@/app/types/blog-articles.types";
 const articles: Articles = [
   {
     id: "falz-brains-bars-branding-a7k9m2x5",
-    category: "Inspiration",
+    category: "inspiration",
     title: "Falz: Brains, Bars & Branding",
     description: "One man! All three! No compromise!!!",
     author: "Olivia Rhye",
@@ -28,7 +28,7 @@ const articles: Articles = [
   },
   {
     id: "breaking-barriers-nigerian-women-politics-b3n8h5w7",
-    category: "Inspiration",
+    category: "inspiration",
     title: "BREAKING BARRIERS: NIGERIAN WOMEN IN POLITICS",
     description: "One man! All three! No compromise!!!",
     author: "Phoenix Baker",

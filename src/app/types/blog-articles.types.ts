@@ -1,6 +1,6 @@
 export type Article = {
     id: string;
-    category: "Inspiration";
+    category: "inspiration";
     title: string;
     description: string;
     author: string;
