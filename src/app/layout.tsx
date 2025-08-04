@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/ui_personal/nav-bar";
 import PathnameChecker from "@/components/pathname-checker";
+import { ToastProvider } from "@/components/ui/toast-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,6 +29,7 @@ export default function RootLayout({
         <PathnameChecker />
         <NavBar />
         {children}
+        <ToastProvider />
       </body>
     </html>
   );

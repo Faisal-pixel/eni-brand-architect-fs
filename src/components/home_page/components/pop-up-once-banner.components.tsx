@@ -64,7 +64,7 @@ const PopUpOnceBanner = ({ isOpen, onClose }: Props) => {
             </div>
 
             <div className='flex flex-col md:flex-row gap-8'>
-                <Image src="/images/pop-once-img.png" alt='pop once img' className=' h-[300px] w-full' width={294} height={394}/>
+                <Image src="/images/pop-once-img.png" alt='pop once img' className=' h-[300px] md:h-auto w-full' width={294} height={394}/>
 
                 <div className='self-start'>
                     <div className='mb-8'>

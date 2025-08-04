@@ -31,6 +31,18 @@
       "authorAvatar": "eba-logo",
       "imageUrl": "https://res.cloudinary.com/daya1fdka/image/upload/v1752222585/cld-sample-5.jpg",
       "content": "Well this is a test 20 content",
+      "latestArticle": false
+    },
+    {
+      "id": "216bf024-192c-40a6-9edb-084973b6108e",
+      "category": "inspiration",
+      "title": "THis is a test blog that I hope works",
+      "description": "This is the description",
+      "author": "eba",
+      "authorAvatar": "eba-logo",
+      "date": "2025-08-04T01:02:35.433Z",
+      "imageUrl": "https://res.cloudinary.com/daya1fdka/image/upload/v1754269355/blogs/cover_images/this_is_a_test_blog_that_i_hope_works_1754269354810.jpg",
+      "content": "<p class=\"text-gray-500\">Welll they said content is required</p>",
       "latestArticle": true
     }
   ],

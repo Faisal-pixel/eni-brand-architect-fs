@@ -101,7 +101,7 @@ const MarketingAmplificationSection = () => {
                 <Image src={GraphIcon} alt="Graph Icon for Marketing & Amplification" />
               </div>
               <h1 className="text-4xl font-bold text-gray-900">
-                Marketing & Amplification
+                Marketing & Advertising
               </h1>
             </div>
 

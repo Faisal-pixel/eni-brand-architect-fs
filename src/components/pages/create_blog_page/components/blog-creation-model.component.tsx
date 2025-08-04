@@ -34,6 +34,7 @@ const BlogCreationModal: React.FC<BlogCreationModalProps> = ({
 }) => {
   const [formData, setFormData] = useState<Partial<BlogFormData>>({
     title: "",
+    description: "",
     date: "",
     content: "",
     category: undefined,
@@ -118,19 +119,33 @@ const BlogCreationModal: React.FC<BlogCreationModalProps> = ({
   const validateAndSubmit = async () => {
     try {
       setIsSubmitting(true);
+
       setErrors({});
+
+    
 
       const validatedData = blogSchema.parse(formData);
       await onSubmit(validatedData);
+      setFormData({
+        title: "",
+        description: "",
+        date: "",
+        content: "",
+        category: undefined,
+      });
       onClose();
     } catch (error) {
+      console.log("Validation error caught:", error);
       if (error instanceof z.ZodError) {
+        console.log("Zod validation errors:", error.errors);
         const newErrors: Record<string, string> = {};
         error.errors.forEach((err) => {
+          console.log("Individual error:", err);
           if (err.path[0]) {
             newErrors[err.path[0] as string] = err.message;
           }
         });
+        console.log("Processed errors:", newErrors);
         setErrors(newErrors);
       }
     } finally {
@@ -206,6 +221,29 @@ const BlogCreationModal: React.FC<BlogCreationModalProps> = ({
               />
               {errors.title && (
                 <p className="text-red-500 text-sm mt-1">{errors.title}</p>
+              )}
+            </div>
+
+            {/* Description */}
+            <div>
+              <label className="block text-sm font-medium text-[rgba(17,24,39,1)] mb-2">
+                Description
+              </label>
+              <textarea
+                placeholder="Enter a brief description"
+                value={formData.description}
+                onChange={(e) =>
+                  handleInputChange("description", e.target.value)
+                }
+                rows={3}
+                className={`w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none ${
+                  errors.description ? "border-red-500" : "border-gray-300"
+                }`}
+              />
+              {errors.description && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.description}
+                </p>
               )}
             </div>
 
