@@ -1,21 +1,34 @@
 "use client";
-import { Jobs } from '@/app/types/job-listings.types';
-import React, { useState, useEffect } from 'react';
+import { Jobs } from "@/app/types/job-listings.types";
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
 
 type JobListingsProps = {
-  jobs: Jobs
+  jobs: Jobs;
 };
 
 const JobListings = ({ jobs }: JobListingsProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('Show all');
+  const [selectedCategory, setSelectedCategory] = useState("Show all");
 
   const categories = [
-    { name: 'Show all', count: jobs.length },
-    { name: 'Design', count: jobs.filter(job => job.type === 'Design').length },
-    { name: 'Development', count: jobs.filter(job => job.type === 'Development').length },
-    { name: 'Marketing', count: jobs.filter(job => job.type === 'Marketing').length },
-    { name: 'Management', count: jobs.filter(job => job.type === 'Management').length },
+    { name: "Show all", count: jobs.length },
+    {
+      name: "Design",
+      count: jobs.filter((job) => job.type === "Design").length,
+    },
+    {
+      name: "Development",
+      count: jobs.filter((job) => job.type === "Development").length,
+    },
+    {
+      name: "Marketing",
+      count: jobs.filter((job) => job.type === "Marketing").length,
+    },
+    {
+      name: "Management",
+      count: jobs.filter((job) => job.type === "Management").length,
+    },
   ];
 
   useEffect(() => {
@@ -30,11 +43,11 @@ const JobListings = ({ jobs }: JobListingsProps) => {
       <div className="max-w-7xl mx-auto">
         {/* Mobile Tab Navigation */}
         <div className="md:hidden mb-6">
-          <div 
+          <div
             className={`transform transition-all duration-800 ease-out ${
-              isVisible 
-                ? 'translate-y-0 opacity-100' 
-                : '-translate-y-4 opacity-0'
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "-translate-y-4 opacity-0"
             }`}
           >
             <div className="flex overflow-x-auto scrollbar-hide space-x-1 bg-white">
@@ -44,18 +57,22 @@ const JobListings = ({ jobs }: JobListingsProps) => {
                   onClick={() => setSelectedCategory(category.name)}
                   className={`flex-shrink-0 cursor-pointer px-[13.5px] py-[5px] rounded-full text-sm transition-all duration-200 whitespace-nowrap ${
                     selectedCategory === category.name
-                      ? 'bg-gray-900 text-white shadow-sm'
-                      : 'bg-[rgba(249,249,250,1)] text-[rgba(83,88,98,1)]'
+                      ? "bg-gray-900 text-white shadow-sm"
+                      : "bg-[rgba(249,249,250,1)] text-[rgba(83,88,98,1)]"
                   }`}
-                  style={{ 
-                    transform: isVisible ? 'translateX(0)' : 'translateX(-20px)',
+                  style={{
+                    transform: isVisible
+                      ? "translateX(0)"
+                      : "translateX(-20px)",
                     opacity: isVisible ? 1 : 0,
-                    transitionDelay: `${index * 100}ms`
+                    transitionDelay: `${index * 100}ms`,
                   }}
                 >
                   {category.name}
                   {category.count ? (
-                    <span className="ml-2 text-xs opacity-75">{category.count}</span>
+                    <span className="ml-2 text-xs opacity-75">
+                      {category.count}
+                    </span>
                   ) : null}
                 </button>
               ))}
@@ -66,11 +83,11 @@ const JobListings = ({ jobs }: JobListingsProps) => {
         <div className="flex gap-8">
           {/* Desktop Sidebar */}
           <div className="hidden md:block flex-shrink-0">
-            <div 
+            <div
               className={`transform transition-all duration-800 ease-out ${
-                isVisible 
-                  ? 'translate-x-0 opacity-100' 
-                  : '-translate-x-8 opacity-0'
+                isVisible
+                  ? "translate-x-0 opacity-100"
+                  : "-translate-x-8 opacity-0"
               }`}
             >
               <nav className="flex flex-col items-center space-y-2">
@@ -78,9 +95,9 @@ const JobListings = ({ jobs }: JobListingsProps) => {
                   <div
                     key={category.name}
                     className={`transform transition-all duration-600 ease-out ${
-                      isVisible 
-                        ? 'translate-x-0 opacity-100' 
-                        : '-translate-x-8 opacity-0'
+                      isVisible
+                        ? "translate-x-0 opacity-100"
+                        : "-translate-x-8 opacity-0"
                     }`}
                     style={{ transitionDelay: `${index * 100}ms` }}
                   >
@@ -88,14 +105,16 @@ const JobListings = ({ jobs }: JobListingsProps) => {
                       onClick={() => setSelectedCategory(category.name)}
                       className={`w-full text-sm font-normal text-left text-[rgba(83,88,98,1)] px-4 py-2 rounded-lg transition-colors duration-200 cursor-pointer ${
                         selectedCategory === category.name
-                          ? 'bg-[rgba(249,249,250,1)] shadow-sm'
-                          : 'hover:text-gray-900 hover:bg-white hover:shadow-sm'
+                          ? "bg-[rgba(249,249,250,1)] shadow-sm"
+                          : "hover:text-gray-900 hover:bg-white hover:shadow-sm"
                       }`}
                     >
                       <div className="flex items-center justify-between gap-x-[17px]">
                         <span className="font-medium">{category.name}</span>
                         {category.count ? (
-                          <span className="text-sm text-gray-500">{category.count}</span>
+                          <span className="text-sm text-gray-500">
+                            {category.count}
+                          </span>
                         ) : null}
                       </div>
                     </button>
@@ -112,9 +131,9 @@ const JobListings = ({ jobs }: JobListingsProps) => {
                 <div
                   key={job.id}
                   className={`transform transition-all duration-800 ease-out ${
-                    isVisible 
-                      ? 'translate-y-0 opacity-100' 
-                      : 'translate-y-8 opacity-0'
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-8 opacity-0"
                   }`}
                   style={{ transitionDelay: `${200 + index * 150}ms` }}
                 >
@@ -144,9 +163,15 @@ const JobListings = ({ jobs }: JobListingsProps) => {
                       <span className="text-sm text-gray-600 font-medium">
                         {job.type}
                       </span>
-                      <button className="bg-green-700 cursor-pointer hover:bg-green-800 text-white px-4 py-2 md:px-6 md:py-2 rounded-lg font-medium transition-colors duration-200 transform hover:scale-105 text-sm md:text-base">
-                        Apply
-                      </button>
+                      <Link
+                        href={job.link || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <button className="bg-green-700 cursor-pointer hover:bg-green-800 text-white px-4 py-2 md:px-6 md:py-2 rounded-lg font-medium transition-colors duration-200 transform hover:scale-105 text-sm md:text-base">
+                          Apply
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -157,6 +182,6 @@ const JobListings = ({ jobs }: JobListingsProps) => {
       </div>
     </div>
   );
-}
+};
 
 export default JobListings;
