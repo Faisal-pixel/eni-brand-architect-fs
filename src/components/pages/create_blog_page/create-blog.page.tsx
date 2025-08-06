@@ -95,6 +95,7 @@ const CreateBlogPage = () => {
       console.log("Fetching blog posts for page:", page);
       try {
         const response = await fetch(`/api/v1/blogPosts?page=${page}&limit=6`);
+        console.log(response);
         if (!response.ok) {
           throw new Error("Failed to fetch blog posts");
         }
