@@ -152,14 +152,14 @@ const BlogPage: React.FC<BlogPageProps> = ({
 const ArticleMainPage = ({ article }: ArticleMainPageProps) => { 
   const sampleBlogText = `<p>${article.content}</p>`;
 
-  const { title, description, date, image } = article;
+  const { title, description, date, imageUrl } = article;
 
   return (
     <BlogPage
       title={title}
       description={description}
       date={date}
-      blogImage={image}
+      blogImage={imageUrl as string}
       blogText={sampleBlogText}
     />
   );

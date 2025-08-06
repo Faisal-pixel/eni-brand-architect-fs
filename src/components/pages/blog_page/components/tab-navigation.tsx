@@ -14,17 +14,19 @@ import slugify from "@/helpers/slugify";
 
 type TabNavigationProps = {
   articles: Articles;
+  page: number;
+  setPage: (page: number) => void;
+  totalPages: number;
 };
 
-const TabNavigation = ({ articles }: TabNavigationProps) => {
+const TabNavigation = ({ articles, page, setPage, totalPages }: TabNavigationProps) => {
   const router = useRouter();
   // soon i will fetch the articles from the backend
   const [activeTab, setActiveTab] = useState("View all");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sortBy, setSortBy] = useState("Most recent");
-  const [currentPage, setCurrentPage] = useState(1);
   const [articlesData] = useState<Articles>(articles);
-  const [totalPages] = useState(10);
+  // const [totalPages] = useState(10);
 
 
   const tabs = [
@@ -61,11 +63,11 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
   };
 
   const handlePrevPage = () => {
-    setCurrentPage((prev) => Math.max(1, prev - 1));
+    setPage(Math.max(1, page - 1));
   };
 
   const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(totalPages, prev + 1));
+    setPage(Math.min(totalPages, page + 1));
   };
 
   const handleArticleCardClick = (id: string, title: string) => {
@@ -167,7 +169,7 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
                 <div
                   className="w-full h-full rounded-2xl bg-cover bg-center transition-transform duration-300 "
                   style={{
-                    backgroundImage: `url(${item.image})`,
+                    backgroundImage: `url(${item.imageUrl})`,
                   }}
                 />
                 {/* External link arrow */}
@@ -266,9 +268,9 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
             {/* Previous Button */}
             <button
               onClick={handlePrevPage}
-              disabled={currentPage === 1}
+              disabled={page === 1}
               className={`w-9 h-9 rounded-xl border-2 flex items-center justify-center transition-all duration-200 ${
-                currentPage === 1
+                page === 1
                   ? "border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed"
                   : "border-gray-300 bg-white text-gray-600 hover:border-gray-400 hover:bg-gray-50 active:scale-95"
               }`}
@@ -283,16 +285,16 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
             {/* Page Indicator */}
             <div className="">
               <span className="text-sm font-medium text-gray-700">
-                Page {currentPage} of {totalPages}
+                Page {page} of {totalPages}
               </span>
             </div>
 
             {/* Next Button */}
             <button
               onClick={handleNextPage}
-              disabled={currentPage === totalPages}
+              disabled={page === totalPages}
               className={`w-9 h-9 rounded-xl border-2 flex items-center justify-center transition-all duration-200 ${
-                currentPage === totalPages
+                page === totalPages
                   ? "border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed"
                   : "border-gray-300 bg-white text-gray-600 hover:border-gray-400 hover:bg-gray-50 active:scale-95"
               }`}
@@ -312,9 +314,9 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
             {/* Previous Button */}
             <button
               onClick={handlePrevPage}
-              disabled={currentPage === 1}
+              disabled={page === 1}
               className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
-                currentPage === 1
+                page === 1
                   ? "text-gray-400 cursor-not-allowed"
                   : "text-gray-600 hover:bg-gray-50 active:bg-gray-100"
               }`}
@@ -325,29 +327,29 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
 
             {/* Page Numbers */}
             <div className="flex items-center space-x-1 mx-4">
-              {[1, 2, 3].map((page) => (
+              {/* {[1, 2, 3].map((page) => (
                 <button
                   key={page}
-                  onClick={() => setCurrentPage(page)}
+                  onClick={() => setPage(page)}
                   className={`w-10 h-10 rounded-full cursor-pointer text-sm font-medium transition-all duration-200 ${
-                    currentPage === page
+                    page === page
                       ? "bg-gray-100 text-gray-700"
                       : "text-gray-600 hover:bg-gray-50 active:bg-gray-100"
                   }`}
                 >
                   {page}
                 </button>
-              ))}
+              ))} */}
 
               {/* Dots */}
-              <div className="px-2">
+              {/* <div className="px-2">
                 <span className="text-gray-400">...</span>
-              </div>
+              </div> */}
 
-              {[8, 9, 10].map((page) => (
+              {/* {[8, 9, 10].map((page) => (
                 <button
                   key={page}
-                  onClick={() => setCurrentPage(page)}
+                  onClick={() => setPage(page)}
                   className={`w-10 h-10 rounded-full cursor-pointer text-sm font-medium transition-all duration-200 ${
                     currentPage === page
                       ? "bg-gray-100 text-gray-700"
@@ -356,15 +358,31 @@ const TabNavigation = ({ articles }: TabNavigationProps) => {
                 >
                   {page}
                 </button>
-              ))}
+              ))}*/}
+
+              {
+                Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => setPage(p)}
+                    className={`w-10 h-10 rounded-full cursor-pointer text-sm font-medium transition-all duration-200 ${
+                      page === p
+                        ? "bg-gray-100 text-gray-700"
+                        : "text-gray-600 hover:bg-gray-50 active:bg-gray-100"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                ))
+              }
             </div>
 
             {/* Next Button */}
             <button
               onClick={handleNextPage}
-              disabled={currentPage === totalPages}
+              disabled={page === totalPages}
               className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
-                currentPage === totalPages
+                page === totalPages
                   ? "text-gray-400 cursor-not-allowed"
                   : "text-gray-600 hover:bg-gray-50 active:bg-gray-100"
               }`}

@@ -1,11 +1,12 @@
 import { ArrowUpRightGoToArticleGrayIcon } from "@/assets/icons";
+import slugify from "@/helpers/slugify";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 type Props = {
   index: number;
-  id: number;
+  id: string;
   title: string;
   description: string;
   category: string;
@@ -24,13 +25,13 @@ const ArticleCardComponent = ({
   title,
   description,
   category,
-  author,
   date,
   image,
   bgColor,
-  authorAvatar,
 }: Props) => {
   console.log(image, "Image URL in ArticleCardComponent");
+  console.log(id, "ID in ArticleCardComponent");
+
   return (
     <div
       key={id}
@@ -86,10 +87,7 @@ const ArticleCardComponent = ({
 
         {/* Title */}
         {/* // Dynamic link based on item ID and title */}
-        <Link
-          href={`/blog/${id}/${title.toLowerCase().replace(/\s+/g, "-")}`}
-          className="cursor-pointer"
-        >
+        <Link href={`/blog/${id}/${slugify(title)}`} className="cursor-pointer">
           <h3 className="flex text-lg font-semibold leading-7 text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-200">
             {title}
 
@@ -106,7 +104,7 @@ const ArticleCardComponent = ({
 
         {/* Author and Date */}
         <div className="flex items-center space-x-2">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+          {/* <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
             {authorAvatar || author === "" ? (
               <Image
                 src={authorAvatar as string}
@@ -123,9 +121,9 @@ const ArticleCardComponent = ({
                   .join("")}
               </span>
             )}
-          </div>
+          </div> */}
           <div>
-            <div className="text-sm font-semibold text-gray-900">{author}</div>
+            {/* <div className="text-sm font-semibold text-gray-900">{author}</div> */}
             <div className="text-sm text-gray-600">{date}</div>
           </div>
         </div>

@@ -1,5 +1,30 @@
 {
-  "blogPosts": [],
+  "blogPosts": [
+    {
+      "id": "32bdbf11-f1ad-4f79-ab1c-b31a822160bb",
+      "category": "inspiration",
+      "title": "This is a Test",
+      "description": "This is a test description",
+      "author": "eba",
+      "authorAvatar": "eba-logo",
+      "date": "2025-08-06T19:43:00.534Z",
+      "imageUrl": "https://res.cloudinary.com/daya1fdka/image/upload/v1754509380/blogs/cover_images/this_is_a_test_1754509371220.jpg",
+      "content": "<p class=\"text-gray-500\">Oh well!</p>",
+      "latestArticle": false
+    },
+    {
+      "id": "f52610f3-c39e-40a5-89c3-3dc0ecf4abb8",
+      "category": "inspiration",
+      "title": "A new article 2",
+      "description": "It is well",
+      "author": "eba",
+      "authorAvatar": "eba-logo",
+      "date": "2025-08-06T19:45:10.620Z",
+      "imageUrl": "https://res.cloudinary.com/daya1fdka/image/upload/v1754509509/blogs/cover_images/a_new_article_2_1754509505007.png",
+      "content": "<p class=\"text-gray-500\">It is well oo</p>",
+      "latestArticle": true
+    }
+  ],
   "careers": [
     {
       "id": "e2ad9da4-818b-4d32-8e02-16e2eece03fb",

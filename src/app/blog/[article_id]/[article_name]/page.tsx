@@ -1,51 +1,87 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import articles from "@/data/blog-articles.data";
+// import articles from "@/data/blog-articles.data";
 import ArticleMainPage from "@/components/pages/blog_page/article/article-main-page";
 import CTASection from "@/components/footer_section/footer-section";
 import BlogPageContainer from "@/components/pages/blog_page/components/blog-page-container";
+import { Article, Articles } from "@/app/types/blog-articles.types";
 
 export default async function BlogPost({
   params,
 }: {
   params: Promise<{ article_id: string; article_name: string }>;
 }) {
-  // Fetch blog post data using params.article_id
   const { article_id } = await params;
 
-  // const post = fetchPostById(article_id);
-  // if (!post) return notFound();
-  const article = articles.find(
-    (article) => article.id.toString() === article_id
-  );
+  try {
+    // Use absolute URL for server-side fetching
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL
+        ? `https://${process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL}`
+        : "http://localhost:3000";
 
-  if (!article) return notFound();
-  return (
-    <>
-      <section className="max-w-[1321px] mx-auto px-[40px] md:px-[60px] mt-[150px] lg:px-[100px] blogPageLargestScreenSize:px-0">
-        <ArticleMainPage article={article} />
-      </section>
-      <section id="cta-section">
-        <BlogPageContainer>
-          <CTASection />
-        </BlogPageContainer>
-      </section>
-    </>
-  );
+        console.log("Base url:", baseUrl);
+        console.log(process.env.NEXT_PUBLIC_BASE_URL, process.env.VERCEL_URL);
+
+    const response = await fetch(`${baseUrl}/api/v1/blogPosts/${article_id}`);
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        return notFound();
+      }
+      throw new Error("Failed to fetch article");
+    }
+
+    const data: Article = await response.json();
+    if (!data) return notFound();
+    console.log("Fetched article:", data);
+
+    return (
+      <>
+        <section className="max-w-[1321px] mx-auto px-[40px] md:px-[60px] mt-[150px] lg:px-[100px] blogPageLargestScreenSize:px-0">
+          <ArticleMainPage article={data} />
+        </section>
+        <section id="cta-section">
+          <BlogPageContainer>
+            <CTASection />
+          </BlogPageContainer>
+        </section>
+      </>
+    );
+  } catch (error) {
+    console.error("Error fetching article:", error);
+    return notFound();
+  }
 }
 
 export async function generateStaticParams() {
-  // This function can be used to generate static paths for the blog posts
-  // For example, you can fetch a list of articles from an API or database
-  const articles = [
-    { id: "1", name: "first-article" },
-    { id: "2", name: "second-article" },
-  ];
+  try {
+    // Use absolute URL for build-time fetching
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000";
 
-  // I will fetch the articles from the backend
+    const response = await fetch(`${baseUrl}/api/v1/blogPosts`);
 
-  return articles.map((article) => ({
-    article_id: article.id,
-    article_name: article.name,
-  }));
+    if (!response.ok) {
+      console.error(
+        "Failed to fetch articles for static generation:",
+        response.status
+      );
+      return []; // Return empty array instead of throwing error
+    }
+
+    const data: Articles = await response.json();
+
+    return data.map((article) => ({
+      article_id: article.id,
+      article_name: encodeURIComponent(
+        article.title.toLowerCase().replace(/\s+/g, "-")
+      ), // URL-safe slug
+    }));
+  } catch (error) {
+    console.error("Error in generateStaticParams:", error);
+    return []; // Return empty array to prevent build failure
+  }
 }

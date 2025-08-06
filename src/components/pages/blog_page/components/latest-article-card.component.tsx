@@ -7,6 +7,7 @@ import Link from "next/link";
 import ArticleCardComponent from "./article-card.components";
 
 type Props = {
+  id: string;
   title: string;
   description: string;
   author: string;
@@ -20,6 +21,7 @@ type Props = {
 };
 
 const LatestArticleCard = ({
+  id,
   title,
   description,
   author,
@@ -29,7 +31,6 @@ const LatestArticleCard = ({
   category,
   linkToArticle,
 }: Props) => {
-  console.log(category);
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
@@ -42,7 +43,7 @@ const LatestArticleCard = ({
       <div className="hidden md:block">
         <div className="relative w-full h-[720px]">
           <Image
-            src={imageUrl && "/images/latest-article-card.jpg"}
+            src={imageUrl || "/images/latest-article-card.jpg"}
             alt="Design card background"
             fill
             className="object-cover"
@@ -55,7 +56,7 @@ const LatestArticleCard = ({
           <Link href={linkToArticle}>
             <div className="flex flex-col gap-y-2">
               <h2 className="flex text-2xl font-semibold leading-8">
-                {title &&
+                {title ||
                   `Improve your design skills: Develop an "eye" for design.`}
                 <span className="ml-auto">
                   <Image
@@ -65,7 +66,7 @@ const LatestArticleCard = ({
                 </span>
               </h2>
               <p className="text-[rgba(255, 255, 255, 1)]">
-                {description &&
+                {description ||
                   `Tools and trends change, but good design is timeless. Learn how to quickly develop an "eye" for design.`}
               </p>
             </div>
@@ -134,13 +135,13 @@ const LatestArticleCard = ({
       <ArticleCardComponent
         shouldHideonMediumToLargeScreens={true}
         index={0}
-        id={0}
+        id={id}
         title={title}
         description={description}
         author={author}
-        authorAvatar={authorAvatar && "/images/article-author-profile.png"} // I am using the and operator for now as a fall back
+        authorAvatar={authorAvatar || "/images/article-author-profile.png"} // I am using the and operator for now as a fall back
         date={date}
-        image={imageUrl && "/images/latest-article-card.jpg"}
+        image={imageUrl || "/images/latest-article-card.jpg"}
         category={category}
       />
     </motion.div>

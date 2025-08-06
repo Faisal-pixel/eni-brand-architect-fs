@@ -7,6 +7,7 @@ export async function GET(
 ) {
   try {
     await db.read();
+    console.log("I ran")
     const { id: postId } = await params;
     const post = db.data?.blogPosts.find((post) => post.id === postId);
     if (!post) {

@@ -9,7 +9,7 @@ const articles: Articles = [
     author: "Olivia Rhye",
     authorAvatar: "/images/olivia-rhye.jpg",
     date: "20 Jan 2025",
-    image: "/images/falz-blog.png",
+    imageUrl: "/images/falz-blog.png",
     content: `<p>Some people follow the rules. Others rewrite them. <strong>Falz?</strong> He flips the whole script, adds a beat, drops a verse, and still shows up to court in a suit if he has to. In a world where you're told to "stick to one thing," Falz is out here being everything; rapper, actor, lawyer, activist and doing it well. He's not playing roles. He's living layers. And somehow, they all align. We're told that being multi-talented can be messy. But Falz proves that versatility, when intentional, is <strong>POWER</strong>. Brains, creativity, and a killer brand don't just coexist; they feed each other. Falz demonstrates that intellect, artistry, and strategy can coexist in harmony, not just in theory, but also in practice.</p>
 
     <p>Born <em>Folarin Falana</em> in Mushin, Lagos, to renowned human rights lawyers Funmi and Femi Falana (SANs), Falz didn't just grow up around justice; he studied it. With a Law degree from the University of Reading and a call to the Nigerian Bar, he was well on track to join the family legacy. While he may not be clocking hours in court, his understanding of the law echoes through his music, activism, and public commentary. He uses that legal insight as a compass, navigating injustice, challenging power structures, and amplifying causes with precision. The degree might not hang in a courtroom, but it shows up every time he speaks truth to power.</p>
@@ -34,7 +34,7 @@ const articles: Articles = [
     author: "Phoenix Baker",
     authorAvatar: "/images/phoenix-baker.jpg",
     date: "19 Jan 2025",
-    image: "/images/nigerian-women-in-politics.jpg",
+    imageUrl: "/images/nigerian-women-in-politics.jpg",
     content: `<p>Across the globe, women in politics are redefining leadership and making way for significant development. Their voices bring out new perspectives on important issues like education and economic growth. But disturbingly, Nigeria’s population believes men make better political leaders than women. According to the 2023 update of the UNDP’s Gender Social Norms Index (GSNI), women and girls face significant obstacles in realizing their potential, which span from politics to the average boardroom, and are deeply rooted in social norms.</p>
 
 <p>These norms have barred women from participating massively in government institutions, which is detrimental to the involvement of women in Nigeria’s politics. There are also more barriers to their effective participation. Some of them include:</p>
