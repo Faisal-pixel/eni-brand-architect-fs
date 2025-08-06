@@ -5,12 +5,12 @@ interface MediaItem {
   alt?: string;
 }
 
-interface DateSection {
-  date: string;
+interface ProjectSectionModalPopupSection {
+  sectionTitle: string;
   paragraph: string;
   images: MediaItem[];
   videos: MediaItem[];
 }
 
 
-export type { MediaItem, DateSection };
+export type { MediaItem, ProjectSectionModalPopupSection };

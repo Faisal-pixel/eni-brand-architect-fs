@@ -3,7 +3,7 @@ import { motion, AnimatePresence, Variants } from "motion/react";
 import Image from "next/image";
 import ModalPopUp from "../modal-pop-up.components";
 import { playWithStephenData, talentvilleAfricaData, TEEData } from "@/data/modal-pop-up-data";
-import { DateSection } from "@/app/types/modal-pop-up.types";
+import { ProjectSectionModalPopupSection } from "@/app/types/modal-pop-up.types";
 
 const ProjectShowcaseSection = () => {
   const [expandedProject, setExpandedProject] = useState<string | null>("tee");
@@ -21,21 +21,21 @@ const ProjectShowcaseSection = () => {
       modalDetails: TEEData,
       images: [
         {
-          src: "/images/TEE-project-showcase-img-1.jpg",
+          src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831170/SnapInsta.to_465031057_1000247101865763_6612606062802317618_n_zhv6ir.jpg",
           alt: "TEE project image 1",
         },
         {
-          src: "/images/TEE-project-showcase-img-2.jpg",
+          src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831337/SnapInsta.to_482055363_18294986551215542_2547270930380666164_n_bgop1i.jpg",
           alt: "TEE project image 2",
         },
-        {
-          src: "/images/TEE-project-showcase-img-3.jpg",
-          alt: "TEE project image 3",
-        },
-        {
-          src: "/images/TEE-project-showcase-img-4.jpg",
-          alt: "TEE project image 4",
-        },
+        // {
+        //   src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831044/IMG_0908_ifxbwe.jpg",
+        //   alt: "TEE project image 3",
+        // },
+        // {
+        //   src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831041/IMG_0905_xwcbzx.jpg",
+        //   alt: "TEE project image 4",
+        // },
       ],
     },
     {
@@ -49,21 +49,21 @@ const ProjectShowcaseSection = () => {
       modalDetails: playWithStephenData,
       images: [
         {
-          src: "/images/TEE-project-showcase-img-1.jpg",
+          src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282820/0T9A0767_afajmh.jpg",
           alt: "TEE project image 1",
         },
         {
-          src: "/images/TEE-project-showcase-img-2.jpg",
+          src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282430/0T9A0569_tl0rzf.jpg",
           alt: "PLAYWITHSTEPHEN GOLF TASTING project image 2",
         },
-        {
-          src: "/images/TEE-project-showcase-img-3.jpg",
-          alt: "PLAYWITHSTEPHEN GOLF TASTING project image 3",
-        },
-        {
-          src: "/images/TEE-project-showcase-img-4.jpg",
-          alt: "PLAYWITHSTEPHEN GOLF TASTING project image 4",
-        },
+        // {
+        //   src: "/images/TEE-project-showcase-img-3.jpg",
+        //   alt: "PLAYWITHSTEPHEN GOLF TASTING project image 3",
+        // },
+        // {
+        //   src: "/images/TEE-project-showcase-img-4.jpg",
+        //   alt: "PLAYWITHSTEPHEN GOLF TASTING project image 4",
+        // },
       ],
     },
     {
@@ -77,21 +77,21 @@ const ProjectShowcaseSection = () => {
       modalDetails: talentvilleAfricaData,
       images: [
         {
-          src: "/images/TEE-project-showcase-img-1.jpg",
+          src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
           alt: "Talentville Africa project image 1",
         },
         {
-          src: "/images/TEE-project-showcase-img-2.jpg",
+          src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop",
           alt: "Talentville Africa project image 2",
         },
-        {
-          src: "/images/TEE-project-showcase-img-3.jpg",
-          alt: "Talentville Africa project image 3",
-        },
-        {
-          src: "/images/TEE-project-showcase-img-4.jpg",
-          alt: "Talentville Africa project image 4",
-        },
+        // {
+        //   src: "/images/TEE-project-showcase-img-3.jpg",
+        //   alt: "Talentville Africa project image 3",
+        // },
+        // {
+        //   src: "/images/TEE-project-showcase-img-4.jpg",
+        //   alt: "Talentville Africa project image 4",
+        // },
       ],
     },
   ];
@@ -248,7 +248,7 @@ const ProjectShowcaseSection = () => {
                           </span>
                         </motion.div>
 
-                        <motion.div variants={itemVariants} className="">
+                        <motion.div variants={itemVariants} className="md:ml-auto">
                           <div className="grid grid-cols-2 gap-2 h-[256px] w-[346px] pb-3.5">
                             <motion.div
                               variants={imageVariants}
@@ -314,7 +314,7 @@ const ProjectShowcaseSection = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title={(expandedProject ? projects.find(p => p.id === expandedProject)?.title : "") as string} 
-        data={(expandedProject === "tee" ? TEEData : expandedProject === "golf" ? playWithStephenData : talentvilleAfricaData) as DateSection[]}
+        data={(expandedProject === "tee" ? TEEData : expandedProject === "golf" ? playWithStephenData : talentvilleAfricaData) as ProjectSectionModalPopupSection[]}
       />
     </div>
   );

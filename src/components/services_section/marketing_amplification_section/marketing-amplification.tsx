@@ -162,7 +162,7 @@ const MarketingAmplificationSection = () => {
                   <video
                     ref={videoRef}
                     className="w-full h-full object-cover"
-                    src="https://res.cloudinary.com/daya1fdka/video/upload/f_auto,q_auto/v1752459204/8371d80f-d358-433c-ad14-c47d78a063be_art5zr.mp4" // from public folder
+                    src="https://res.cloudinary.com/daya1fdka/video/upload/v1754487230/Landing_page_video_1_pt9vll.mov" // from public folder
                     muted
                     onTimeUpdate={handleTimeUpdate}
                     onLoadedMetadata={handleMetadataLoaded}

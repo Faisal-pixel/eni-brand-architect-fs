@@ -148,7 +148,7 @@ const MediaModalPopUpComponent: React.FC<ModalPopUpProps> = ({
                   </div>
 
                   <div className="mt-8">
-                    <VideoComponent videoSrc="https://res.cloudinary.com/daya1fdka/video/upload/f_auto,q_auto/v1752459204/8371d80f-d358-433c-ad14-c47d78a063be_art5zr.mp4" />
+                    <VideoComponent videoSrc="https://res.cloudinary.com/daya1fdka/video/upload/v1754487174/Landing_page_video_2_eknj4t.mov" />
                   </div>
                 </motion.div>
               </AnimatePresence>

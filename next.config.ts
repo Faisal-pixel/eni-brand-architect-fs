@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        pathname: "**", // allow all paths
+        pathname: "/daya1fdka/**", // allow all paths
       },
       {
         protocol: "https",

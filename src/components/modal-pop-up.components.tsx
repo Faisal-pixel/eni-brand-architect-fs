@@ -4,14 +4,14 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { XModalIcon } from "@/assets/icons";
-import { DateSection, MediaItem } from "@/app/types/modal-pop-up.types";
+import { ProjectSectionModalPopupSection, MediaItem } from "@/app/types/modal-pop-up.types";
 
 
 interface ModalPopUpProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  data: DateSection[];
+  data: ProjectSectionModalPopupSection[];
 }
 const ModalPopUp: React.FC<ModalPopUpProps> = ({
   isOpen,
@@ -54,7 +54,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
     },
   };
 
-  const getFilteredMedia = (section: DateSection) => {
+  const getFilteredMedia = (section: ProjectSectionModalPopupSection) => {
     switch (activeFilter) {
       case "photos":
         return section.images;
@@ -81,6 +81,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
           alt={item.alt || ""}
           width={175.6}
           height={175.6}
+          unoptimized
           className="w-full h-full object-cover rounded-[6px] hover:scale-105 transition-transform duration-200"
         />
       ) : (
@@ -183,7 +184,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
 
                     return (
                       <motion.div
-                        key={`${section.date}-${activeFilter}`}
+                        key={`${section.sectionTitle}-${activeFilter}`}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: sectionIndex * 0.1 }}
@@ -191,7 +192,7 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
                       >
                         {/* Date */}
                         <h3 className="text-sm mb-4 text-gray-500">
-                          {section.date}
+                          {section.sectionTitle}
                         </h3>
 
                         {/* Description */}
