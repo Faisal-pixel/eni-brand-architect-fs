@@ -14,51 +14,59 @@ import { v4 as uuidv4 } from "uuid";
 // So like ?category="inspiration";
 
 export async function GET(req: NextRequest) {
-  await db.read();
+  try {
+    await db.read();
 
-  if (!db.data || !db.data.blogPosts) {
+    if (!db.data || !db.data.blogPosts) {
+      return NextResponse.json(
+        {
+          posts: [],
+          page: 1,
+          totalPages: 0,
+          totalPosts: 0,
+        },
+        { status: 200 }
+      ); // Return an empty array
+    }
+
+    // let consider for paramse, like filter filtering for categoriies
+
+    const { searchParams } = new URL(req.url);
+    const category = searchParams.get("category");
+
+    let posts = db.data.blogPosts;
+    if (category) {
+      posts = posts.filter((post) => post.category === category);
+    }
+
+    // We are doing the pagination here because we want to also have pagination even when the user
+    // Filters by category
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "6");
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+
+    const paginatedPosts = posts.slice(startIndex, endIndex);
+    const totalNumberOfPosts = posts.length;
+    const totalPages = Math.ceil(totalNumberOfPosts / limit);
+
     return NextResponse.json(
       {
-        posts: [],
-        page: 1,
-        totalPages: 0,
-        totalPosts: 0,
+        posts: paginatedPosts,
+        page,
+        totalPages,
+        totalNumberOfPosts,
       },
       { status: 200 }
-    ); // Return an empty array
+    );
+  } catch (error) {
+    console.error("Error fetching blog posts | server:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch blog posts | server" },
+      { status: 500 }
+    );
   }
-
-  // let consider for paramse, like filter filtering for categoriies
-
-  const { searchParams } = new URL(req.url);
-  const category = searchParams.get("category");
-
-  let posts = db.data.blogPosts;
-  if (category) {
-    posts = posts.filter((post) => post.category === category);
-  }
-
-  // We are doing the pagination here because we want to also have pagination even when the user
-  // Filters by category
-  const page = parseInt(searchParams.get("page") || "1");
-  const limit = parseInt(searchParams.get("limit") || "6");
-
-  const startIndex = (page - 1) * limit;
-  const endIndex = startIndex + limit;
-
-  const paginatedPosts = posts.slice(startIndex, endIndex);
-  const totalNumberOfPosts = posts.length;
-  const totalPages = Math.ceil(totalNumberOfPosts / limit);
-
-  return NextResponse.json(
-    {
-      posts: paginatedPosts,
-      page,
-      totalPages,
-      totalNumberOfPosts,
-    },
-    { status: 200 }
-  );
 }
 
 // Now for the POST
