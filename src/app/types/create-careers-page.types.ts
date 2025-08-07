@@ -5,11 +5,11 @@ const careerSchema = z.object({
     .string()
     .min(1, "Title is required")
     .max(200, "Title must be less than 200 characters"),
-  jobType: z.enum(["Full-time", "Part-time", "Contract"], {
+  jobType: z.enum(["Full-time", "Part-time", "Contract", "Internship"], {
     errorMap: () => ({ message: "Please select a valid job type" }),
     }),
   shortJobBrief: z.string().min(1, "Short job brief is required"),
-  jobCategory: z.enum(["Design", "Product", "Marketing"], {
+  jobCategory: z.enum(["Engineering", "Development", "Marketing", "Sales", "Design", "Product", "Customer", "Management"], {
     errorMap: () => ({ message: "Please select a valid category" }),
   }),
   linkToApply: z.string().url("Invalid URL").min(1, "Link is required"),

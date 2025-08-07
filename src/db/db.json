@@ -41,8 +41,8 @@
       "jobTitle": "Job 2",
       "jobType": "Part-time",
       "jobCategory": "Product",
-      "shortJobBrief": "<p class=\"text-gray-500\">Hey!</p>",
-      "datePosted": "2025-08-07T01:47:10.540Z",
+      "shortJobBrief": "<p class=\"text-gray-500\">Hey!</p><p class=\"text-gray-500\"><br></p><p class=\"text-gray-500\">The job is good</p>",
+      "datePosted": "2025-08-07",
       "linkToApply": "https://forms.google.com"
     },
     {
@@ -50,8 +50,8 @@
       "jobTitle": "Job 3",
       "jobType": "Part-time",
       "jobCategory": "Marketing",
-      "shortJobBrief": "<p class=\"text-gray-500\">Another career brief</p>",
-      "datePosted": "2025-08-07T01:48:50.557Z",
+      "shortJobBrief": "<p class=\"text-gray-500\">Another career brief</p><p class=\"text-gray-500\"><br></p><p class=\"text-gray-500\">Editting the <b>3rd Post</b></p>",
+      "datePosted": "2025-08-07",
       "linkToApply": "https://forms.google.com"
     }
   ]

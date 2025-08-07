@@ -10,6 +10,7 @@ import {
 import CareersCreationModal from "./components/career-creation-modal.component";
 import toast from "react-hot-toast";
 import fetchAllCareersApi from "@/helpers/api_callers/fatch-all-careers.api.callers";
+import CareersEditModal from "./components/career-edit-modal.component";
 
 const CreateCareersPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +20,10 @@ const CreateCareersPage = () => {
   const [careersPosts, setCareersPosts] = useState<CareerPost[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // STATES FOR EDIT MODAL
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editedCareerData, setEditedCareerData] = useState<CareerPost | null>(null);
 
   const handleCareerSubmit = async (data: CareerFormData) => {
     console.log("Form submitted", data);
@@ -87,6 +92,40 @@ const CreateCareersPage = () => {
     } catch (error) {
       console.error("Error refetching careers:", error);
     } 
+  };
+
+  const handleCareerEdit = async (career: CareerFormData) => {
+    if(!editedCareerData) {
+      return
+    }
+
+    const editedCareerDataToSendToBackend: CareerPost = {
+      ...career,
+      id: editedCareerData.id,
+      datePosted: editedCareerData.datePosted,
+    };
+
+    const response = await fetch(`/api/v1/careers/${editedCareerDataToSendToBackend.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedCareerDataToSendToBackend),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update career");
+    }
+
+    // Refetch the careers after successful edit
+    
+    setCareersPosts(prevPosts =>
+      prevPosts.map(post =>
+        post.id === editedCareerDataToSendToBackend.id
+          ? editedCareerDataToSendToBackend
+          : post
+      )
+    );
   };
 
   useEffect(() => {
@@ -158,6 +197,8 @@ const CreateCareersPage = () => {
           page={page}
           setPage={setPage}
           totalPages={totalPages}
+          setEdittedCareerData={setEditedCareerData}
+          setIsEditModalOpen={setIsEditModalOpen}
         />
       ) : (
         <EmptyStateComponent
@@ -171,6 +212,12 @@ const CreateCareersPage = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleCareerSubmit}
+      />
+      <CareersEditModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onSubmit={handleCareerEdit}
+        edittedCareerData={editedCareerData}
       />
     </AdminContainer>
   );

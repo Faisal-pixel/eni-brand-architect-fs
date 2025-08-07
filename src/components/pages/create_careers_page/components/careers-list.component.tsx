@@ -16,6 +16,8 @@ type Props = {
   setPage: (page: number) => void;
   totalPages: number;
   onCareersDeleted?: (postId: string) => void;
+  setEdittedCareerData?: (career: CareerPost) => void;
+  setIsEditModalOpen?: (isOpen: boolean) => void;
 };
 
 const CareersListsComponent = ({
@@ -26,6 +28,8 @@ const CareersListsComponent = ({
   totalPages,
   setPage,
   onCareersDeleted,
+  setEdittedCareerData,
+  setIsEditModalOpen,
 }: Props) => {
   
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -88,6 +92,15 @@ const CareersListsComponent = ({
   const handleDeleteClick = (postId: string) => {
     setCareerToDelete(postId);
     setShowDeleteConfirm(true);
+  };
+
+  const handleEditClick = (career: CareerPost) => {
+    if (setEdittedCareerData) {
+      setEdittedCareerData(career);
+    }
+    if (setIsEditModalOpen) {
+      setIsEditModalOpen(true);
+    }
   };
 
   const filteredPosts = careersPostsProp.filter(
@@ -220,7 +233,7 @@ const CareersListsComponent = ({
                         >
                           <Trash2 size={16} />
                         </button>
-                        <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
+                        <button onClick={() => handleEditClick(career)} className="p-1 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
                           <Edit3 size={16} />
                         </button>
                       </div>
