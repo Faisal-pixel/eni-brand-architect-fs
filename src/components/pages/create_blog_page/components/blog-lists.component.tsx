@@ -109,6 +109,7 @@ const BlogListsComponent = ({
     // For example: setEditBlogData(post);
   };
 
+
   return (
     <section id="create-blog" className="">
       <div className="flex flex-col h-[81vh] rounded-[12px] border border-[#E9EAEB]">
@@ -211,7 +212,7 @@ const BlogListsComponent = ({
                     <td className="p-4 pl-3">
                       <div className="w-[86px] h-[40px] relative overflow-hidden bg-purple-200 rounded-[5px]">
                         <Image
-                          src={post.image}
+                          src={post?.imageUrl as string}
                           alt={post.title}
                           fill
                           className="object-cover"

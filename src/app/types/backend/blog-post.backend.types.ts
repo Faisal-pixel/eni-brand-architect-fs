@@ -11,4 +11,17 @@ type blogPosts = {
     latestArticle: boolean; // (default all latestArticle field will be false)
 }
 
-export type { blogPosts };
+type blogPostsSupabaseResponse = {
+    id?: string;
+    category?: "inspiration";
+    title?: string;
+    description?: string;
+    author?: string;
+    author_avatar?: string;
+    date?: string;
+    image_url?: string;
+    content?: string;
+    latest_article?: boolean;
+}
+
+export type { blogPosts, blogPostsSupabaseResponse };

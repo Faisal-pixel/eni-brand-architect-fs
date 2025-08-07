@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -20,6 +21,15 @@ const nextConfig: NextConfig = {
         pathname: "**", // allow all paths
       },
     ]
+  },
+  webpack: (config) => {
+    config.resolve.alias["@"] = path.resolve(__dirname, "src");
+    return config;
+  },
+  turbopack: {
+    resolveAlias: {
+      "@": path.resolve(__dirname, "src"),
+    }
   }
 };
 

@@ -26,7 +26,8 @@ type BlogPost = {
   title: string;
   description?: string;
   date: string;
-  image: string; // Changed to required string for display purposes
+  image?: string; // Changed to optional string for display purposes
+  imageUrl?: string; // Optional for the API response
   content?: string;
   authorName?: string;
   authorImage?: string | File;

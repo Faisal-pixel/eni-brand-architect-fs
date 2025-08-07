@@ -1,15 +1,14 @@
 import { NextResponse, NextRequest } from "next/server";
-import db from "@/lib/db";
+import { deleteRecordFromSupabase, getASingleDataFromSupabase, getDataFromSupabase, updateARecordInSupabase } from "@/lib/supabase";
+import { mapBlogPostToSupabase } from "@/helpers/backend/db/mappers..db.backend";
 
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await db.read();
-    console.log("I ran")
     const { id: postId } = await params;
-    const post = db.data?.blogPosts.find((post) => post.id === postId);
+    const post = await getASingleDataFromSupabase("blogs", postId);
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
@@ -39,27 +38,36 @@ export async function PUT(
   // operator, we pass in the previous data and then pass in the body as the new update
 
   try {
-    await db.read();
+
+    const dataFromPgTable = await getDataFromSupabase("blogs");
+    if (!dataFromPgTable || !dataFromPgTable.length) {
+      return NextResponse.json(
+        { error: "No blog posts found" },
+        { status: 404 }
+      );
+    }
     const body = await req.json();
     const { id: postId } = await params;
 
-    const postIndex = db.data?.blogPosts.findIndex(
-      (post) => post.id === postId
-    );
+    const postIndex = dataFromPgTable.findIndex((post) => post.id === postId);
 
     if (postIndex === -1 || postIndex === undefined) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
-    console.log(body);
 
-    db.data!.blogPosts[postIndex] = {
-      ...db.data?.blogPosts[postIndex],
-      ...body,
-    };
+    const mappedData = mapBlogPostToSupabase(body);
 
-    await db.write();
+    const updatedData = await updateARecordInSupabase("blogs", mappedData, postId);
+    if (!updatedData || !updatedData.length) {
+      return NextResponse.json(
+        { error: "Failed to update the post" },
+        { status: 500 }
+      );
+    }
 
-    return NextResponse.json(db.data!.blogPosts[postIndex], { status: 200 });
+    console.log("Updated data:", updatedData);
+
+    return NextResponse.json(updatedData[0], { status: 200 });
   } catch (error) {
     console.error("Error fetching posts:", error);
     return NextResponse.json(
@@ -76,22 +84,25 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await db.read();
+    
+    
     const { id: postId } = await params;
-    const blogPosts = db.data?.blogPosts;
-    const postToDeleteIndex = blogPosts.findIndex((p) => p.id === postId);
-
-    if (postToDeleteIndex === -1 || postToDeleteIndex === undefined) {
-      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    const dataFromPgTable = await getASingleDataFromSupabase("blogs", postId);
+    if(!dataFromPgTable || !dataFromPgTable.id) {
+      return NextResponse.json({ error: "Post to delete not found" }, { status: 404 });
     }
+    console.log("Data from PG table to delete:", dataFromPgTable);
+    await deleteRecordFromSupabase("blogs", postId);
+    
+
     /**
      * The below basically mutate the blogPosts array and removes items from an array. So i am
      * saying, remove the elemenet at postToDeleteIndex, and only 1 item, and since it returns an
      * arrya and we are only removing one item, we can just use [0] tp select it
      */
-    const deletedPost = blogPosts.splice(postToDeleteIndex, 1)[0];
-    await db.write();
-    return NextResponse.json(deletedPost, { status: 200 });
+    // const deletedPost = blogPosts.splice(postToDeleteIndex, 1)[0];
+    // await db.write();
+    return NextResponse.json(dataFromPgTable, { status: 200 });
   } catch (error) {
     console.error("Error fetching posts:", error);
     return NextResponse.json(
