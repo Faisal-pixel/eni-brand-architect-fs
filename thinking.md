@@ -55,3 +55,7 @@ For the blog list in the create-blog-post the data structure is different, what 
 
 So we will need to transform the data from the backend to the frontend for the create-blog page
 So i will create a function that transformDataToFitBlogList() in a helper function in /utils/transformDataToFitBlogList
+
+
+ So editing a blog thinking:
+ We want to pop out the same modal used for creating a blog right, but before it pops up, we want to fetch the information from the backend, then they can edit, once they are done, we can then send a put request to the baceknd

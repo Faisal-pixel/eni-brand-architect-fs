@@ -4,27 +4,43 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { CareerPost } from "@/app/types/create-careers-page.types";
+import toast from "react-hot-toast";
+import deleteCareersApi from "@/helpers/api_callers/delete-careers.api.callers";
 
 type Props = {
   careersPostsProp: CareerPost[];
   setIsModalOpen: (isOpen: boolean) => void;
   isModalOpen: boolean;
+  totalNumberOfCareers: number;
+  page: number;
+  setPage: (page: number) => void;
+  totalPages: number;
+  onCareersDeleted?: (postId: string) => void;
 };
 
-const CareersListsComponent = ({ careersPostsProp, setIsModalOpen}: Props) => {
-  const [careersPosts, setCareersPosts] = useState<CareerPost[]>(careersPostsProp);
+const CareersListsComponent = ({
+  careersPostsProp,
+  setIsModalOpen,
+  totalNumberOfCareers,
+  page,
+  totalPages,
+  setPage,
+  onCareersDeleted,
+}: Props) => {
+  
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selectedPosts, setSelectedPosts] = useState<string[]>([]);
+  const [selectedCareers, setSelectedCareers] = useState<string[]>([]);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [postToDelete, setPostToDelete] = useState<string | null>(null);
+  const [careerToDelete, setCareerToDelete] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case "design":
+      case "Design":
         return "bg-purple-100 text-purple-700";
-      case "product":
+      case "Product":
         return "bg-blue-100 text-blue-700";
-      case "marketing":
+      case "Marketing":
         return "bg-green-100 text-green-700";
       default:
         return "bg-gray-100 text-gray-700";
@@ -32,36 +48,51 @@ const CareersListsComponent = ({ careersPostsProp, setIsModalOpen}: Props) => {
   };
 
   const handleSelectPost = (postId: string) => {
-    setSelectedPosts((prev) =>
+    setSelectedCareers((prev) =>
       prev.includes(postId)
         ? prev.filter((id) => id !== postId)
         : [...prev, postId]
     );
   };
 
-  const confirmDelete = () => {
-    if (postToDelete) {
-      setCareersPosts((prev) => prev.filter((post) => post.id !== postToDelete));
-      setSelectedPosts((prev) => prev.filter((id) => id !== postToDelete));
+  const confirmDelete = async () => {
+    if (careerToDelete) { // if there is a post to delete
+      try {
+        setDeleting(true); // set the deleting state to true
+        // Call the API to delete the blog post
+        const deletedPost = await deleteCareersApi(careerToDelete); // call the delete career function that calls the api, all it needs is the id
+        toast.success(`${deletedPost.title} deleted successfully!`);
+
+        // Call parent callback to refresh the data
+        if (onCareersDeleted) { // So we will have a handleDeletePost function passed from the parent that refreshes the data
+          onCareersDeleted(careerToDelete);
+        }
+      } catch (error) {
+        console.error("Error deleting career:", error);
+        toast.error("Failed to delete career.");
+      } finally {
+        setSelectedCareers((prev) => prev.filter((id) => id !== careerToDelete));
+        setDeleting(false);
+      }
     }
     setShowDeleteConfirm(false);
-    setPostToDelete(null);
+    setCareerToDelete(null);
   };
 
   const cancelDelete = () => {
     setShowDeleteConfirm(false);
-    setPostToDelete(null);
+    setCareerToDelete(null);
   };
 
   const handleDeleteClick = (postId: string) => {
-    setPostToDelete(postId);
+    setCareerToDelete(postId);
     setShowDeleteConfirm(true);
   };
 
-  const filteredPosts = careersPosts.filter(
+  const filteredPosts = careersPostsProp.filter(
     (post) =>
       post.jobTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.category.toLowerCase().includes(searchTerm.toLowerCase())
+      post.jobCategory.toLowerCase().includes(searchTerm.toLowerCase())
   );
   return (
     <section id="create-careers" className="">
@@ -73,7 +104,7 @@ const CareersListsComponent = ({ careersPostsProp, setIsModalOpen}: Props) => {
               Careers
             </h1>
             <span className="bg-[#EAF8F2] text-[#017544] border border-[#E9D7FE] py-[2px] px-2 rounded-[16px] text-xs font-medium">
-              {careersPosts.length} Posts
+              {totalNumberOfCareers} Careers
             </span>
           </div>
 
@@ -145,9 +176,9 @@ const CareersListsComponent = ({ careersPostsProp, setIsModalOpen}: Props) => {
             </thead>
             <tbody>
               <AnimatePresence>
-                {filteredPosts.map((post) => (
+                {filteredPosts.map((career) => (
                   <motion.tr
-                    key={post.id}
+                    key={career.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
@@ -157,41 +188,38 @@ const CareersListsComponent = ({ careersPostsProp, setIsModalOpen}: Props) => {
                     <td className="pl-[24px] py-[26px]">
                       <input
                         type="checkbox"
-                        checked={selectedPosts.includes(post.id)}
-                        onChange={() => handleSelectPost(post.id)}
+                        checked={selectedCareers.includes(career.id)}
+                        onChange={() => handleSelectPost(career.id)}
                         className="w-5 h-5 text-emerald-600 cursor-pointer border border-gray-300 rounded-[6px] focus:ring-emerald-500"
                       />
                     </td>
-                    <td className="p-4 pl-3">
-                        {post.jobTitle}
-                    </td>
+                    <td className="p-4 pl-3">{career.jobTitle}</td>
                     <td className={`p-4 text-gray-900 `}>
-
-                          <span
+                      <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(
-                          post.category
+                          career.jobCategory
                         )}`}
                       >
-                        {post.category}
+                        {career.jobCategory}
                       </span>
-                        </td>
-                    <td className="p-4 text-gray-600">{post.jobType}</td>
+                    </td>
+                    <td className="p-4 text-gray-600">{career.jobType}</td>
                     <td className="p-4">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium`}
                       >
-                        {post.date}
+                        {career.datePosted.slice(0, 10)}
                       </span>
                     </td>
                     <td className="p-4">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => handleDeleteClick(post.id)}
-                          className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                          onClick={() => handleDeleteClick(career.id)}
+                          className="p-1 text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
                         >
                           <Trash2 size={16} />
                         </button>
-                        <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+                        <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
                           <Edit3 size={16} />
                         </button>
                       </div>
@@ -205,27 +233,36 @@ const CareersListsComponent = ({ careersPostsProp, setIsModalOpen}: Props) => {
 
         {/* Pagination */}
         <div className="flex items-center justify-between mt-auto">
-          <button className="flex items-center gap-2 px-4 py-2 text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage(page - 1)}
+            className={`flex items-center gap-2 px-4 py-2 text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+          >
             <ChevronLeft size={18} />
             Previous
           </button>
 
           <div className="flex items-center gap-2">
-            {[1, 2, 3, "...", 8, 9, 10].map((page, index) => (
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <button
-                key={index}
+                key={p}
+                onClick={() => setPage(p)}
                 className={`px-3 py-2 rounded-lg text-sm transition-colors ${
-                  page === 1
+                  page === p
                     ? "bg-emerald-600 text-white"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
-                {page}
+                {p}
               </button>
             ))}
           </div>
 
-          <button className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <button
+            disabled={page === totalPages}
+            onClick={() => setPage(page + 1)}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             Next
             <ChevronRight size={18} />
           </button>
@@ -262,17 +299,17 @@ const CareersListsComponent = ({ careersPostsProp, setIsModalOpen}: Props) => {
                   Cancel
                 </button>
                 <button
+                  disabled={deleting}
                   onClick={confirmDelete}
-                  className="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
+                  className="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Delete
+                  {deleting ? "Deleting..." : "Delete"}
                 </button>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-      
     </section>
   );
 };

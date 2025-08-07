@@ -10,6 +10,7 @@ import {
 import BlogListsComponent from "./components/blog-lists.component";
 import EmptyStateComponent from "@/components/empty-state-component";
 import { toast } from "react-hot-toast";
+import BlogEditModal from "./components/blog-edit-model.component";
 
 const CreateBlogPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +20,51 @@ const CreateBlogPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editBlogData, setEditBlogData] = useState<BlogPost | null>(null);
+
+  const handleBlogEditSubmit = async (data: BlogFormData) => {
+    if (!editBlogData) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/v1/blogPosts/${editBlogData.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...editBlogData, ...data }),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to update blog post");
+      }
+      // Update the local state with the edited blog post
+      setBlogPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === editBlogData.id
+            ? {
+                ...post,
+                ...data,
+                image: typeof data.image === "string" ? data.image : post.image, // Ensure image is a string
+              }
+            : post
+        )
+      );
+      toast.success("Blog post updated successfully");
+    } catch (error) {
+      console.error("Error updating blog post:", error);
+      toast.error(
+        error instanceof Error
+          ? `Failed to update blog post. ${error.message}`
+          : "Failed to update blog post. An unknown error occurred.",
+        {
+          id: "update-blog-post-error",
+        }
+      );
+    }
+  };
 
   const handleBlogSubmit = async (data: BlogFormData) => {
     try {
@@ -180,6 +226,8 @@ const CreateBlogPage = () => {
           setPage={setPage}
           blogPostsProp={blogPosts}
           setIsModalOpen={setIsModalOpen}
+          setIsEditModalOpen={setIsEditModalOpen}
+          setEditBlogData={setEditBlogData}
           isModalOpen={isModalOpen}
           totalNumberOfPosts={totalNumberOfPosts}
           totalPages={totalPages}
@@ -202,6 +250,14 @@ const CreateBlogPage = () => {
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleBlogSubmit}
       />
+      {isEditModalOpen && editBlogData && (
+        <BlogEditModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          onSubmit={handleBlogEditSubmit}
+          editBlogData={editBlogData}
+        />
+      )}
     </AdminContainer>
   );
 };

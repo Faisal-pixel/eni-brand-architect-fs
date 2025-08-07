@@ -7,10 +7,11 @@
       "description": "This is a test description",
       "author": "eba",
       "authorAvatar": "eba-logo",
-      "date": "2025-08-06T19:43:00.534Z",
+      "date": "2025-08-06",
       "imageUrl": "https://res.cloudinary.com/daya1fdka/image/upload/v1754509380/blogs/cover_images/this_is_a_test_1754509371220.jpg",
-      "content": "<p class=\"text-gray-500\">Oh well!</p>",
-      "latestArticle": false
+      "content": "<p class=\"text-gray-500\">Oh well!<br><br>Thank God<br><br><b>Such is life</b></p>",
+      "latestArticle": false,
+      "image": "https://res.cloudinary.com/daya1fdka/image/upload/v1754509380/blogs/cover_images/this_is_a_test_1754509371220.jpg"
     },
     {
       "id": "f52610f3-c39e-40a5-89c3-3dc0ecf4abb8",
@@ -25,14 +26,5 @@
       "latestArticle": true
     }
   ],
-  "careers": [
-    {
-      "id": "e2ad9da4-818b-4d32-8e02-16e2eece03fb",
-      "jobTitle": "Executive Assistant",
-      "jobType": "Full-time",
-      "jobCategory": "Management",
-      "shortJobBrief": "<p>Are you an aspiring Executive Assistant looking for an opportunity to take on new challenges and advance your career?</p><br /> <p>If you are an enthusiastic leader with the ability to balance big-picture thinking with deep-dive research and attention to detail, we have the perfect job for you!</p>",
-      "datePosted": "2025-08-03T02:35:53.377Z"
-    }
-  ]
+  "careers": []
 }

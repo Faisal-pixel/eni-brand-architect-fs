@@ -16,14 +16,24 @@ const careerSchema = z.object({
 
 type CareerFormData = z.infer<typeof careerSchema>;
 
+// type CareerPost = {
+//   id: string;
+//   jobTitle: string;
+//   shortJobBrief: string;
+//   jobType: "full-time" | "part-time" | "contract";
+//   category: "design" | "product" | "marketing";
+//   datePosted: string; // Date in ISO format
+// };
+
 type CareerPost = {
-  id: string;
-  jobTitle: string;
-  shortJobBrief: string;
-  jobType: "full-time" | "part-time" | "contract";
-  category: "design" | "product" | "marketing";
-  date: string; // Date in ISO format
+    id: string;
+    jobTitle: string;
+    jobType: "Full-time" | "Part-time" | "Internship" | "Contract";
+    jobCategory: "Engineering"| "Development" | "Marketing" | "Sales" | "Design" | "Product" | "Customer" | "Management";
+    shortJobBrief: string;
+    datePosted: string;
+    linkToApply: string;
 };
 
-export type { CareerFormData, CareerPost };
+export type { CareerFormData, CareerPost};
 export { careerSchema };

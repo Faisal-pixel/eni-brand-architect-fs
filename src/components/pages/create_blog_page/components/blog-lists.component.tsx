@@ -16,6 +16,8 @@ type Props = {
   totalNumberOfPosts: number;
   totalPages: number;
   onDeletePost?: (postId: string) => void; // Add callback for deletion
+  setIsEditModalOpen?: (isOpen: boolean) => void;
+  setEditBlogData?: (data: BlogPost | null) => void;
 };
 
 const BlogListsComponent = ({
@@ -26,6 +28,8 @@ const BlogListsComponent = ({
   totalNumberOfPosts,
   totalPages,
   onDeletePost,
+  setIsEditModalOpen,
+  setEditBlogData,
 }: Props) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedPosts, setSelectedPosts] = useState<string[]>([]);
@@ -92,6 +96,17 @@ const BlogListsComponent = ({
   const handleDeleteClick = (postId: string) => {
     setPostToDelete(postId);
     setShowDeleteConfirm(true);
+  };
+
+  const handleEditClick = (post: BlogPost) => {
+    if (setIsEditModalOpen) {
+      setIsEditModalOpen(true);
+    }
+    if (setEditBlogData) {
+      setEditBlogData(post as BlogPost);
+    }
+    // You can also set the post data to be edited in a state or context
+    // For example: setEditBlogData(post);
   };
 
   return (
@@ -222,7 +237,12 @@ const BlogListsComponent = ({
                         >
                           <Trash2 size={16} />
                         </button>
-                        <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
+                        <button
+                          onClick={() => {
+                            handleEditClick(post);
+                          }}
+                          className="p-1 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                        >
                           <Edit3 size={16} />
                         </button>
                       </div>
