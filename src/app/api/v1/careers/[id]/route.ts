@@ -1,19 +1,44 @@
+// Import types and utilities for working with individual careers and Supabase
 import { NextResponse, NextRequest } from "next/server";
-import db from "@/lib/db";
+import { careersSupabaseResponse } from "@/app/types/backend/careers.backend.types";
+import {
+  mapCareerFromSupabase,
+  mapCareerToSupabase,
+} from "@/helpers/backend/db/mappers..db.backend";
+import {
+  deleteRecordFromSupabase,
+  getASingleDataFromSupabase,
+  updateARecordInSupabase,
+} from "@/lib/supabase";
 
+// GET a single career by ID
+// This function fetches one specific job posting using its unique ID
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await db.read();
+    // STEP 1: Extract the career ID from the URL parameters
+    // When someone visits /api/v1/careers/abc123, the ID is "abc123"
     const { id: careerId } = await params;
-    const career = db.data?.careers.find((career) => career.id === careerId);
+
+    // STEP 2: Get this specific career from Supabase database
+    // This replaces the old "await db.read()" and finding in the array
+    const career = await getASingleDataFromSupabase("careers", careerId);
+
+    // STEP 3: Check if the career exists
+    // If no career found with this ID, tell the user it doesn't exist
     if (!career) {
       return NextResponse.json({ error: "Career not found" }, { status: 404 });
     }
-    return NextResponse.json(career, { status: 200 });
+
+    // STEP 4: Convert from Supabase format to frontend format and send response
+    const mappedCareer = mapCareerFromSupabase(
+      career as careersSupabaseResponse
+    );
+    return NextResponse.json(mappedCareer, { status: 200 });
   } catch (error) {
+    // STEP 5: Handle any errors that occur
     console.error("Error fetching the career:", error);
     return NextResponse.json(
       { error: "Failed to fetch the career" },
@@ -22,35 +47,59 @@ export async function GET(
   }
 }
 
-// PUT REQUEST
-
+// PUT - Update an existing career
+// This function allows editing/updating a job posting
 export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await db.read();
+    // STEP 1: Get the updated career data from the request body
+    // This contains the new information the user wants to save
     const body = await req.json();
+
+    // STEP 2: Extract the career ID from the URL
     const { id: careerId } = await params;
 
-    const careerIndex = db.data?.careers.findIndex(
-      (career) => career.id === careerId
+    // STEP 3: Check if the career exists before trying to update it
+    const existingCareer = await getASingleDataFromSupabase(
+      "careers",
+      careerId
     );
-
-    if (careerIndex === -1 || careerIndex === undefined) {
+    if (!existingCareer) {
       return NextResponse.json({ error: "Career not found" }, { status: 404 });
     }
 
-    db.data!.careers[careerIndex] = {
-      ...db.data?.careers[careerIndex],
-      ...body,
-    };
+    // STEP 4: Convert the updated data to Supabase format
+    // The body contains frontend format (camelCase), we need database format (snake_case)
+    const mappedData = mapCareerToSupabase(body);
 
-    await db.write();
+    // STEP 5: Update the career in Supabase database
+    // This replaces the old method of finding index and updating the array
+    const updatedData = await updateARecordInSupabase(
+      "careers",
+      mappedData,
+      careerId
+    );
 
-    return NextResponse.json(db.data!.careers[careerIndex], { status: 200 });
+    // STEP 6: Check if the update was successful
+    if (!updatedData || !updatedData.length) {
+      return NextResponse.json(
+        { error: "Failed to update the career" },
+        { status: 500 }
+      );
+    }
+
+    // STEP 7: Convert the updated data back to frontend format and send response
+    const responseData = mapCareerFromSupabase(
+      updatedData[0] as careersSupabaseResponse
+    );
+    console.log("Updated career:", responseData);
+
+    return NextResponse.json(responseData, { status: 200 });
   } catch (error) {
-    console.error("Error fetching careers:", error);
+    // STEP 8: Handle any errors during the update process
+    console.error("Error updating career:", error);
     return NextResponse.json(
       { error: "Failed to update the career" },
       { status: 500 }
@@ -58,33 +107,44 @@ export async function PUT(
   }
 }
 
-// DELETE a career
-
+// DELETE a career posting
+// This function removes a job posting from the database
 export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await db.read();
+    // STEP 1: Extract the career ID from the URL
     const { id: careerId } = await params;
-    const careers = db.data?.careers;
-    const careerToDeleteIndex = careers.findIndex((c) => c.id === careerId);
 
-    if (careerToDeleteIndex === -1 || careerToDeleteIndex === undefined) {
-      return NextResponse.json({ error: "Career not found" }, { status: 404 });
+    // STEP 2: Check if the career exists before trying to delete it
+    // Get the career data so we can return it in the response (common practice)
+    const dataToDelete = await getASingleDataFromSupabase("careers", careerId);
+    if (!dataToDelete || !dataToDelete.id) {
+      return NextResponse.json(
+        { error: "Career to delete not found" },
+        { status: 404 }
+      );
     }
-    /**
-     * The below basically mutate the careers array and removes items from an array. So i am
-     * saying, remove the elemenet at careerToDeleteIndex, and only 1 item, and since it returns an
-     * arrya and we are only removing one item, we can just use [0] tp select it
-     */
-    const deletedCareer = careers.splice(careerToDeleteIndex, 1)[0];
-    await db.write();
+
+    // STEP 3: Log what we're about to delete (helpful for debugging)
+    console.log("Career to delete:", dataToDelete);
+
+    // STEP 4: Delete the career from Supabase database
+    // This replaces the old method of using splice() to remove from array
+    await deleteRecordFromSupabase("careers", careerId);
+
+    // STEP 5: Convert to frontend format and return the deleted career data
+    // This confirms to the user what was deleted
+    const deletedCareer = mapCareerFromSupabase(
+      dataToDelete as careersSupabaseResponse
+    );
     return NextResponse.json(deletedCareer, { status: 200 });
   } catch (error) {
-    console.error("Error fetching careers:", error);
+    // STEP 6: Handle any errors during deletion
+    console.error("Error deleting career:", error);
     return NextResponse.json(
-      { error: "Failed to fetch careers" },
+      { error: "Failed to delete career" },
       { status: 500 }
     );
   }
