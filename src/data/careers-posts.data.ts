@@ -6,27 +6,30 @@ const careersPosts: CareerPost[] = [
     jobTitle: "Software Engineer",
     shortJobBrief:
       "A software engineer is needed to develop and maintain software applications.",
-    jobType: "full-time",
-    category: "design",
+    jobType: "Full-time",
+    jobCategory: "Design",
     datePosted: "12/10/2025",
+    linkToApply: "https://example.com/apply/software-engineer",
   },
   {
     id: "2",
     jobTitle: "Product Manager",
     shortJobBrief:
       "A product manager is needed to oversee product development and strategy.",
-    jobType: "part-time",
-    category: "product",
+    jobType: "Part-time",
+    jobCategory: "Product",
     datePosted: "12/11/2025",
+    linkToApply: "https://example.com/apply/product-manager",
   },
   {
     id: "3",
     jobTitle: "Marketing Specialist",
     shortJobBrief:
       "A marketing specialist is needed to manage marketing campaigns and strategies.",
-    jobType: "contract",
-    category: "marketing",
+    jobType: "Contract",
+    jobCategory: "Marketing",
     datePosted: "12/12/2025",
+    linkToApply: "https://example.com/apply/marketing-specialist",
   },
 ];
 
