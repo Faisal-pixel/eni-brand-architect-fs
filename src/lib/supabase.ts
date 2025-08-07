@@ -44,4 +44,28 @@ export const insertIntoSupabase = async (
   }
 };
 
+export const updateARecordInSupabase = async (
+  tableName: string,
+  data: blogPostsSupabaseResponse,
+  id: string
+) => {
+  try {
+    const { data: updatedData, error } = await supabase
+      .from(tableName)
+      .update(data)
+      .eq("id", id)
+      .select();
+    console.log("I hite here")
+    if (error) {
+      console.error("Error updating data in Supabase:", error);
+      throw error;
+    }
+
+    return updatedData;
+  } catch (error) {
+    console.error("Error updating data in Supabase:", error);
+    throw error;
+  }
+}
+
 export default supabase;
