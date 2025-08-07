@@ -37,7 +37,8 @@ const CareersCreationModal: React.FC<CareerCreationModalProps> = ({
     jobTitle: "",
     jobType: undefined,
     shortJobBrief: "",
-    category: undefined,
+    jobCategory: undefined,
+    linkToApply: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,15 +48,15 @@ const CareersCreationModal: React.FC<CareerCreationModalProps> = ({
   const titleInputRef = useRef<HTMLInputElement>(null);
 
   const categories = [
-    { value: "design", label: "Design" },
-    { value: "product", label: "Product" },
-    { value: "marketing", label: "Marketing" },
+    { value: "Design", label: "Design" },
+    { value: "Product", label: "Product" },
+    { value: "Marketing", label: "Marketing" },
   ];
 
   const jobTypes = [
-    { value: "full-time", label: "Full Time" },
-    { value: "part-time", label: "Part Time" },
-    { value: "contract", label: "Contract" },
+    { value: "Full-time", label: "Full Time" },
+    { value: "Part-time", label: "Part Time" },
+    { value: "Contract", label: "Contract" },
   ];
 
   // const colors = [
@@ -229,12 +230,12 @@ const CareersCreationModal: React.FC<CareerCreationModalProps> = ({
                   Category
                 </label>
                 <select
-                  value={formData.category || ""}
+                  value={formData.jobCategory || ""}
                   onChange={(e) =>
-                    handleInputChange("category", e.target.value)
+                    handleInputChange("jobCategory", e.target.value)
                   }
                   className={`w-full px-4 py-3 border cursor-pointer rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all ${
-                    errors.category ? "border-red-500" : "border-gray-300"
+                    errors.jobCategory ? "border-red-500" : "border-gray-300"
                   }`}
                 >
                   <option value="" className="cursor-pointer">
@@ -254,6 +255,25 @@ const CareersCreationModal: React.FC<CareerCreationModalProps> = ({
                   <p className="text-red-500 text-sm mt-1">{errors.category}</p>
                 )}
               </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-[rgba(17,24,39,1)] mb-2">
+                Link to Apply
+              </label>
+              <input
+                ref={titleInputRef}
+                type="text"
+                placeholder="Enter Link to Apply"
+                value={formData.linkToApply}
+                onChange={(e) => handleInputChange("linkToApply", e.target.value)}
+                className={`w-full p-3 max-h-[40px] border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all ${
+                  errors.linkToApply ? "border-red-500" : "border-gray-300"
+                }`}
+              />
+              {errors.linkToApply && (
+                <p className="text-red-500 text-sm mt-1">{errors.linkToApply}</p>
+              )}
             </div>
 
             {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

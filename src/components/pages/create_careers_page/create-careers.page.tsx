@@ -19,8 +19,36 @@ const CreateCareersPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const handleCareerSubmit = (data: CareerFormData) => {
+  const handleCareerSubmit = async (data: CareerFormData) => {
     console.log("Form submitted", data);
+    try {
+      const response = await fetch("/api/v1/careers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to create career");
+      }
+
+      // Update the local state with the new career post
+      setCareersPosts((prevPosts) => [...prevPosts, result]);
+    } catch (error) {
+      console.error("Error creating career:", error);
+      // Handle error appropriately, e.g., show a toast notification
+      toast.error(
+        error instanceof Error
+          ? `Failed to create career. ${error.message}`
+          : "Failed to create career. An unknown error occurred.",
+        {
+          id: "create-career-error",
+        }
+      );
+    }
   };
 
   const handleButtonClicked = () => {
@@ -36,9 +64,9 @@ const CreateCareersPage = () => {
       }
       const data: {
         page: number;
-          careers: CareerPost[];
-          totalNumberOfCareers: number;
-          totalPages: number;
+        careers: CareerPost[];
+        totalNumberOfCareers: number;
+        totalPages: number;
       } = await response.json();
       const transformedCareers = data.careers.map((career: CareerPost) => ({
         ...career,

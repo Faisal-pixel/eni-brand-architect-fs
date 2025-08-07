@@ -26,5 +26,15 @@
       "latestArticle": true
     }
   ],
-  "careers": []
+  "careers": [
+    {
+      "id": "ac8e3689-22b4-49bf-8b46-742d41e8a02e",
+      "jobTitle": "Job 1",
+      "jobType": "Full-time",
+      "jobCategory": "Product",
+      "shortJobBrief": "<p class=\"text-gray-500\">Tough life</p>",
+      "datePosted": "2025-08-07T01:21:32.713Z",
+      "linkToApply": "https://forms.google.com"
+    }
+  ]
 }
