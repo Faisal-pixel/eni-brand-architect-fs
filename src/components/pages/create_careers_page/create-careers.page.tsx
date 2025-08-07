@@ -49,6 +49,7 @@ const CreateCareersPage = () => {
       })) as CareerPost[];
       setCareersPosts(transformedCareers);
       setPage(newResult.page);
+      setTotalPages(newResult.totalPages);
       setTotalNumberOfCareers(newResult.totalNumberOfCareers);
     } catch (error) {
       console.error("Error creating career:", error);
@@ -118,7 +119,9 @@ const CreateCareersPage = () => {
     }
 
     // Refetch the careers after successful edit
-    
+    toast.success("Career updated successfully", {
+      id: "career-update-success",
+    });
     setCareersPosts(prevPosts =>
       prevPosts.map(post =>
         post.id === editedCareerDataToSendToBackend.id
