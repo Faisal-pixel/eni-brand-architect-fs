@@ -60,8 +60,9 @@ const CareersListsComponent = ({
       try {
         setDeleting(true); // set the deleting state to true
         // Call the API to delete the blog post
-        const deletedPost = await deleteCareersApi(careerToDelete); // call the delete career function that calls the api, all it needs is the id
-        toast.success(`${deletedPost.title} deleted successfully!`);
+        const deletedPost = await deleteCareersApi(careerToDelete);
+        console.log("Deleted post:", deletedPost);
+        toast.success(`${deletedPost.jobTitle} deleted successfully!`);
 
         // Call parent callback to refresh the data
         if (onCareersDeleted) { // So we will have a handleDeletePost function passed from the parent that refreshes the data

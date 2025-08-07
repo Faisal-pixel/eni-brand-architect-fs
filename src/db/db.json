@@ -28,12 +28,30 @@
   ],
   "careers": [
     {
-      "id": "ac8e3689-22b4-49bf-8b46-742d41e8a02e",
+      "id": "a032a745-0dd5-438d-9c1e-56c1fd44c5ff",
       "jobTitle": "Job 1",
       "jobType": "Full-time",
+      "jobCategory": "Design",
+      "shortJobBrief": "<p class=\"text-gray-500\">THis is a job description</p>",
+      "datePosted": "2025-08-07T01:42:33.648Z",
+      "linkToApply": "https://forms.google.com"
+    },
+    {
+      "id": "0689c4be-327f-4031-a58a-6d1d8990b9e3",
+      "jobTitle": "Job 2",
+      "jobType": "Part-time",
       "jobCategory": "Product",
-      "shortJobBrief": "<p class=\"text-gray-500\">Tough life</p>",
-      "datePosted": "2025-08-07T01:21:32.713Z",
+      "shortJobBrief": "<p class=\"text-gray-500\">Hey!</p>",
+      "datePosted": "2025-08-07T01:47:10.540Z",
+      "linkToApply": "https://forms.google.com"
+    },
+    {
+      "id": "337f88c2-69e6-4964-97f7-03c810649ce4",
+      "jobTitle": "Job 3",
+      "jobType": "Part-time",
+      "jobCategory": "Marketing",
+      "shortJobBrief": "<p class=\"text-gray-500\">Another career brief</p>",
+      "datePosted": "2025-08-07T01:48:50.557Z",
       "linkToApply": "https://forms.google.com"
     }
   ]

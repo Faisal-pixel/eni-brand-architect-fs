@@ -31,7 +31,7 @@ interface CareerCreationModalProps {
 const CareersCreationModal: React.FC<CareerCreationModalProps> = ({
   isOpen,
   onClose,
-  onSubmit,
+  onSubmit
 }) => {
   const [formData, setFormData] = useState<Partial<CareerFormData>>({
     jobTitle: "",
@@ -107,6 +107,16 @@ const CareersCreationModal: React.FC<CareerCreationModalProps> = ({
       const validatedData = careerSchema.parse(formData);
       await onSubmit(validatedData);
       onClose();
+      setFormData({
+        jobTitle: "",
+        jobType: undefined,
+        shortJobBrief: "",
+        jobCategory: undefined,
+        linkToApply: "",
+      });
+      setErrors({});
+      setSelectedColor("#000000");
+      contentRef.current?.focus();
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Record<string, string> = {};
@@ -266,13 +276,17 @@ const CareersCreationModal: React.FC<CareerCreationModalProps> = ({
                 type="text"
                 placeholder="Enter Link to Apply"
                 value={formData.linkToApply}
-                onChange={(e) => handleInputChange("linkToApply", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("linkToApply", e.target.value)
+                }
                 className={`w-full p-3 max-h-[40px] border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all ${
                   errors.linkToApply ? "border-red-500" : "border-gray-300"
                 }`}
               />
               {errors.linkToApply && (
-                <p className="text-red-500 text-sm mt-1">{errors.linkToApply}</p>
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.linkToApply}
+                </p>
               )}
             </div>
 

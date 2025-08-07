@@ -9,6 +9,7 @@ import {
 } from "@/app/types/create-careers-page.types";
 import CareersCreationModal from "./components/career-creation-modal.component";
 import toast from "react-hot-toast";
+import fetchAllCareersApi from "@/helpers/api_callers/fatch-all-careers.api.callers";
 
 const CreateCareersPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,7 +37,14 @@ const CreateCareersPage = () => {
       }
 
       // Update the local state with the new career post
-      setCareersPosts((prevPosts) => [...prevPosts, result]);
+      const newResult = await fetchAllCareersApi(page);
+      const transformedCareers = newResult.careers.map((career: CareerPost) => ({
+        ...career,
+        datePosted: career.datePosted?.slice(0, 10), // Format date to YYYY-MM-DD
+      })) as CareerPost[];
+      setCareersPosts(transformedCareers);
+      setPage(newResult.page);
+      setTotalNumberOfCareers(newResult.totalNumberOfCareers);
     } catch (error) {
       console.error("Error creating career:", error);
       // Handle error appropriately, e.g., show a toast notification
@@ -72,12 +80,13 @@ const CreateCareersPage = () => {
         ...career,
         datePosted: career.datePosted?.slice(0, 10), // Format date to YYYY-MM-DD
       })) as CareerPost[];
+      setPage(data.page);
       setCareersPosts(transformedCareers);
       setTotalNumberOfCareers(data.totalNumberOfCareers);
       setTotalPages(data.totalPages);
     } catch (error) {
       console.error("Error refetching careers:", error);
-    }
+    } 
   };
 
   useEffect(() => {
