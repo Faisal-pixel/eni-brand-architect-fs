@@ -22,6 +22,28 @@ export const getDataFromSupabase = async (tableName: string) => {
   }
 };
 
+export const getASingleDataFromSupabase = async (
+  tableName: string,
+  id: string
+) => {
+  try {
+    const { data, error } = await supabase
+      .from(tableName)
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    return data as blogPostsSupabaseResponse;
+  } catch (error) {
+    console.error("Error fetching single data from Supabase:", error);
+    throw error;
+  }
+};
+
 export const insertIntoSupabase = async (
   tableName: string,
   data: blogPostsSupabaseResponse
@@ -55,7 +77,7 @@ export const updateARecordInSupabase = async (
       .update(data)
       .eq("id", id)
       .select();
-    console.log("I hite here")
+    console.log("I hite here");
     if (error) {
       console.error("Error updating data in Supabase:", error);
       throw error;
@@ -66,6 +88,23 @@ export const updateARecordInSupabase = async (
     console.error("Error updating data in Supabase:", error);
     throw error;
   }
-}
+};
+
+export const deleteRecordFromSupabase = async (
+  tableName: string,
+  id: string
+) => {
+  try {
+    const response = await supabase.from(tableName).delete().eq("id", id);
+
+    if (response.error) {
+      console.error("Error deleting data from Supabase:", response.error);
+      throw response.error;
+    }
+  } catch (error) {
+    console.error("Error deleting data from Supabase:", error);
+    throw error;
+  }
+};
 
 export default supabase;
