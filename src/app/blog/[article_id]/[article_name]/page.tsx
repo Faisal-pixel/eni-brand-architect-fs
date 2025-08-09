@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import ArticleMainPage from "@/components/pages/blog_page/article/article-main-page";
 import CTASection from "@/components/footer_section/footer-section";
 import BlogPageContainer from "@/components/pages/blog_page/components/blog-page-container";
-import { Article, Articles } from "@/app/types/blog-articles.types";
+import { Article } from "@/app/types/blog-articles.types";
 
 export default async function BlogPost({
   params,
@@ -28,6 +28,7 @@ export default async function BlogPost({
     console.log(process.env.NEXT_PUBLIC_BASE_URL, process.env.VERCEL_URL);
 
     const response = await fetch(`${baseUrl}/api/v1/blogPosts/${article_id}`);
+    console.log("Response status:", response.status);
 
     if (!response.ok) {
       if (response.status === 404) {
@@ -77,9 +78,12 @@ export async function generateStaticParams() {
       return []; // Return empty array instead of throwing error
     }
 
-    const data: Articles = await response.json();
 
-    return data.map((article) => ({
+    const data= await response.json();
+
+
+
+    return data.posts.map((article: Article) => ({
       article_id: article.id,
       article_name: encodeURIComponent(
         article.title.toLowerCase().replace(/\s+/g, "-")

@@ -25,7 +25,9 @@ export async function GET(
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
-    return NextResponse.json(post, { status: 200 });
+
+    const mappedPost = mapBlogPostFromSupabase(post);
+    return NextResponse.json(mappedPost, { status: 200 });
   } catch (error) {
     console.error("Error fetching the post:", error);
     return NextResponse.json(
@@ -81,8 +83,6 @@ export async function PUT(
       );
     }
 
-    console.log("Updated data:", updatedData);
-
     return NextResponse.json(updatedData[0], { status: 200 });
   } catch (error) {
     console.error("Error fetching posts:", error);
@@ -111,8 +111,6 @@ export async function DELETE(
       );
     }
 
-    console.log("Data from PG table to delete:", dataFromPgTable);
-
     /**
      * STEP 1: Delete the associated image from Cloudinary
      * Extract the public_id from the Cloudinary URL to delete the image
@@ -136,14 +134,8 @@ export async function DELETE(
             publicId = publicId.substring(0, lastDotIndex);
           }
 
-          console.log(
-            "Attempting to delete Cloudinary image with public_id:",
-            publicId
-          );
-
           // Delete the image from Cloudinary
           const cloudinaryResult = await cloudinary.uploader.destroy(publicId);
-          console.log("Cloudinary deletion result:", cloudinaryResult);
 
           if (
             cloudinaryResult.result !== "ok" &&
