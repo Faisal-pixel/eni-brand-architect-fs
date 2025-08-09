@@ -1,3 +1,4 @@
+import slugifyTitle from "@/helpers/slugify-blog-titles-for-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -17,10 +18,8 @@ export async function POST(req: NextRequest) {
       );
     }
     const timestamp = Math.round(new Date().getTime() / 1000);
-
-    const publicId = `${data.title
-      .replace(/\s+/g, "_")
-      .toLowerCase()}_${Date.now()}`;
+    const safeSlug = slugifyTitle(data.title);
+    const publicId = `${safeSlug}_${Date.now()}`;
     console.log("Public ID:", publicId, "Body", data);
 
     // Params for signature

@@ -115,10 +115,11 @@ const CreateBlogPage = () => {
       );
 
       const uploadData = await uploadResponse.json();
+      console.log("I got here!!!")
+      console.log("Upload data:", uploadData);
       if (!uploadResponse.ok) {
         throw new Error(uploadData.error?.message || "Failed to upload image");
       }
-
       const transformedData = {
         ...data,
         date: new Date().toISOString(),
