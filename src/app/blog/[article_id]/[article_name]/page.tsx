@@ -13,6 +13,8 @@ export default async function BlogPost({
 }) {
   const { article_id } = await params;
 
+  console.log("Landed on an article page with ID:", article_id);
+
   try {
     // Use absolute URL for server-side fetching
     const baseUrl =
