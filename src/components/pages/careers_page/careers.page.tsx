@@ -1,14 +1,40 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import JobListings from "@/components/pages/careers_page/components/job-listings.component";
 import CareersPageContainer from "./components/careers-page-container";
 import CareersPageHeader from "./components/careers-page-header.components";
 import CTASection from "@/components/footer_section/footer-section";
-import { jobs } from "@/data/job-listings.data";
 import EmptyStateComponent from "@/components/empty-state-component";
+import fetchAllCareersWithoutPaginationApi from "@/helpers/api_callers/fetch-all-careers-without-pagination.api.callers";
+import { careers } from "@/app/types/backend/careers.backend.types";
+import { Jobs } from "@/app/types/job-listings.types";
 
 // type Props = {}
 
 const CareersPage = () => {
+  const [jobs, setJobs] = React.useState<Jobs>([]);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      const response = await fetchAllCareersWithoutPaginationApi();
+      if (response && response.careers) {
+        // Assuming the API returns an array of jobs
+        const jobsData: Jobs = response.careers.map((career: careers) => ({
+          id: career.id,
+          jobTitle: career.jobTitle,
+          timeAgo: "Just posted", // Placeholder, you can implement actual time logic
+          detailedDescription: career.shortJobBrief || "",
+          jobCategory: career.jobCategory,
+          jobType: career.jobType,
+          datePosted: career.datePosted,
+          link: career.linkToApply,
+        }));
+        setJobs(jobsData);
+      }
+    }
+
+    fetchJobs();
+  }, [])
   return (
     <div>
       {jobs && jobs.length > 0 ? (

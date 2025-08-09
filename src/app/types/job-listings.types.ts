@@ -1,11 +1,12 @@
 type Job = {
-    id: number;
-    title: string;
+    id: string;
+    jobTitle: string;
     timeAgo?: string;
-    description: string;
+    description?: string; // removing soon
     jobCategory: "Engineering"| "Development" | "Marketing" | "Sales" | "Design" | "Product" | "Customer" | "Management";
     detailedDescription: string;
-    type: string;
+    jobType: string;
+    datePosted?: string; // Optional date posted
     link?: string; // Optional link to the google form or application page
 }
 

@@ -45,28 +45,43 @@ export async function GET(req: NextRequest) {
     if (category) {
       careers = careers.filter((career) => career.jobCategory === category);
     }
-
+    // Before we paginate, we can ask them to pass in a paginate param, just in case they
+    // want to see all careers without pagination and the default is to paginate
+    const nopagination = searchParams.get("nopagination");
     // STEP 6: Handle pagination (breaking results into pages)
     // Get page number and limit from URL, with defaults if not provided
-    const page = parseInt(searchParams.get("page") || "1"); // Default to page 1
-    const limit = parseInt(searchParams.get("limit") || "6"); // Default to 6 careers per page
+    if (!nopagination) {
+      const page = parseInt(searchParams.get("page") || "1"); // Default to page 1
+      const limit = parseInt(searchParams.get("limit") || "6"); // Default to 6 careers per page
 
-    // Calculate which careers to show on this page
-    const startIndex = (page - 1) * limit; // If page=2, limit=6, start at index 6
-    const endIndex = startIndex + limit; // End at index 12
+      // Calculate which careers to show on this page
+      const startIndex = (page - 1) * limit; // If page=2, limit=6, start at index 6
+      const endIndex = startIndex + limit; // End at index 12
 
-    // Get only the careers for this page
-    const paginatedCareers = careers.slice(startIndex, endIndex);
-    const totalNumberOfCareers = careers.length;
-    const totalPages = Math.ceil(totalNumberOfCareers / limit);
+      // Get only the careers for this page
+      const paginatedCareers = careers.slice(startIndex, endIndex);
+      const totalNumberOfCareers = careers.length;
+      const totalPages = Math.ceil(totalNumberOfCareers / limit);
 
-    // STEP 7: Send the response back to the frontend
+      // STEP 7: Send the response back to the frontend
+      return NextResponse.json(
+        {
+          careers: paginatedCareers,
+          page,
+          totalPages,
+          totalNumberOfCareers,
+        },
+        { status: 200 }
+      );
+    }
+
+    // If no pagination is requested, just return all careers
     return NextResponse.json(
       {
-        careers: paginatedCareers,
-        page,
-        totalPages,
-        totalNumberOfCareers,
+        careers,
+        page: 1, // No pagination means page 1
+        totalPages: 1, // No pagination means only one page
+        totalNumberOfCareers: careers.length,
       },
       { status: 200 }
     );

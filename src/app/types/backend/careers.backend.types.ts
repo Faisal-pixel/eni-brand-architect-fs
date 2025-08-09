@@ -3,7 +3,7 @@
 type careersSupabaseResponse = {
   id?: string;
   job_title: string;
-  job_type: "Full-time" | "Part-time" | "Internship" | "Contract";
+  job_type: "Full-time" | "Part-time" | "Internship" | "Contract" | "Remote";
   job_category:
     | "Engineering"
     | "Development"
@@ -23,7 +23,7 @@ type careersSupabaseResponse = {
 type careers = {
   id: string;
   jobTitle: string;
-  jobType: "Full-time" | "Part-time" | "Internship" | "Contract";
+  jobType: "Full-time" | "Part-time" | "Internship" | "Contract" | "Remote";
   jobCategory:
     | "Engineering"
     | "Development"

@@ -51,12 +51,19 @@ const CareersCreationModal: React.FC<CareerCreationModalProps> = ({
     { value: "Design", label: "Design" },
     { value: "Product", label: "Product" },
     { value: "Marketing", label: "Marketing" },
+    {value: "Engineering", label: "Engineering" },
+    { value: "Development", label: "Development" },
+    { value: "Sales", label: "Sales" },
+    { value: "Customer", label: "Customer" },
+    { value: "Management", label: "Management" },
   ];
 
   const jobTypes = [
     { value: "Full-time", label: "Full Time" },
     { value: "Part-time", label: "Part Time" },
     { value: "Contract", label: "Contract" },
+    { value: "Remote", label: "Remote" },
+    { value: "Internship", label: "Internship" },
   ];
 
   // const colors = [

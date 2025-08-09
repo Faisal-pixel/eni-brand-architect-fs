@@ -5,7 +5,7 @@ const careerSchema = z.object({
     .string()
     .min(1, "Title is required")
     .max(200, "Title must be less than 200 characters"),
-  jobType: z.enum(["Full-time", "Part-time", "Contract", "Internship"], {
+  jobType: z.enum(["Full-time", "Part-time", "Contract", "Internship", "Remote"], {
     errorMap: () => ({ message: "Please select a valid job type" }),
     }),
   shortJobBrief: z.string().min(1, "Short job brief is required"),
@@ -29,7 +29,7 @@ type CareerFormData = z.infer<typeof careerSchema>;
 type CareerPost = {
     id: string;
     jobTitle: string;
-    jobType: "Full-time" | "Part-time" | "Internship" | "Contract";
+    jobType: "Full-time" | "Part-time" | "Internship" | "Contract" | "Remote";
     jobCategory: "Engineering"| "Development" | "Marketing" | "Sales" | "Design" | "Product" | "Customer" | "Management";
     shortJobBrief: string;
     datePosted: string;

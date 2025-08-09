@@ -1,7 +1,7 @@
 "use client";
 import { Jobs } from "@/app/types/job-listings.types";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 type JobListingsProps = {
   jobs: Jobs;
@@ -10,6 +10,7 @@ type JobListingsProps = {
 const JobListings = ({ jobs }: JobListingsProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Show all");
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
 
   const categories = [
     { name: "Show all", count: jobs.length },
@@ -35,6 +36,13 @@ const JobListings = ({ jobs }: JobListingsProps) => {
     },
   ];
 
+  // useEffect(() => {
+  //   if (descriptionRef.current) {
+  //     descriptionRef.current.style.maxHeight = "none"; // Reset max-height for smooth transition
+  //     descriptionRef.current.innerHTML = 
+  //   }
+  // }, [jobs]);
+
 
   const filteredJobs =
     selectedCategory === "Show all"
@@ -47,6 +55,8 @@ const JobListings = ({ jobs }: JobListingsProps) => {
     }, 200);
     return () => clearTimeout(timer);
   }, []);
+
+  
 
   return (
     <div className="min-h-screen">
@@ -152,7 +162,7 @@ const JobListings = ({ jobs }: JobListingsProps) => {
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-1">
-                          {job.title}
+                          {job.jobTitle}
                         </h3>
                         <p className="text-sm text-gray-500">{job.timeAgo}</p>
                       </div>
@@ -160,18 +170,19 @@ const JobListings = ({ jobs }: JobListingsProps) => {
 
                     {/* Job description */}
                     <div className="mb-4">
-                      <p className="text-gray-700 mb-3 leading-relaxed text-sm md:text-base">
+                      {/* <p className="text-gray-700 mb-3 leading-relaxed text-sm md:text-base">
                         {job.description}
-                      </p>
-                      <p className="text-gray-700 leading-relaxed text-sm md:text-base">
-                        {job.detailedDescription}
+                      </p> */}
+                      <p ref={descriptionRef} 
+                      dangerouslySetInnerHTML={{ __html: job.detailedDescription }}
+                      className="text-gray-700 leading-relaxed text-sm md:text-base">
                       </p>
                     </div>
 
                     {/* Job footer */}
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600 font-medium">
-                        {job.type}
+                        {job.jobType}
                       </span>
                       <Link
                         href={job.link || "#"}
