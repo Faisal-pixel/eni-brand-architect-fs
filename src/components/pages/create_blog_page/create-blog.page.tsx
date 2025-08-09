@@ -13,6 +13,7 @@ import { toast } from "react-hot-toast";
 import BlogEditModal from "./components/blog-edit-model.component";
 import uploadImageToCloudinary from "@/helpers/cloudinary/upload-image.cloudinary";
 import deleteImageFromCloudinary from "@/helpers/cloudinary/delete-image.cloudinary";
+import fetchAllBlogsApi from "@/helpers/api_callers/fetch-all-blogs.api.callers";
 
 const CreateBlogPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,24 +31,22 @@ const CreateBlogPage = () => {
       return;
     }
 
-
-
     try {
       console.log("The new form data:", data);
       console.log("The past blog data being editted:", editBlogData);
       // If the image is a file, we need to delete the old image and upload the new one
       // Then get the url of the new image and update the blog post with the new image URL
       if (typeof data.image === "object") {
-        console.log("Image was chahnged")
+        console.log("Image was chahnged");
         // First delete the old image.
-       await deleteImageFromCloudinary(editBlogData.image as string);
+        await deleteImageFromCloudinary(editBlogData.image as string);
 
         const uploadDataSecureUrl = await uploadImageToCloudinary(data.image);
-        
+
         const newData = {
           ...data,
           imageUrl: uploadDataSecureUrl, // Use the secure URL from Cloudinary
-        }
+        };
 
         delete newData.image; // Remove the image file from the data;
         data = newData; // Update data to the new data with imageUrl
@@ -137,6 +136,17 @@ const CreateBlogPage = () => {
       if (!response.ok) {
         throw new Error(result.error || "Failed to create blog post");
       }
+
+     const allBlogs = await fetchAllBlogsApi(page); // Refetch the blog posts to include the new one
+      setBlogPosts(allBlogs.posts.map((post: BlogPostResponse) => ({
+        ...post,
+        image: post.imageUrl, // Ensure image is a string for display
+        date: post.date?.slice(0, 10), // Format date to YYYY-MM-DD
+      })) as BlogPost[]);
+
+      setPage(allBlogs.page);
+      setTotalNumberOfPosts(allBlogs.totalNumberOfPosts);
+      setTotalPages(allBlogs.totalPages);
     } catch (error) {
       console.error("Error creating blog post:", error);
       // Handle error appropriately, e.g., show a toast notification
