@@ -156,6 +156,14 @@ const BlogEditModal: React.FC<BlogCreationModalProps> = ({
         console.log("Processed errors:", newErrors);
         setErrors(newErrors);
       }
+      toast.error(
+        error instanceof Error
+          ? `Failed to update blog post. ${error.message}`
+          : "Failed to update blog post. An unknown error occurred.",
+        {
+          id: "update-blog-post-error",
+        }
+      )
     } finally {
       setIsSubmitting(false);
     }
@@ -663,7 +671,7 @@ const BlogEditModal: React.FC<BlogCreationModalProps> = ({
                 whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                 whileTap={!isSubmitting ? { scale: 0.98 } : {}}
               >
-                {isSubmitting ? "Posting..." : "Post"}
+                {isSubmitting ? "Editing..." : "Save Edit"}
               </motion.button>
             </div>
           </div>

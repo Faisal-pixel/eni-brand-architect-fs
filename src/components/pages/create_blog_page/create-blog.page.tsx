@@ -11,6 +11,8 @@ import BlogListsComponent from "./components/blog-lists.component";
 import EmptyStateComponent from "@/components/empty-state-component";
 import { toast } from "react-hot-toast";
 import BlogEditModal from "./components/blog-edit-model.component";
+import uploadImageToCloudinary from "@/helpers/cloudinary/upload-image.cloudinary";
+import deleteImageFromCloudinary from "@/helpers/cloudinary/delete-image.cloudinary";
 
 const CreateBlogPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,13 +30,35 @@ const CreateBlogPage = () => {
       return;
     }
 
+
+
     try {
+      console.log("The new form data:", data);
+      console.log("The past blog data being editted:", editBlogData);
+      // If the image is a file, we need to delete the old image and upload the new one
+      // Then get the url of the new image and update the blog post with the new image URL
+      if (typeof data.image === "object") {
+        console.log("Image was chahnged")
+        // First delete the old image.
+       await deleteImageFromCloudinary(editBlogData.image as string);
+
+        const uploadDataSecureUrl = await uploadImageToCloudinary(data.image);
+        
+        const newData = {
+          ...data,
+          imageUrl: uploadDataSecureUrl, // Use the secure URL from Cloudinary
+        }
+
+        delete newData.image; // Remove the image file from the data;
+        data = newData; // Update data to the new data with imageUrl
+      }
+
       const response = await fetch(`/api/v1/blogPosts/${editBlogData.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...editBlogData, ...data }),
+        body: JSON.stringify({ ...data }),
       });
       const result = await response.json();
       if (!response.ok) {
@@ -52,17 +76,8 @@ const CreateBlogPage = () => {
             : post
         )
       );
-      toast.success("Blog post updated successfully");
     } catch (error) {
       console.error("Error updating blog post:", error);
-      toast.error(
-        error instanceof Error
-          ? `Failed to update blog post. ${error.message}`
-          : "Failed to update blog post. An unknown error occurred.",
-        {
-          id: "update-blog-post-error",
-        }
-      );
     }
   };
 

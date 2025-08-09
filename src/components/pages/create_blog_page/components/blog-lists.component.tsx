@@ -70,7 +70,8 @@ const BlogListsComponent = ({
         setDeleting(true);
         // Call the API to delete the blog post
         const deletedPost = await deleteBlogPostApi(postToDelete);
-        toast.success(`${deletedPost.title} deleted successfully!`);
+        console.log("Deleted post:", deletedPost);
+        toast.success(`${deletedPost.deletedPost.title} deleted successfully!`);
 
         // Call parent callback to refresh the data
         if (onDeletePost) {
