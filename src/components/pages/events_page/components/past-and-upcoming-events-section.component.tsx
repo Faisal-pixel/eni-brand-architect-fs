@@ -58,11 +58,16 @@ const PastAndUpcomingEventsSection = () => {
         {/* Past events content goes here */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch">
           {events.pastEvents.map((event, index) => (
+            // <Link
+            //   key={index}
+            //   href={`/events/${event.id}/${event.title
+            //     .toLowerCase()
+            //     .replace(/\s+/g, "-")}`}
+            //   className="cursor-pointer"
+            // >
             <Link
               key={index}
-              href={`/events/${event.id}/${event.title
-                .toLowerCase()
-                .replace(/\s+/g, "-")}`}
+              href={"#"}
               className="cursor-pointer"
             >
               <motion.div
@@ -88,10 +93,14 @@ const PastAndUpcomingEventsSection = () => {
 
                   <div className="flex flex-col gap-y-1">
                     <div className="flex gap-x-4">
-                      <Link
+                      {/* <Link
                         href={`/events/${event.id}/${event.title
                           .toLowerCase()
                           .replace(/\s+/g, "-")}`}
+                        className="cursor-pointer"
+                      > */}
+                      <Link
+                        href={"#"}
                         className="cursor-pointer"
                       >
                         <h3 className="text-lg font-semibold leading-[28px] text-gray-900 group-hover:text-[rgba(1,117,68,1)]">
@@ -128,11 +137,16 @@ const PastAndUpcomingEventsSection = () => {
         {/* Upcoming events content goes here */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch">
           {events.upcomingEvents.map((event, index) => (
+            // <Link
+            //   key={index}
+            //   href={`/events/${event.id}/${event.title
+            //     .toLowerCase()
+            //     .replace(/\s+/g, "-")}`}
+            //   className="cursor-pointer"
+            // >
             <Link
               key={index}
-              href={`/events/${event.id}/${event.title
-                .toLowerCase()
-                .replace(/\s+/g, "-")}`}
+              href={`#`}
               className="cursor-pointer"
             >
               <motion.div
@@ -158,10 +172,14 @@ const PastAndUpcomingEventsSection = () => {
 
                   <div className="flex flex-col gap-y-1">
                     <div className="flex gap-x-4">
-                      <Link
+                      {/* <Link
                         href={`/events/${event.id}/${event.title
                           .toLowerCase()
                           .replace(/\s+/g, "-")}`}
+                        className="cursor-pointer"
+                      > */}
+                      <Link
+                        href={`#`}
                         className="cursor-pointer"
                       >
                         <h3 className="text-lg font-semibold leading-[28px] text-gray-900 group-hover:text-[rgba(1,117,68,1)]">
