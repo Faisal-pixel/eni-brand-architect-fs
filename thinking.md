@@ -59,3 +59,6 @@ So i will create a function that transformDataToFitBlogList() in a helper functi
 
  So editing a blog thinking:
  We want to pop out the same modal used for creating a blog right, but before it pops up, we want to fetch the information from the backend, then they can edit, once they are done, we can then send a put request to the baceknd
+
+
+SO i can have a modal there, that basically receive the src, but how do i optimize the image larger

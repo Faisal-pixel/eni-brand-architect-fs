@@ -4,8 +4,12 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { XModalIcon } from "@/assets/icons";
-import { ProjectSectionModalPopupSection, MediaItem } from "@/app/types/modal-pop-up.types";
-
+import {
+  ProjectSectionModalPopupSection,
+  MediaItem,
+} from "@/app/types/modal-pop-up.types";
+import EnlargeMediaModal from "./enlarge-media-modal";
+import optimizeCloudinaryUrl from "@/helpers/optimizeCloudinaryImage";
 
 interface ModalPopUpProps {
   isOpen: boolean;
@@ -22,6 +26,8 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
   const [activeFilter, setActiveFilter] = useState<"all" | "photos" | "videos">(
     "all"
   );
+  const [shouldEnlargeMedia, setShouldEnlargeMedia] = useState<boolean>(false);
+  const [mediaItem, setMediaItem] = useState<MediaItem | null>(null);
 
   const overlayVariants = {
     hidden: { opacity: 0 },
@@ -66,7 +72,12 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
     }
   };
 
-  const renderMediaItem = (item: MediaItem, index: number) => (
+  const renderMediaItem = (item: MediaItem, index: number) => {
+    const handleMediaClicked = (media: MediaItem) => {
+      setMediaItem(media)
+      setShouldEnlargeMedia(true)
+    }
+    return(
     <motion.div
       key={item.id}
       initial={{ opacity: 0, y: 20 }}
@@ -76,14 +87,21 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
       // style={{ width: "175.6px", height: "175.6px" }}
     >
       {item.type === "image" ? (
-        <Image
-          src={item.src}
-          alt={item.alt || ""}
-          width={175.6}
-          height={175.6}
-          unoptimized
-          className="w-full h-full object-cover rounded-[6px] hover:scale-105 transition-transform duration-200"
-        />
+        <>
+          <Image
+            src={optimizeCloudinaryUrl(item.src, 175.6)}
+            alt={item.alt || ""}
+            width={175.6}
+            height={175.6}
+            onClick={() => {
+              handleMediaClicked(item);
+            }}
+            unoptimized
+            className="w-full h-full object-cover rounded-[6px] hover:scale-105 transition-transform duration-200"
+          />
+
+          
+        </>
       ) : (
         <div className="w-full h-full bg-gray-900 rounded-[6px] flex items-center justify-center relative overflow-hidden">
           <video
@@ -101,9 +119,9 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
         </div>
       )}
     </motion.div>
-  );
+  )};
 
-  return (
+  return (<>
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -216,6 +234,12 @@ const ModalPopUp: React.FC<ModalPopUpProps> = ({
         </motion.div>
       )}
     </AnimatePresence>
+    <EnlargeMediaModal
+            isOpen={shouldEnlargeMedia}
+            onClose={() => setShouldEnlargeMedia(false)}
+            mediaItem={mediaItem as MediaItem}
+          />
+    </>
   );
 };
 
