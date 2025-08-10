@@ -6,6 +6,7 @@ import {
   Volume2,
   VolumeX,
   Maximize2,
+  Minimize2,
 } from "lucide-react";
 
 const MediaProdAndEventCoverageTesting = () => {
@@ -21,7 +22,7 @@ const MediaProdAndEventCoverageTesting = () => {
   const [duration, setDuration] = useState(0); // Total video length in seconds
   const [volume, setVolume] = useState(1); // Volume level (0 to 1, where 1 is 100%)
   const [isMuted, setIsMuted] = useState(false); // Is the video muted?
-  // const [isFullscreen, setIsFullscreen] = useState(false); // Is video in fullscreen mode?
+  const [isFullscreen, setIsFullscreen] = useState(false); // Is video in fullscreen mode?
 
   // UI control states - these control what the user sees
   const [showControls, setShowControls] = useState(true); // Should we show the control bar?
@@ -61,16 +62,15 @@ const MediaProdAndEventCoverageTesting = () => {
   }, [isPlaying, isHovering]);
 
   // Listen for fullscreen changes (when user presses ESC or F11)
-  // useEffect(() => {
-  //   const handleFullscreenChange = () => {
-  //     console.log("In the logs", !!document.fullscreenElement)
-  //     setIsFullscreen(!!document.fullscreenElement);
-  //   };
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
 
-  //   document.addEventListener("fullscreenchange", handleFullscreenChange);
-  //   return () =>
-  //     document.removeEventListener("fullscreenchange", handleFullscreenChange);
-  // }, []);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
 
   // When user hovers over video, show controls and remember they're hovering
   const handleVideoMouseEnter = () => {
@@ -194,7 +194,9 @@ const MediaProdAndEventCoverageTesting = () => {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? "0" + secs : secs}`;
+    return `${mins.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   return (
@@ -228,18 +230,14 @@ const MediaProdAndEventCoverageTesting = () => {
                   onClick={togglePlay}
                 />
 
-                {/* Big Play/Pause Button in Center - shows when video is paused OR when hovering */}
-                {(!isPlaying || isHovering) && (
+                {/* Big Play/Pause Button in Center - only shows when video is paused */}
+                {!isPlaying && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <button
                       onClick={togglePlay}
-                      className="w-20 h-20 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all duration-300 transform hover:scale-110 cursor-pointer"
+                      className="w-20 h-20 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all duration-300 transform hover:scale-110"
                     >
-                      {isPlaying ? (
-                        <Pause className="w-8 h-8 text-gray-800" />
-                      ) : (
-                        <Play className="w-8 h-8 text-gray-800 ml-1" />
-                      )}
+                      <Play className="w-8 h-8 text-gray-800 ml-1" />
                     </button>
                   </div>
                 )}
@@ -251,27 +249,17 @@ const MediaProdAndEventCoverageTesting = () => {
                   }`}
                 >
                   {/* Progress Bar - this goes above the main controls */}
-                  <div className="px-4 pb-3">
+                  <div className="px-4 pb-2">
                     <div className="relative">
                       {/* The seek bar track */}
-                      <div className="h-1 bg-white/30 rounded-full relative cursor-pointer">
+                      <div className="h-1 bg-white/30 rounded-full relative">
                         {/* Progress fill */}
                         <div
-                          className="h-full bg-white rounded-full transition-all duration-100"
+                          className="h-full bg-white rounded-full"
                           style={{
                             width: `${
                               duration > 0 ? (currentTime / duration) * 100 : 0
                             }%`,
-                          }}
-                        />
-                        {/* Seek handle/dot */}
-                        <div
-                          className="absolute top-1/2 w-3 h-3 bg-white rounded-full transform -translate-y-1/2 transition-all duration-100 cursor-pointer"
-                          style={{
-                            left: `${
-                              duration > 0 ? (currentTime / duration) * 100 : 0
-                            }%`,
-                            transform: `translateX(-50%) translateY(-50%)`,
                           }}
                         />
                       </div>
@@ -288,66 +276,66 @@ const MediaProdAndEventCoverageTesting = () => {
                     </div>
                   </div>
 
-                  {/* Main Controls Row - All controls on same level */}
-                  <div className="flex items-center px-4 pb-4">
-                    {/* Play/Pause Button */}
-                    <button
-                      onClick={togglePlay}
-                      className="text-white hover:text-gray-300 transition-colors cursor-pointer"
-                    >
-                      {isPlaying ? (
-                        <Pause className="w-5 h-5" />
-                      ) : (
-                        <Play className="w-5 h-5" />
-                      )}
-                    </button>
-
-                    {/* Volume Controls */}
-                    <div className="flex items-center ml-4">
-                      {/* Mute/Unmute Button */}
+                  {/* Main Controls Row */}
+                  <div className="flex items-center justify-between px-4 pb-4">
+                    {/* Left side controls */}
+                    <div className="flex items-center space-x-4">
+                      {/* Play/Pause Button */}
                       <button
-                        onClick={toggleMute}
-                        className="text-white hover:text-gray-300 transition-colors cursor-pointer"
+                        onClick={togglePlay}
+                        className="text-white hover:text-gray-300 transition-colors"
                       >
-                        {isMuted || volume === 0 ? (
-                          <VolumeX className="w-5 h-5" />
+                        {isPlaying ? (
+                          <Pause className="w-5 h-5" />
                         ) : (
-                          <Volume2 className="w-5 h-5" />
+                          <Play className="w-5 h-5" />
                         )}
                       </button>
 
-                      {/* Volume Slider */}
-                      <div className="relative w-20 ml-2">
-                        <input
-                          type="range"
-                          min="0"
-                          max="1"
-                          step="0.1"
-                          value={isMuted ? 0 : volume}
-                          onChange={handleVolumeChange}
-                          className="w-full h-1 bg-white/30 rounded-lg appearance-none cursor-pointer slider"
-                          style={{
-                            background: `linear-gradient(to right, white 0%, white ${
-                              (isMuted ? 0 : volume) * 100
-                            }%, rgba(255,255,255,0.3) ${
-                              (isMuted ? 0 : volume) * 100
-                            }%, rgba(255,255,255,0.3) 100%)`,
-                          }}
-                        />
+                      {/* Volume Controls */}
+                      <div className="flex items-center space-x-2">
+                        {/* Mute/Unmute Button */}
+                        <button
+                          onClick={toggleMute}
+                          className="text-white hover:text-gray-300 transition-colors"
+                        >
+                          {isMuted || volume === 0 ? (
+                            <VolumeX className="w-5 h-5" />
+                          ) : (
+                            <Volume2 className="w-5 h-5" />
+                          )}
+                        </button>
+
+                        {/* Volume Slider */}
+                        <div className="relative w-20">
+                          <input
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            value={isMuted ? 0 : volume}
+                            onChange={handleVolumeChange}
+                            className="w-full h-1 bg-white/30 rounded-lg appearance-none cursor-pointer slider"
+                            style={{
+                              background: `linear-gradient(to right, white 0%, white ${
+                                (isMuted ? 0 : volume) * 100
+                              }%, rgba(255,255,255,0.3) ${
+                                (isMuted ? 0 : volume) * 100
+                              }%, rgba(255,255,255,0.3) 100%)`,
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Time Display */}
+                      <div className="flex items-center space-x-1 text-white text-sm">
+                        <span>{formatTime(currentTime)}</span>
+                        <span className="text-white/70">/</span>
+                        <span className="text-white/70">
+                          {formatTime(duration)}
+                        </span>
                       </div>
                     </div>
-
-                    {/* Time Display */}
-                    <div className="flex items-center ml-4 text-white text-sm">
-                      <span>{formatTime(currentTime)}</span>
-                      <span className="mx-1 text-white/70">/</span>
-                      <span className="text-white/70">
-                        {formatTime(duration - currentTime)}
-                      </span>
-                    </div>
-
-                    {/* Spacer to push right controls to the end */}
-                    <div className="flex-1"></div>
 
                     {/* Right side controls */}
                     <div className="flex items-center space-x-4">
@@ -355,7 +343,7 @@ const MediaProdAndEventCoverageTesting = () => {
                       <div className="relative">
                         <button
                           onClick={() => setShowSpeedMenu(!showSpeedMenu)}
-                          className="text-white hover:text-gray-300 transition-colors text-sm px-2 py-1 rounded bg-white/20 hover:bg-white/30 cursor-pointer"
+                          className="text-white hover:text-gray-300 transition-colors text-sm px-2 py-1 rounded bg-white/20 hover:bg-white/30"
                         >
                           {playbackSpeed}x
                         </button>
@@ -371,7 +359,7 @@ const MediaProdAndEventCoverageTesting = () => {
                                 <button
                                   key={speed}
                                   onClick={() => handleSpeedChange(speed)}
-                                  className={`block w-full text-left px-2 py-1 text-sm rounded hover:bg-white/20 transition-colors cursor-pointer ${
+                                  className={`block w-full text-left px-2 py-1 text-sm rounded hover:bg-white/20 transition-colors ${
                                     playbackSpeed === speed
                                       ? "bg-white/30 text-white"
                                       : "text-white/80"
@@ -388,11 +376,13 @@ const MediaProdAndEventCoverageTesting = () => {
                       {/* Fullscreen Button */}
                       <button
                         onClick={toggleFullscreen}
-                        className="text-white hover:text-gray-300 transition-colors cursor-pointer"
+                        className="text-white hover:text-gray-300 transition-colors"
                       >
-                      
+                        {isFullscreen ? (
+                          <Minimize2 className="w-5 h-5" />
+                        ) : (
                           <Maximize2 className="w-5 h-5" />
-                      
+                        )}
                       </button>
                     </div>
                   </div>

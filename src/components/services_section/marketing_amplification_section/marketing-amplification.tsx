@@ -1,23 +1,12 @@
-
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Play,
-  Pause,
-  Volume2,
-  Maximize2,
-  MoreHorizontal,
-} from "lucide-react";
+import React, { useState, useEffect} from "react";
 import Image from "next/image";
 import { CheckmarkIcon, GraphIcon } from "@/assets/icons";
 import MarketingModalPopUpComponent from "../components/marketing-modal-pop-up.component";
+import ReactPlayer from 'react-player'
 
 const MarketingAmplificationSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,46 +14,6 @@ const MarketingAmplificationSection = () => {
     }, 300);
     return () => clearTimeout(timer);
   }, []);
-
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      setCurrentTime(videoRef.current.currentTime);
-    }
-  };
-
-  const handleMetadataLoaded = () => {
-    if (videoRef.current) {
-      setDuration(videoRef.current.duration);
-    }
-  };
-
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTime = parseFloat(e.target.value);
-    if (isNaN(newTime) || newTime < 0 || newTime > duration) return;
-    if (videoRef.current) {
-      videoRef.current.currentTime = parseFloat(e.target.value);
-    }
-
-    setCurrentTime(newTime);
-  };
-
-  const handleFullscreen = () => {
-    if (videoRef.current?.requestFullscreen) {
-      videoRef.current.requestFullscreen();
-    }
-  };
-
   const services = [
     {
       title: "Influencer Marketing:",
@@ -83,6 +32,9 @@ const MarketingAmplificationSection = () => {
     },
   ];
 
+  const sample =
+    "https://res.cloudinary.com/daya1fdka/video/upload/f_auto,q_auto/v1754487230/Landing_page_video_1_pt9vll.mov";
+
   return (
     <div className="py-20">
       <div className="max-w-full mx-auto">
@@ -98,7 +50,10 @@ const MarketingAmplificationSection = () => {
             {/* Header with Icon */}
             <div className="flex flex-col space-y-6">
               <div className="w-12 h-12 flex items-center justify-center">
-                <Image src={GraphIcon} alt="Graph Icon for Marketing & Amplification" />
+                <Image
+                  src={GraphIcon}
+                  alt="Graph Icon for Marketing & Amplification"
+                />
               </div>
               <h1 className="text-4xl font-bold text-gray-900">
                 Marketing & Advertising
@@ -140,9 +95,12 @@ const MarketingAmplificationSection = () => {
               ))}
             </div>
 
-            <span 
-            onClick={() => setIsModalOpen(true)} 
-            className="text-lg leading-[28px] text-[#017544] cursor-pointer">Explore {'>'}</span>
+            <span
+              onClick={() => setIsModalOpen(true)}
+              className="text-lg leading-[28px] text-[#017544] cursor-pointer"
+            >
+              Explore {">"}
+            </span>
           </div>
 
           {/* Right Video Player */}
@@ -156,83 +114,10 @@ const MarketingAmplificationSection = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-white">
               {/* Video Container */}
-              <div className="relative aspect-video bg-gradient-to-br from-amber-50 to-orange-100">
+              <div className="relative aspect-video bg-black">
                 {/* Video Thumbnail */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <video
-                    ref={videoRef}
-                    className="w-full h-full object-cover"
-                    src="https://res.cloudinary.com/daya1fdka/video/upload/v1754487230/Landing_page_video_1_pt9vll.mov" // from public folder
-                    muted
-                    onTimeUpdate={handleTimeUpdate}
-                    onLoadedMetadata={handleMetadataLoaded}
-                  />
-                </div>
-
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button
-                    onClick={togglePlay}
-                    className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-100 transition-all duration-300 transform hover:scale-110"
-                  >
-                    {isPlaying ? (
-                      <Pause className="w-6 h-6 text-gray-800 ml-1" />
-                    ) : (
-                      <Play className="w-6 h-6 text-gray-800 ml-1" />
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {/* Video Controls */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                <div className="flex items-center space-x-3">
-                  <button className="text-white cursor-pointer hover:text-gray-200 transition-colors">
-                    {isPlaying ? (
-                      <Pause className="w-5 h-5" />
-                    ) : (
-                      <Play className="w-5 h-5" />
-                    )}
-                  </button>
-                  <button className="text-white hover:text-gray-200 transition-colors">
-                    <Volume2 className="w-5 h-5" />
-                  </button>
-
-                  {/* Progress Bar */}
-                  <div className="flex-1 flex items-center space-x-2">
-                    <div className="flex-1 relative h-1 bg-white/30 rounded-full">
-                      {/* <div className="w-1/4 h-full bg-white rounded-full"></div> */}
-                      <input
-                        type="range"
-                        min="0"
-                        max={duration}
-                        step="0.1"
-                        value={currentTime}
-                        onChange={handleSeek}
-                        onInput={handleSeek}
-                        className="w-full h-1 accent-white relative -top-[0.9rem] left-0 cursor-pointer"
-                      />
-                    </div>
-                    <span className="text-white text-sm font-medium">
-                      {formatTime(currentTime)}
-                    </span>
-                    <span className="text-white/70 text-sm">
-                      -{formatTime(duration - currentTime)}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center space-x-2">
-                    <span className="text-white text-sm">1×</span>
-                    <button className="text-white hover:text-gray-200 transition-colors">
-                      <MoreHorizontal className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={handleFullscreen}
-                      className="text-white hover:text-gray-200 transition-colors"
-                    >
-                      <Maximize2 className="w-5 h-5" />
-                    </button>
-                  </div>
+                <div className="h-full w-full flex items-center justify-center">
+                  <ReactPlayer className="!w-full !h-full aspect-video" src={sample} controls />
                 </div>
               </div>
             </div>
@@ -248,13 +133,5 @@ const MarketingAmplificationSection = () => {
     </div>
   );
 };
-
-function formatTime(seconds: number) {
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${mins.toString().padStart(2, "0")}:${secs
-    .toString()
-    .padStart(2, "0")}`;
-}
 
 export default MarketingAmplificationSection;

@@ -4,6 +4,7 @@ import Image from "next/image";
 import ModalPopUp from "../modal-pop-up.components";
 import { playWithStephenData, talentvilleAfricaData, TEEData } from "@/data/modal-pop-up-data";
 import { ProjectSectionModalPopupSection } from "@/app/types/modal-pop-up.types";
+import ReactPlayer from 'react-player'
 
 const ProjectShowcaseSection = () => {
   const [expandedProject, setExpandedProject] = useState<string | null>("tee");
@@ -154,6 +155,8 @@ const ProjectShowcaseSection = () => {
     },
   };
 
+  const videoUrl = "https://res.cloudinary.com/daya1fdka/video/upload/f_auto,q_auto/v1752458170/Hero_Section_Video_Collated_l8j1ao.mov"
+
   return (
     <div className="pt-24">
       <div className="">
@@ -249,6 +252,13 @@ const ProjectShowcaseSection = () => {
                         </motion.div>
 
                         <motion.div variants={itemVariants} className="md:ml-auto">
+                          {
+                            project.id === "talentville" ? (
+                              <div className="h-[256px] w-[346px] pb-3.5">
+                                <ReactPlayer className="!w-full !h-full aspect-video" src={videoUrl} controlsList="nodownload" controls />
+                              </div>
+                            ) : (
+                              <motion.div variants={itemVariants} className="md:ml-auto">
                           <div className="grid grid-cols-2 gap-2 h-[256px] w-[346px] pb-3.5">
                             <motion.div
                               variants={imageVariants}
@@ -300,6 +310,9 @@ const ProjectShowcaseSection = () => {
                               </span>
                             </motion.div>
                           </div>
+                        </motion.div>
+                            )
+                          }
                         </motion.div>
                       </div>
                     </div>
