@@ -156,7 +156,7 @@ const FastGrowingTeamSection = () => {
 
   return (
     <div className="py-16 md:py-24" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-full mx-auto"> {/* max-w-7xl used to be here */}
         {/* Header */}
         <div className="flex flex-col md:flex-row md:justify-between">
           <div className="mb-8 lg:mb-0">

@@ -11,6 +11,51 @@ import { Jobs } from "@/app/types/job-listings.types";
 
 // type Props = {}
 
+/**
+ * Utility function to calculate and format the time difference between a given date and now
+ * @param datePosted - ISO string date when the job was posted (e.g., "2025-08-09T20:32:17.734Z")
+ * @returns Human-readable time difference (e.g., "2 hours ago", "3 days ago", "1 week ago")
+ */
+const getTimeAgo = (datePosted: string): string => {
+  try {
+    // Convert the ISO string to a Date object
+    const postedDate = new Date(datePosted);
+    const currentDate = new Date();
+
+    // Calculate the difference in milliseconds
+    const timeDifferenceMs = currentDate.getTime() - postedDate.getTime();
+
+    // Convert milliseconds to different time units
+    const seconds = Math.floor(timeDifferenceMs / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const weeks = Math.floor(days / 7);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(days / 365);
+
+    // Return appropriate time format based on the time difference
+    if (years > 0) {
+      return years === 1 ? "1 year ago" : `${years} years ago`;
+    } else if (months > 0) {
+      return months === 1 ? "1 month ago" : `${months} months ago`;
+    } else if (weeks > 0) {
+      return weeks === 1 ? "1 week ago" : `${weeks} weeks ago`;
+    } else if (days > 0) {
+      return days === 1 ? "1 day ago" : `${days} days ago`;
+    } else if (hours > 0) {
+      return hours === 1 ? "1 hour ago" : `${hours} hours ago`;
+    } else if (minutes > 0) {
+      return minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
+    } else {
+      return "Just posted"; // For very recent posts (less than a minute)
+    }
+  } catch (error) {
+    console.error("Error calculating time ago:", error);
+    return "Recently posted"; // Fallback in case of date parsing errors
+  }
+};
+
 const CareersPage = () => {
   const [jobs, setJobs] = useState<Jobs>([]);
   const [loading, setLoading] = useState(true);
@@ -22,11 +67,12 @@ const CareersPage = () => {
       try {
         const response = await fetchAllCareersWithoutPaginationApi();
         if (response && response.careers) {
-          // Assuming the API returns an array of jobs
+          // Transform the careers data from the API into the Jobs format expected by the UI
           const jobsData: Jobs = response.careers.map((career: careers) => ({
             id: career.id,
             jobTitle: career.jobTitle,
-            timeAgo: "Just posted", // Placeholder, you can implement actual time logic
+            // Calculate the time difference between the posted date and now
+            timeAgo: getTimeAgo(career.datePosted),
             detailedDescription: career.shortJobBrief || "",
             jobCategory: career.jobCategory,
             jobType: career.jobType,

@@ -53,7 +53,7 @@ const HeroVideoSection = () => {
         </p>
 
         {/* Buttons Container */}
-        <div className="flex flex-col md:flex-row gap-2 lg:gap-3">
+        <div className="flex flex-row gap-2 lg:gap-3">
           {/* Primary Button */}
           <Link
             href="https://forms.gle/nAtf3DJH6sWFTGvV9"
@@ -61,8 +61,8 @@ const HeroVideoSection = () => {
             rel="noopener noreferrer"
             className="w-full md:w-auto"
           >
-            <button className="bg-emerald-600 w-full  text-white whitespace-nowrap cursor-pointer px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold transition-colors duration-200 shadow-lg">
-              Book a Free Consultation
+            <button className="bg-emerald-600 text-xs md:text-sm lg:text-base w-fit md:w-full  text-white whitespace-nowrap cursor-pointer px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold transition-colors duration-200 shadow-lg">
+              Book a Consultation
             </button>
           </Link>
 
@@ -73,7 +73,7 @@ const HeroVideoSection = () => {
             rel="noopener noreferrer"
             className="w-full md:w-auto"
           >
-            <button className="bg-white w-full border-2 whitespace-nowrap cursor-pointer border-[rgba(1,117,68,1)] text-[rgba(1,117,68,1)] px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold transition-all duration-200">
+            <button className="bg-white text-xs md:text-sm lg:text-base w-fit md:w-full border-2 whitespace-nowrap cursor-pointer border-[rgba(1,117,68,1)] text-[rgba(1,117,68,1)] px-3 py-[13px] md:px-4 md:py-2.5 lg:px-5 lg:py-3.5 rounded-lg font-semibold transition-all duration-200">
               Download the Brochure
             </button>
           </Link>

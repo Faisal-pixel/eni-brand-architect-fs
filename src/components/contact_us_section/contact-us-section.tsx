@@ -200,7 +200,7 @@ const ContactSection = () => {
 
   return (
     <div className="bg-white" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-full mx-auto">
         {/* Header */}
         <div className={`mb-16 transform transition-all duration-800 ease-out ${
           visibleItems.has('header')

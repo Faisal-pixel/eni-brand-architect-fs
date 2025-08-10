@@ -78,7 +78,7 @@ const FAQSection = () => {
 
   return (
     <div className="bg-white" ref={sectionRef}>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-full mx-auto">
         {/* Header */}
         <div
           className={`mb-16 transform transition-all duration-800 ease-out ${
