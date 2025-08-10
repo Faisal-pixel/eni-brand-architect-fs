@@ -132,6 +132,351 @@ const playWithStephenData: ProjectSectionModalPopupSection[] = [
         src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282417/0T9A0555_fv3so4.jpg",
         type: "image",
       },
+      {
+        id: "26",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282560/0T9A0672_mey95h.jpg",
+        type: "image",
+      },
+      {
+        id: "27",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282556/0T9A0671_t50org.jpg",
+        type: "image",
+      },
+      {
+        id: "28",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282542/0T9A0655_kbgtkg.jpg",
+        type: "image",
+      },
+      {
+        id: "29",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282516/0T9A0635_ozeatz.jpg",
+        type: "image",
+      },
+      {
+        id: "30",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282511/0T9A0627_vtwebd.jpg",
+        type: "image",
+      },
+      {
+        id: "31",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282500/0T9A0623_kmzz5q.jpg",
+        type: "image",
+      },
+      {
+        id: "32",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282496/0T9A0618_vsezvv.jpg",
+        type: "image",
+      },
+      {
+        id: "33",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282490/0T9A0613_xqtkmz.jpg",
+        type: "image",
+      },
+      {
+        id: "34",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282484/0T9A0612_f0lvmw.jpg",
+        type: "image",
+      },
+      {
+        id: "35",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282464/0T9A0604_gjajgf.jpg",
+        type: "image",
+      },
+      {
+        id: "36",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282451/0T9A0595_bwqvvr.jpg",
+        type: "image",
+      },
+      {
+        id: "37",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282447/0T9A0583_ktymsy.jpg",
+        type: "image",
+      },
+      {
+        id: "38",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282441/0T9A0579_z9bour.jpg",
+        type: "image",
+      },
+      {
+        id: "39",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282436/0T9A0574_x9ur61.jpg",
+        type: "image",
+      },
+      {
+        id: "40",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282434/0T9A0571_r9nhkf.jpg",
+        type: "image",
+      },
+      {
+        id: "41",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282425/0T9A0564_m2bltv.jpg",
+        type: "image",
+      },
+      {
+        id: "42",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282423/0T9A0562_qt9tti.jpg",
+        type: "image",
+      },
+      {
+        id: "43",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282419/0T9A0559_ynak1n.jpg",
+        type: "image",
+      },
+      {
+        id: "44",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282417/0T9A0555_fv3so4.jpg",
+        type: "image",
+      },
+      {
+        id: "45",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282412/0T9A0547_jckgfr.jpg",
+        type: "image",
+      },
+      {
+        id: "46",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282409/0T9A0544_amvsas.jpg",
+        type: "image",
+      },
+      {
+        id: "47",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282406/0T9A0541_tclaoy.jpg",
+        type: "image",
+      },
+      {
+        id: "48",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282404/0T9A0540_batzwo.jpg",
+        type: "image",
+      },
+      {
+        id: "49",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282398/0T9A0529_gcuhty.jpg",
+        type: "image",
+      },
+      {
+        id: "50",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282395/0T9A0512_ji4hru.jpg",
+        type: "image",
+      },
+      {
+        id: "51",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282365/0T9A0419_qtopck.jpg",
+        type: "image",
+      },
+      {
+        id: "52",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282363/0T9A0417_bfs1zm.jpg",
+        type: "image",
+      },
+      {
+        id: "53",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282368/0T9A0426_x1aq6j.jpg",
+        type: "image",
+      },
+      {
+        id: "54",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282358/0T9A0411_a1u6tb.jpg",
+        type: "image",
+      },
+      {
+        id: "55",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282353/0T9A0390_bxcqyi.jpg",
+        type: "image",
+      },
+      {
+        id: "56",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282350/0T9A0386_jv0qfz.jpg",
+        type: "image",
+      },
+      {
+        id: "57",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282347/0T9A0384_fwhluy.jpg",
+        type: "image",
+      },
+      {
+        id: "58",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282343/0T9A0383_yput6h.jpg",
+        type: "image",
+      },
+      {
+        id: "59",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282339/0T9A0371_w2caic.jpg",
+        type: "image",
+      },
+      {
+        id: "60",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282329/0T9A0364_xbvpc5.jpg",
+        type: "image",
+      },
+      {
+        id: "61",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282327/0T9A0362_fovklv.jpg",
+        type: "image",
+      },
+      {
+        id: "62",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282322/0T9A0353_nzdmhe.jpg",
+        type: "image",
+      },
+      {
+        id: "63",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754282163/0T9A0343_ribufo.jpg",
+        type: "image",
+      },
+      {
+        id: "64",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754281365/0T9A0338_dmtb6r.jpg",
+        type: "image",
+      },
+      {
+        id: "65",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754281364/0T9A0336_kkrw6v.jpg",
+        type: "image",
+      },
+      {
+        id: "66",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280779/0T9A0331_llxyho.jpg",
+        type: "image",
+      },
+      {
+        id: "67",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280703/0T9A0317_d3cu70.jpg",
+        type: "image",
+      },
+      {
+        id: "68",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280629/0T9A0315_ybybop.jpg",
+        type: "image",
+      },
+      {
+        id: "69",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280615/0T9A0291_rwjxjm.jpg",
+        type: "image",
+      },
+      {
+        id: "70",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280608/0T9A0285_dfeyaj.jpg",
+        type: "image",
+      },
+      {
+        id: "71",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280598/0T9A0270_s7bghs.jpg",
+        type: "image",
+      },
+      {
+        id: "72",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280585/0T9A0254_cl229b.jpg",
+        type: "image",
+      },
+      {
+        id: "73",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280584/0T9A0247_xmo16z.jpg",
+        type: "image",
+      },
+      {
+        id: "74",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280582/0T9A0227_mb9zll.jpg",
+        type: "image",
+      },
+      {
+        id: "75",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280529/0T9A0225_hfceyo.jpg",
+        type: "image",
+      },
+      {
+        id: "76",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280527/0T9A0224_qd9m6q.jpg",
+        type: "image",
+      },
+      {
+        id: "77",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280524/0T9A0213_vldnbb.jpg",
+        type: "image",
+      },
+      {
+        id: "78",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280521/0T9A0212_g1urtg.jpg",
+        type: "image",
+      },
+      {
+        id: "79",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280519/0T9A0189_ssncsg.jpg",
+        type: "image",
+      },
+      {
+        id: "80",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280514/0T9A0182_jx5v6b.jpg",
+        type: "image",
+      },
+      {
+        id: "81",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280513/0T9A0181_sjpyth.jpg",
+        type: "image",
+      },
+      {
+        id: "82",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754280005/0T9A0161_y1tdg9.jpg",
+        type: "image",
+      },
+      {
+        id: "83",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279997/0T9A0160_ejark2.jpg",
+        type: "image",
+      },
+      {
+        id: "84",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279995/0T9A0151_fua4zl.jpg",
+        type: "image",
+      },
+      {
+        id: "85",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279990/0T9A0147_fg20m7.jpg",
+        type: "image",
+      },
+      {
+        id: "86",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279986/0T9A0130_je47nd.jpg",
+        type: "image",
+      },
+      {
+        id: "87",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279984/0T9A0114_mjk3fi.jpg",
+        type: "image",
+      },
+      {
+        id: "88",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279982/0T9A0100_bv3r5d.jpg",
+        type: "image",
+      },
+      {
+        id: "89",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279982/0T9A0092_z0jgyx.jpg",
+        type: "image",
+      },
+      {
+        id: "90",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279979/0T9A0085_ofowj0.jpg",
+        type: "image",
+      },
+      {
+        id: "91",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279976/0T9A0078_ezrssq.jpg",
+        type: "image",
+      },
+      {
+        id: "92",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279974/0T9A0074_pwth5j.jpg",
+        type: "image",
+      },
+      {
+        id: "93",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279973/0T9A0030_yift5l.jpg",
+        type: "image",
+      },
+      {
+        id: "94",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1754279969/0T9A0024_ofaeab.jpg",
+        type: "image",
+      }
     ],
     videos: [
       // {
@@ -161,66 +506,76 @@ const TEEData: ProjectSectionModalPopupSection[] = [
       },
       {
         id: "2",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831164/IMG_0898_mhsjfk.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831168/SnapInsta.to_465010880_457940930123372_3798843655781777613_n_fujrlx.jpg",
         type: "image",
       },
       {
         id: "3",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831163/IMG_0897_hb0isb.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831167/SnapInsta.to_464841517_1095777252173369_1561895612698143423_n_qyfiu9.jpg",
         type: "image",
       },
       {
         id: "4",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831160/IMG_0895_nsbydb.jpg",
-        type: "image",
-      },
-      {
-        id: "4",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831161/IMG_0896_zoyszf.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831164/IMG_0898_mhsjfk.jpg",
         type: "image",
       },
       {
         id: "5",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831157/IMG_0893_zwgynw.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831163/IMG_0897_hb0isb.jpg",
         type: "image",
       },
       {
         id: "6",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831154/IMG_0891_qiktuc.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831160/IMG_0895_nsbydb.jpg",
         type: "image",
       },
       {
         id: "7",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831154/IMG_0891_qiktuc.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831161/IMG_0896_zoyszf.jpg",
         type: "image",
       },
       {
         id: "8",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831154/IMG_0890_tz6uyn.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831157/IMG_0893_zwgynw.jpg",
         type: "image",
       },
       {
         id: "9",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831152/IMG_0889_dyxl72.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831158/IMG_0894_ly5pyk.jpg",
         type: "image",
       },
       {
         id: "10",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831150/IMG_0886_lafyob.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831154/IMG_0891_qiktuc.jpg",
         type: "image",
       },
       {
         id: "11",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831148/IMG_0884_ofmrjb.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831154/IMG_0890_tz6uyn.jpg",
         type: "image",
       },
       {
         id: "12",
-        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831150/IMG_0887_qmwglp.jpg",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831152/IMG_0889_dyxl72.jpg",
         type: "image",
       },
       {
         id: "13",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831150/IMG_0886_lafyob.jpg",
+        type: "image",
+      },
+      {
+        id: "14",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831148/IMG_0884_ofmrjb.jpg",
+        type: "image",
+      },
+      {
+        id: "15",
+        src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831150/IMG_0887_qmwglp.jpg",
+        type: "image",
+      },
+      {
+        id: "16",
         src: "https://res.cloudinary.com/daya1fdka/image/upload/v1753831156/IMG_0892_txl7h3.jpg",
         type: "image",
       },
