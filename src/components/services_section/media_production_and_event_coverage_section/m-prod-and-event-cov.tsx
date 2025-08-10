@@ -59,7 +59,7 @@ const MediaProdAndEventCoverage = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-white">
               {/* Video Container */}
-              <div className="relative aspect-video bg-gradient-to-br from-amber-50 to-orange-100">
+              <div className="relative aspect-video bg-black">
                 {/* Video Thumbnail */}
                 <div className="h-full w-full flex items-center justify-center">
                   <ReactPlayer ref={videoRef} className="!w-full !h-full aspect-video" src={sample} controls />

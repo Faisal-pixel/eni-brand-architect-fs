@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import Image from "next/image";
 import ModalPopUp from "../modal-pop-up.components";
-import { playWithStephenData, talentvilleAfricaData, TEEData } from "@/data/modal-pop-up-data";
+import {
+  playWithStephenData,
+  talentvilleAfricaData,
+  TEEData,
+} from "@/data/modal-pop-up-data";
 import { ProjectSectionModalPopupSection } from "@/app/types/modal-pop-up.types";
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player";
 
 const ProjectShowcaseSection = () => {
   const [expandedProject, setExpandedProject] = useState<string | null>("tee");
@@ -155,7 +159,8 @@ const ProjectShowcaseSection = () => {
     },
   };
 
-  const videoUrl = "https://res.cloudinary.com/daya1fdka/video/upload/f_auto,q_auto/v1752458170/Hero_Section_Video_Collated_l8j1ao.mov"
+  const videoUrl =
+    "https://res.cloudinary.com/daya1fdka/video/upload/f_auto,q_auto/v1752458170/Hero_Section_Video_Collated_l8j1ao.mov";
 
   return (
     <div className="pt-24">
@@ -246,50 +251,60 @@ const ProjectShowcaseSection = () => {
                           <p className="text-gray-700 leading-relaxed mb-[39px]">
                             {project.description}
                           </p>
-                          <span className="text-sm  inline-flex items-end text-gray-500 h-[147px]">
+                          {/* <span className="text-sm  inline-flex items-end text-gray-500 h-[147px]">
                             {project.year}
-                          </span>
+                          </span> */}
                         </motion.div>
 
-                        <motion.div variants={itemVariants} className="md:ml-auto">
-                          {
-                            project.id === "talentville" ? (
-                              <div className="h-[256px] w-[346px] pb-3.5">
-                                <ReactPlayer className="!w-full !h-full aspect-video" src={videoUrl} controlsList="nodownload" controls />
-                              </div>
-                            ) : (
-                              <motion.div variants={itemVariants} className="md:ml-auto">
-                          <div className="grid grid-cols-2 gap-2 h-[256px] w-[346px] pb-3.5">
-                            <motion.div
-                              variants={imageVariants}
-                              className={`relative group row-span-2`}
-                            >
-                              <Image
-                                src={project.images[0].src}
-                                alt={project.images[0].alt}
-                                fill
-                                className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
+                        <motion.div
+                          variants={itemVariants}
+                          className="md:ml-auto w-full sm:w-auto"
+                        >
+                          {project.id === "talentville" ? (
+                            <div className="h-[256px] w-[346px] pb-3.5">
+                              <ReactPlayer
+                                className="!w-full !h-full aspect-video"
+                                src={videoUrl}
+                                controlsList="nodownload"
+                                controls
                               />
-                            </motion.div>
+                            </div>
+                          ) : (
                             <motion.div
-                              variants={imageVariants}
-                              className={`relative group `}
+                              variants={itemVariants}
+                              className="md:ml-auto w-full sm:w-auto"
                             >
-                              <Image
-                                src={project.images[1].src}
-                                alt={project.images[1].alt}
-                                fill
-                                className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
-                              />
-                            </motion.div>
-                            <motion.div
-                              onClick={() => {
-                                setIsModalOpen(true);
-                              }}
-                              variants={imageVariants}
-                              className={`relative  bg-[#EAF3F0] flex justify-center items-center cursor-pointer rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]`}
-                            >
-                              {/* <div className="relative">
+                              <div className="grid grid-cols-2 gap-2 w-full h-[256px] sm:w-[346px] pb-3.5">
+                                <motion.div
+                                  variants={imageVariants}
+                                  className={`relative group row-span-2`}
+                                >
+                                  <Image
+                                    src={project.images[0].src}
+                                    alt={project.images[0].alt}
+                                    fill
+                                    className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
+                                  />
+                                </motion.div>
+                                <motion.div
+                                  variants={imageVariants}
+                                  className={`relative group `}
+                                >
+                                  <Image
+                                    src={project.images[1].src}
+                                    alt={project.images[1].alt}
+                                    fill
+                                    className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
+                                  />
+                                </motion.div>
+                                <motion.div
+                                  onClick={() => {
+                                    setIsModalOpen(true);
+                                  }}
+                                  variants={imageVariants}
+                                  className={`relative  bg-[#EAF3F0] flex justify-center items-center cursor-pointer rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]`}
+                                >
+                                  {/* <div className="relative">
                                 <Image
                                   src={project.images[2].src}
                                   alt={project.images[2].alt}
@@ -305,14 +320,13 @@ const ProjectShowcaseSection = () => {
                                   className="object-cover rounded-[5px] shadow-md shadow-[rgba(0,0,0,0.25)]"
                                 />
                               </div> */}
-                              <span className="text-lg font-medium leading-[28px] text-[#36393F]">
-                                See More
-                              </span>
+                                  <span className="text-lg font-medium leading-[28px] text-[#36393F]">
+                                    See More
+                                  </span>
+                                </motion.div>
+                              </div>
                             </motion.div>
-                          </div>
-                        </motion.div>
-                            )
-                          }
+                          )}
                         </motion.div>
                       </div>
                     </div>
@@ -326,8 +340,18 @@ const ProjectShowcaseSection = () => {
       <ModalPopUp
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={(expandedProject ? projects.find(p => p.id === expandedProject)?.title : "") as string} 
-        data={(expandedProject === "tee" ? TEEData : expandedProject === "golf" ? playWithStephenData : talentvilleAfricaData) as ProjectSectionModalPopupSection[]}
+        title={
+          (expandedProject
+            ? projects.find((p) => p.id === expandedProject)?.title
+            : "") as string
+        }
+        data={
+          (expandedProject === "tee"
+            ? TEEData
+            : expandedProject === "golf"
+            ? playWithStephenData
+            : talentvilleAfricaData) as ProjectSectionModalPopupSection[]
+        }
       />
     </div>
   );
