@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 export async function POST(req: NextRequest) {
   try {
     const data: newsletter = await req.json();
-    console.log("Received data:", data);
 
     // Here you would typically handle the subscription logic, e.g., save to a database
     // For demonstration, we just log the data and return a success response
@@ -23,8 +22,6 @@ export async function POST(req: NextRequest) {
       data.email,
       "email"
     ) as newsletterSupabaseResponse;
-
-    console.log("existing subscription", existingSubscription);
     if (existingSubscription) {
       return new Response(
         JSON.stringify({ error: "Email is already subscribed." }),

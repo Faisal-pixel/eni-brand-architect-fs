@@ -94,7 +94,7 @@ export async function PUT(
     const responseData = mapCareerFromSupabase(
       updatedData[0] as careersSupabaseResponse
     );
-    console.log("Updated career:", responseData);
+
 
     return NextResponse.json(responseData, { status: 200 });
   } catch (error) {
@@ -128,7 +128,6 @@ export async function DELETE(
     }
 
     // STEP 3: Log what we're about to delete (helpful for debugging)
-    console.log("Career to delete:", dataToDelete);
 
     // STEP 4: Delete the career from Supabase database
     // This replaces the old method of using splice() to remove from array

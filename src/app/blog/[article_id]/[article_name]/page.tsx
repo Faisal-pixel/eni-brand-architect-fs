@@ -13,8 +13,6 @@ export default async function BlogPost({
 }) {
   const { article_id } = await params;
 
-  console.log("Landed on an article page with ID:", article_id);
-
   try {
     // Use absolute URL for server-side fetching
     const baseUrl =
@@ -24,11 +22,7 @@ export default async function BlogPost({
           }`
         : "http://localhost:3000";
 
-    console.log("Base url:", baseUrl);
-    console.log(process.env.NEXT_PUBLIC_BASE_URL, process.env.VERCEL_URL);
-
     const response = await fetch(`${baseUrl}/api/v1/blogPosts/${article_id}`);
-    console.log("Response status:", response.status);
 
     if (!response.ok) {
       if (response.status === 404) {
@@ -39,7 +33,6 @@ export default async function BlogPost({
 
     const data: Article = await response.json();
     if (!data) return notFound();
-    console.log("Fetched article:", data);
 
     return (
       <>
@@ -66,7 +59,6 @@ export async function generateStaticParams() {
       process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL
         ? `https://${process.env.VERCEL_URL}`
         : "http://localhost:3000";
-        console.log("Base url for static params:", baseUrl);
 
     const response = await fetch(`${baseUrl}/api/v1/blogPosts`);
 

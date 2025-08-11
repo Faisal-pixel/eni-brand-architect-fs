@@ -20,7 +20,6 @@ export async function POST(req: NextRequest) {
     const timestamp = Math.round(new Date().getTime() / 1000);
     const safeSlug = slugifyTitle(data.title);
     const publicId = `${safeSlug}_${Date.now()}`;
-    console.log("Public ID:", publicId, "Body", data);
 
     // Params for signature
     const params = {
@@ -34,8 +33,6 @@ export async function POST(req: NextRequest) {
       params,
       process.env.CLOUDINARY_API_SECRET!
     );
-
-    console.log("Signature:", signature);
 
     return NextResponse.json(
       {
