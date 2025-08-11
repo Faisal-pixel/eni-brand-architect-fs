@@ -107,19 +107,7 @@ const LatestArticleCard = ({
               <span>Category</span>
 
               <div className="py-2 flex flex-wrap gap-2">
-                {/* {(fileUnderTags || ["Design", "Research", "Presentation"]).map(
-                  (tag, index) => {
-                    console.log(tag, index, typeof tag);
-                    return (
-                      <span
-                        key={index}
-                        className="bg-transparent py-0.5 px-2.5 border-[1.5px] border-white rounded-2xl"
-                      >
-                        {tag}
-                      </span>
-                    );
-                  }
-                )} */}
+               
 
                 <span className="bg-transparent py-0.5 px-2.5 border-[1.5px] border-white rounded-2xl">
                   {category}
