@@ -8,6 +8,7 @@ import {
   careers,
   careersSupabaseResponse,
 } from "@/app/types/backend/careers.backend.types";
+import { newsletter, newsletterSupabaseResponse } from "@/app/types/backend/newsletter.backend.types";
 
 // ===== BLOG POST MAPPERS =====
 
@@ -66,4 +67,26 @@ export const mapCareerToSupabase = (
   short_job_brief: career.shortJobBrief,
   date_posted: career.datePosted,
   link_to_apply: career.linkToApply,
+});
+
+export const mapNewsLetterFromSupabase = (
+  newsletter: newsletterSupabaseResponse
+): newsletter => ({
+  id: newsletter.id || "",
+  email: newsletter.email ?? "",
+  timestamp: newsletter.timestamp ?? "",
+  source: newsletter.source ?? "",
+  userAgent: newsletter.user_agent ?? "",
+  referrer: newsletter.referrer ?? "",
+});
+
+export const mapNewsLetterToSupabase = (
+  newsletter: newsletter
+): newsletterSupabaseResponse => ({
+  id: newsletter.id,
+  email: newsletter.email,
+  timestamp: newsletter.timestamp,
+  source: newsletter.source,
+  user_agent: newsletter.userAgent,
+  referrer: newsletter.referrer,
 });

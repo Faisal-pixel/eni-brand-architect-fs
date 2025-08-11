@@ -1,4 +1,5 @@
 import { blogPostsSupabaseResponse } from "@/app/types/backend/blog-post.backend.types";
+import { newsletterSupabaseResponse } from "@/app/types/backend/newsletter.backend.types";
 import { createClient } from "@supabase/supabase-js";
 
 console.log(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
@@ -24,20 +25,28 @@ export const getDataFromSupabase = async (tableName: string) => {
 
 export const getASingleDataFromSupabase = async (
   tableName: string,
-  id: string
+  searchValue: string,
+  searchField: string = "id"
 ) => {
+  console.log("Collecting from supabase", tableName, searchValue, searchField)
   try {
     const { data, error } = await supabase
       .from(tableName)
       .select("*")
-      .eq("id", id)
+      .eq(searchField, searchValue)
       .single();
+
+      console.log("Data fetched from Supabase:", data);
+
+    if(error && !data) {
+      return data
+    }
 
     if (error) {
       throw error;
     }
 
-    return data as blogPostsSupabaseResponse;
+    return data as blogPostsSupabaseResponse | newsletterSupabaseResponse;
   } catch (error) {
     console.error("Error fetching single data from Supabase:", error);
     throw error;
@@ -46,7 +55,7 @@ export const getASingleDataFromSupabase = async (
 
 export const insertIntoSupabase = async (
   tableName: string,
-  data: blogPostsSupabaseResponse
+  data: blogPostsSupabaseResponse | newsletterSupabaseResponse
 ) => {
   try {
     const { data: insertedData, error } = await supabase

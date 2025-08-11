@@ -7,6 +7,7 @@ import {
 } from "@/lib/supabase";
 import { mapBlogPostFromSupabase, mapBlogPostToSupabase } from "@/helpers/backend/db/mappers..db.backend";
 import { v2 as cloudinary } from "cloudinary";
+import { blogPostsSupabaseResponse } from "@/app/types/backend/blog-post.backend.types";
 
 // Configure Cloudinary
 cloudinary.config({
@@ -103,7 +104,7 @@ export async function DELETE(
     const { id: postId } = await params;
 
     // First, get the blog post data to extract the image URL for Cloudinary deletion
-    const dataFromPgTable = await getASingleDataFromSupabase("blogs", postId);
+    const dataFromPgTable = await getASingleDataFromSupabase("blogs", postId) as blogPostsSupabaseResponse;
     if (!dataFromPgTable || !dataFromPgTable.id) {
       return NextResponse.json(
         { error: "Post to delete not found" },
