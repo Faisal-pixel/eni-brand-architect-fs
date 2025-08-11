@@ -2,6 +2,7 @@
 import { NewsLetterLeftLogos, NewsLetterLogo } from "@/assets/icons";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 import { z } from "zod";
 
 // Email validation schema
@@ -113,7 +114,6 @@ const NewsletterSection: React.FC = () => {
         referrer: document.referrer,
       };
 
-      console.log("Submission data", submissionData);
 
       // Replace this with your actual API call
       const response = await fetch(newsletterConfig.submissionEndpoint, {
@@ -137,7 +137,8 @@ const NewsletterSection: React.FC = () => {
         setSubmitStatus("error");
       }
     } catch (error) {
-      console.log("Newsletter submission error:", error);
+      console.error("Newsletter submission error:", error);
+      toast.error("There was an error submitting your email. Please try again.");
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);

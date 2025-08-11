@@ -32,12 +32,9 @@ const CreateBlogPage = () => {
     }
 
     try {
-      console.log("The new form data:", data);
-      console.log("The past blog data being editted:", editBlogData);
       // If the image is a file, we need to delete the old image and upload the new one
       // Then get the url of the new image and update the blog post with the new image URL
       if (typeof data.image === "object") {
-        console.log("Image was chahnged");
         // First delete the old image.
         await deleteImageFromCloudinary(editBlogData.image as string);
 
@@ -115,8 +112,6 @@ const CreateBlogPage = () => {
       );
 
       const uploadData = await uploadResponse.json();
-      console.log("I got here!!!")
-      console.log("Upload data:", uploadData);
       if (!uploadResponse.ok) {
         throw new Error(uploadData.error?.message || "Failed to upload image");
       }
@@ -164,10 +159,8 @@ const CreateBlogPage = () => {
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
-      console.log("Fetching blog posts for page:", page);
       try {
         const response = await fetch(`/api/v1/blogPosts?page=${page}&limit=6`);
-        console.log(response);
         if (!response.ok) {
           throw new Error("Failed to fetch blog posts");
         }
@@ -186,8 +179,6 @@ const CreateBlogPage = () => {
         setPage(data.page);
         setTotalNumberOfPosts(data.totalNumberOfPosts);
         setTotalPages(data.totalPages);
-
-        console.log("Fetched blog posts:", data);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
         setError(error instanceof Error ? error.message : "Unknown error");
@@ -241,8 +232,6 @@ const CreateBlogPage = () => {
       </AdminContainer>
     );
   }
-
-  console.log("The console.log at the bottom", page, blogPosts);
 
   return (
     <AdminContainer>

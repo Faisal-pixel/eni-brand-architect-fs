@@ -13,10 +13,7 @@ const BuyTicketsComponent = () => {
   const handleClose = () => {
     // Logic to close the ticket component
     setShouldShowTicketComponent(false);
-    console.log("Close button clicked");
   };
-  console.log("BuyTicketsComponent rendered");
-  console.log("shouldShowTicketComponent:", shouldShowTicketComponent);
   return (
     <>
         <div className={`bg-[rgba(105,65,198,1)] text-white py-3 px-5 ${shouldShowTicketComponent ? 'block' : 'hidden'}`}>

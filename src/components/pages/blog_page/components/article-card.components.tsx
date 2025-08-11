@@ -29,8 +29,6 @@ const ArticleCardComponent = ({
   image,
   bgColor,
 }: Props) => {
-  console.log(image, "Image URL in ArticleCardComponent");
-  console.log(id, "ID in ArticleCardComponent");
 
   return (
     <div

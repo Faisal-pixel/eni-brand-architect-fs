@@ -26,7 +26,6 @@ const CreateCareersPage = () => {
   const [editedCareerData, setEditedCareerData] = useState<CareerPost | null>(null);
 
   const handleCareerSubmit = async (data: CareerFormData) => {
-    console.log("Form submitted", data);
     try {
       const response = await fetch("/api/v1/careers", {
         method: "POST",
@@ -133,10 +132,8 @@ const CreateCareersPage = () => {
 
   useEffect(() => {
     const fetchAllCareers = async () => {
-      console.log("Fetching careers posts");
       try {
         const response = await fetch(`/api/v1/careers?page=${page}&limit=6`);
-        console.log(response);
         if (!response.ok) {
           throw new Error("Failed to fetch careers");
         }
@@ -154,8 +151,6 @@ const CreateCareersPage = () => {
         setPage(data.page);
         setTotalNumberOfCareers(data.totalNumberOfCareers);
         setTotalPages(data.totalPages);
-
-        console.log("Fetched careers posts:", data);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
         setError(error instanceof Error ? error.message : "Unknown error");

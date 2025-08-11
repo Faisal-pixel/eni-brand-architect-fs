@@ -2,8 +2,6 @@ import { blogPostsSupabaseResponse } from "@/app/types/backend/blog-post.backend
 import { newsletterSupabaseResponse } from "@/app/types/backend/newsletter.backend.types";
 import { createClient } from "@supabase/supabase-js";
 
-console.log(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
-
 const supabase = createClient(
   process.env.SUPABASE_URL as string,
   process.env.SUPABASE_ANON_KEY as string
@@ -28,7 +26,6 @@ export const getASingleDataFromSupabase = async (
   searchValue: string,
   searchField: string = "id"
 ) => {
-  console.log("Collecting from supabase", tableName, searchValue, searchField)
   try {
     const { data, error } = await supabase
       .from(tableName)
@@ -36,7 +33,6 @@ export const getASingleDataFromSupabase = async (
       .eq(searchField, searchValue)
       .single();
 
-      console.log("Data fetched from Supabase:", data);
 
     if(error && !data) {
       return data
@@ -86,7 +82,6 @@ export const updateARecordInSupabase = async (
       .update(data)
       .eq("id", id)
       .select();
-    console.log("I hite here");
     if (error) {
       console.error("Error updating data in Supabase:", error);
       throw error;

@@ -29,7 +29,7 @@ const ctaConfig = {
     links: [
       { text: "Terms", href: "#terms" },
       { text: "Privacy", href: "#privacy" },
-      { text: "Cookies", href: "#cookies" },
+      // { text: "Cookies", href: "#cookies" },
     ],
   },
 };

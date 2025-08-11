@@ -135,19 +135,20 @@ const BlogCreationModal: React.FC<BlogCreationModalProps> = ({
       toast.success("Blog post created successfully!");
       onClose();
     } catch (error) {
-      console.log("Validation error caught:", error);
+      console.error("Validation error caught:", error);
       if (error instanceof z.ZodError) {
-        console.log("Zod validation errors:", error.errors);
+        console.error("Zod validation errors:", error.errors);
         const newErrors: Record<string, string> = {};
         error.errors.forEach((err) => {
-          console.log("Individual error:", err);
+          console.error("Individual error:", err);
           if (err.path[0]) {
             newErrors[err.path[0] as string] = err.message;
           }
         });
-        console.log("Processed errors:", newErrors);
+        console.error("Processed errors:", newErrors);
         setErrors(newErrors);
       }
+      toast.error("Failed to create blog post");
     } finally {
       setIsSubmitting(false);
     }

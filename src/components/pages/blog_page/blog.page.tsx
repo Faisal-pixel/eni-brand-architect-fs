@@ -74,7 +74,6 @@ const BlogPage = () => {
         setTotalPages(data.totalPages);
         // setTotalPosts(data.totalNumberOfPosts);
 
-        console.log("Fetched blog posts:", data);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
         setError(

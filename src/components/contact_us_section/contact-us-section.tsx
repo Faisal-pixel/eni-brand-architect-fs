@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 import { z } from "zod";
 
 // Zod schema for form validation
@@ -183,16 +184,13 @@ const ContactSection = () => {
           message: "",
           agreedToPolicy: false,
         });
-
-        alert(
-          "Message sent successfully! We'll get back to you within 24 hours."
-        );
+        toast.success("Message sent successfully! We'll get back to you within 24 hours.");
       } else {
         throw new Error(result.message || "Failed to send message");
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      alert("There was an error sending your message. Please try again.");
+      toast.error("There was an error sending your message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
