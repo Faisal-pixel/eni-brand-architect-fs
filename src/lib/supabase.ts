@@ -111,4 +111,24 @@ export const deleteRecordFromSupabase = async (
   }
 };
 
+export const deleteMultipleRows = async (table: string, ids: string[]) => {
+  try {
+    const { data, error } = await supabase
+      .from(table)
+      .delete()
+      .in("id", ids)
+      .select("id");
+
+    if (error) {
+      console.error("Error deleting multiple rows from Supabase:", error);
+      throw error;
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error deleting multiple rows from Supabase:", error);
+    throw error;
+  }
+};
+
 export default supabase;

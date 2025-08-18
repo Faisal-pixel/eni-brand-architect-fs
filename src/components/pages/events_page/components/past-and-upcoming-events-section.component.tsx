@@ -13,19 +13,21 @@ const PastAndUpcomingEventsSection = () => {
     pastEvents: [
       {
         id: "1",
-        date: "27 October 2025",
+        date: "27 October 2024",
         title: "The Eniivy Experience (It can only be Naija)",
         description:
           "An Evening of fun, movies, and conversations with the CommuniTEE",
         imageUrl: "/images/events/past-events-1-img.png",
+        link: "#"
       },
       {
         id: "2",
-        date: "23 October 2024",
+        date: "23 February 2024",
         title: "The Eniivy Experience (The CommuniTEE is back)",
         description:
           "Come have conservations about love, heartbreak, sing your heart out and Partyyyyyyy!",
         imageUrl: "/images/events/past-events-2-img.png",
+        link: "#"
       },
       {
         id: "3",
@@ -34,15 +36,25 @@ const PastAndUpcomingEventsSection = () => {
         description:
           "An Evening of fun, movies, and conversations with the CommuniTEE",
         imageUrl: "/images/events/upcoming-events-3-img.png",
+        link: "#"
+      },
+      {
+        id: "4",
+        date: "22nd - 24th August 2025",
+        title: "Let's Swing for Autism",
+        description: "Play with Stephen Golf Tournament.",
+        imageUrl: "/images/events/upcoming-events-4-img.png",
+        link: "#"
       },
     ],
     upcomingEvents: [
       {
         id: "1",
-        date: "22nd - 24th August 2025",
-        title: "Let's Swing for Autism",
-        description: "Play with Stephen Golf Tournament.",
-        imageUrl: "/images/events/upcoming-events-4-img.png",
+        date: "See you in November",
+        title: "Sip & Share Edition",
+        description: "Participate in our upcoming Sip & Share Edition event.",
+        imageUrl: "/images/events/anticipate-sip-and-paint.png",
+        link: "https://forms.gle/8bGKXFwRTf29TNhB7"
       },
     ],
   }; // This should be replaced with actual events data
@@ -67,7 +79,7 @@ const PastAndUpcomingEventsSection = () => {
             // >
             <Link
               key={index}
-              href={"#"}
+              href={event.link}
               className="cursor-pointer"
             >
               <motion.div
@@ -100,7 +112,7 @@ const PastAndUpcomingEventsSection = () => {
                         className="cursor-pointer"
                       > */}
                       <Link
-                        href={"#"}
+                        href={event.link}
                         className="cursor-pointer"
                       >
                         <h3 className="text-lg font-semibold leading-[28px] text-gray-900 group-hover:text-[rgba(1,117,68,1)]">
@@ -146,7 +158,7 @@ const PastAndUpcomingEventsSection = () => {
             // >
             <Link
               key={index}
-              href={`#`}
+              href={event.link}
               className="cursor-pointer"
             >
               <motion.div
@@ -179,7 +191,7 @@ const PastAndUpcomingEventsSection = () => {
                         className="cursor-pointer"
                       > */}
                       <Link
-                        href={`#`}
+                        href={event.link}
                         className="cursor-pointer"
                       >
                         <h3 className="text-lg font-semibold leading-[28px] text-gray-900 group-hover:text-[rgba(1,117,68,1)]">

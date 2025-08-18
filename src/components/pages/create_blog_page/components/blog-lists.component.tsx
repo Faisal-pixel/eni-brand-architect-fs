@@ -37,6 +37,8 @@ const BlogListsComponent = ({
   const [postToDelete, setPostToDelete] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
 
+  console.log("Selected Posts", selectedPosts)
+
   const filteredPosts = blogPostsProp.filter(
     (post) =>
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

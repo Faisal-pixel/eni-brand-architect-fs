@@ -1,16 +1,17 @@
-import React from 'react';
-import { AnimatePresence, motion, Variants } from 'motion/react';
-import { XCloseUpPopUpOnceIcon } from '@/assets/icons';
-import Image from 'next/image';
-import GreenButton from '@/components/ui_personal/green-button';
+import React from "react";
+import { AnimatePresence, motion, Variants } from "motion/react";
+import { XCloseUpPopUpOnceIcon } from "@/assets/icons";
+import Image from "next/image";
+import GreenButton from "@/components/ui_personal/green-button";
+import Link from "next/link";
 
 type Props = {
-    isOpen: boolean;
-    onClose: () => void;
-}
+  isOpen: boolean;
+  onClose: () => void;
+};
 
 const PopUpOnceBanner = ({ isOpen, onClose }: Props) => {
-    const overlayVariants = {
+  const overlayVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
@@ -59,28 +60,46 @@ const PopUpOnceBanner = ({ isOpen, onClose }: Props) => {
             className="bg-white rounded-[8px] flex flex-col shadow-2xl max-w-[300px] md:max-w-[684px] overflow-hidden pt-[10px] md:pt-[24px] pb-[10px] md:pb-[44px] px-[14px] md:px-[40px]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className='flex cursor-pointer' onClick={onClose}>
-                <Image src={XCloseUpPopUpOnceIcon} alt="Close" className='ml-auto' />
+            <div className="flex cursor-pointer" onClick={onClose}>
+              <Image
+                src={XCloseUpPopUpOnceIcon}
+                alt="Close"
+                className="ml-auto"
+              />
             </div>
 
-            <div className='flex flex-col md:flex-row gap-8'>
-                <Image src="/images/events/upcoming-events-4-img.png" alt='pop once img' className=' h-[300px] md:h-auto w-full' width={294} height={394}/>
+            <div className="flex flex-col md:flex-row gap-8">
+              <Image
+                src="/images/events/anticipate-sip-and-paint.png"
+                alt="pop once img"
+                className=" h-[300px] md:h-auto w-full"
+                width={294}
+                height={394}
+              />
 
-                <div className='self-start'>
-                    <div className='mb-8'>
-                        <h3 className='mb-2 text-lg font-medium leading-[28px]'>Let&#39;s swing for Autism (Play with Stephen Golf Tournament)</h3>
-                        <p className='text-sm leading-[20px]'>Register for the “Let&#39;s swing for Autism (Play with Stephen Golf Tournament)”</p>
-                    </div>
-
-                    <GreenButton title='Register' className='w-full cursor-pointer' />
+              <div className="self-start">
+                <div className="mb-8">
+                  <h3 className="mb-2 text-lg font-medium leading-[28px]">
+                    Sip & Share Edition
+                  </h3>
+                  <p className="text-sm leading-[20px]">
+                    Register for the “Sip & Share Edition”
+                  </p>
                 </div>
-            </div>
 
+                <Link href="https://forms.gle/8bGKXFwRTf29TNhB7" target="_blank" rel="noopener noreferrer">
+                  <GreenButton
+                    title="Register"
+                    className="w-full cursor-pointer"
+                  />
+                </Link>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
-        )}
+      )}
     </AnimatePresence>
-  )
-}
+  );
+};
 
 export default PopUpOnceBanner;
