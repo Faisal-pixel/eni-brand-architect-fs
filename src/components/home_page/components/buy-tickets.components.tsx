@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 // type Props = {}
 
 const BuyTicketsComponent = () => {
-  const buyYourTicketUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdWdmmPM-PrSUNN6J_HqRAQRdwbmz_B7AnuQzaWXY8zKoMNRA/viewform"; // Replace with the actual URL
+  const buyYourTicketUrl = "https://forms.gle/8bGKXFwRTf29TNhB7"; // Replace with the actual URL
   const [shouldShowTicketComponent, setShouldShowTicketComponent] = useState(true);
 
   const handleClose = () => {
@@ -31,10 +31,10 @@ const BuyTicketsComponent = () => {
                 in an inspiring live experience.
               </span> */}
               <span className="text-base font-semibold">
-                Let&#39;s swing for Autism (Play with Stephen Golf Tournament)
+                Sip & Share Edition
               </span>
               <span className="text-[rgba(233,215,254,1)] leading-6">
-                August 22nd - 24th, 2025 | Achimota Golf Club, Ghana
+                See you in November...
               </span>
             </div>
 
