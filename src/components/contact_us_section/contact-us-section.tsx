@@ -281,7 +281,7 @@ const ContactSection = () => {
                             ? `mailto:${method.contact}`
                             : method.id === "phone"
                             ? `tel:${method.contact}`
-                            : "#"
+                            : "#contact-form"
                         }
                         className="text-green-600 font-medium hover:text-green-700 transition-colors"
                       >
@@ -300,6 +300,7 @@ const ContactSection = () => {
 
           {/* Contact Form */}
           <div
+          id="contact-form"
             className={`transform transition-all duration-800 ease-out ${
               visibleItems.has("form")
                 ? "translate-y-0 opacity-100"

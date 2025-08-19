@@ -72,7 +72,7 @@ const PopUpOnceBanner = ({ isOpen, onClose }: Props) => {
               <Image
                 src="/images/events/anticipate-sip-and-paint.png"
                 alt="pop once img"
-                className=" h-[300px] md:h-auto w-full"
+                className=" h-[300px] md:h-auto w-auto"
                 width={294}
                 height={394}
               />
@@ -80,10 +80,10 @@ const PopUpOnceBanner = ({ isOpen, onClose }: Props) => {
               <div className="self-start">
                 <div className="mb-8">
                   <h3 className="mb-2 text-lg font-medium leading-[28px]">
-                    Sip & Share Edition
+                    The Eniivy Experience (Sip & Share Edition)
                   </h3>
                   <p className="text-sm leading-[20px]">
-                    Register for the “Sip & Share Edition”
+                    Register for the Eniivy Experience (Sip & Share Edition)
                   </p>
                 </div>
 

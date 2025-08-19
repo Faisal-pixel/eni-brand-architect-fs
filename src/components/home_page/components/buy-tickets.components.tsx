@@ -31,7 +31,7 @@ const BuyTicketsComponent = () => {
                 in an inspiring live experience.
               </span> */}
               <span className="text-base font-semibold">
-                Sip & Share Edition
+                The Eniivy Experience (Sip & Share Edition)
               </span>
               <span className="text-[rgba(233,215,254,1)] leading-6">
                 See you in November...

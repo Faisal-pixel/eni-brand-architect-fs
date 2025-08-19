@@ -51,8 +51,8 @@ const PastAndUpcomingEventsSection = () => {
       {
         id: "1",
         date: "See you in November",
-        title: "Sip & Share Edition",
-        description: "Participate in our upcoming Sip & Share Edition event.",
+        title: "The Eniivy Experience (Sip & Share Edition)",
+        description: "Participate in our upcoming The Eniivy Experience (Sip & Share Edition) event.",
         imageUrl: "/images/events/anticipate-sip-and-paint.png",
         link: "https://forms.gle/8bGKXFwRTf29TNhB7"
       },
